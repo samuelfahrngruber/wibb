@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Wibb</string>
+
+    <string name="default_heading_addoffer">TASK</string>
+
+    <string name="addoff_choose_store">What Store?</string>
+    <string name="addoff_choose_beer">What Beer?</string>
+    <string name="addoff_choose_price">How Expensive?</string>
+    <string name="addoff_choose_time">How Long?</string>
+</resources>
