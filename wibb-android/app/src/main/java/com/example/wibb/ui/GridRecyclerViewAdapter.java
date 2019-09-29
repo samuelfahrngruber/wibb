@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wibb.R;
@@ -14,14 +15,20 @@ import com.example.wibb.data.GridDisplayable;
 
 import java.util.List;
 
-public class GridRecyclerViewAdapter extends RecyclerView.Adapter<GridRecyclerViewAdapter.MyViewHolder> {
+public class GridRecyclerViewAdapter<ItemType extends GridDisplayable> extends RecyclerView.Adapter<GridRecyclerViewAdapter.MyViewHolder> {
 
     private Context context;
-    private List<GridDisplayable> data;
+    private List<ItemType> data;
 
-    public GridRecyclerViewAdapter(Context context, List<GridDisplayable> data) {
+    private SelectionListener selectionListener;
+
+    public GridRecyclerViewAdapter(Context context, List<ItemType> data) {
         this.context = context;
         this.data = data;
+    }
+
+    public void setSelectionListener(SelectionListener<ItemType> selectionListener) {
+        this.selectionListener = selectionListener;
     }
 
     @Override
@@ -34,8 +41,17 @@ public class GridRecyclerViewAdapter extends RecyclerView.Adapter<GridRecyclerVi
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.itemTextv.setText(data.get(position).getText());
-        holder.itemImagev.setImageResource(data.get(position).getDrawable());
+        final GridDisplayable item = data.get(position);
+
+        holder.itemTextv.setText(item.getText());
+        holder.itemImagev.setImageResource(item.getDrawable());
+
+        holder.cardv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectionListener.onGridItemSelected(item);
+            }
+        });
     }
 
     @Override
@@ -47,11 +63,19 @@ public class GridRecyclerViewAdapter extends RecyclerView.Adapter<GridRecyclerVi
         TextView itemTextv;
         ImageView itemImagev;
 
+        CardView cardv;
+
         public MyViewHolder(View itemView) {
             super(itemView);
 
             itemTextv = itemView.findViewById(R.id.grid_item_text_id);
             itemImagev = itemView.findViewById(R.id.grid_item_img_id);
+
+            cardv = itemView.findViewById(R.id.id_cardView_gridItem);
         }
+    }
+
+    public interface SelectionListener<IType extends GridDisplayable>{
+        void onGridItemSelected(IType item);
     }
 }

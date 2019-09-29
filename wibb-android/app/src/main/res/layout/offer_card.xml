@@ -27,7 +27,7 @@
                 android:layout_height="40dp"
                 android:scaleType="fitCenter"
                 android:background="@android:color/transparent"
-                android:src="@drawable/hirter"
+                android:src="@drawable/ic_add_box_black_24dp"
                 android:layout_marginRight="10dp">
 
             </ImageView>
@@ -38,7 +38,7 @@
                 android:layout_height="40dp"
                 android:scaleType="fitCenter"
                 android:background="@android:color/transparent"
-                android:text="Hirter"
+                android:text="-"
                 android:textSize="25sp"
                 android:gravity="center">
 
@@ -72,7 +72,7 @@
                 android:layout_height="40dp"
                 android:scaleType="fitCenter"
                 android:background="@android:color/transparent"
-                android:text="25€"
+                android:text="-€"
                 android:textSize="30sp"
                 android:gravity="center">
 
@@ -119,7 +119,7 @@
                         android:layout_height="wrap_content"
                         android:scaleType="fitCenter"
                         android:background="@android:color/transparent"
-                        android:text="Merkur"
+                        android:text="-"
                         android:layout_marginRight="5dp">
 
                     </TextView>
@@ -130,7 +130,7 @@
                         android:layout_height="20dp"
                         android:scaleType="fitCenter"
                         android:background="@android:color/transparent"
-                        android:src="@drawable/merkur">
+                        android:src="@drawable/ic_add_box_black_24dp">
 
                     </ImageView>
 
@@ -157,7 +157,7 @@
                 android:layout_height="wrap_content"
                 android:scaleType="fitCenter"
                 android:background="@android:color/transparent"
-                android:text="25. Sep - 1. Okt">
+                android:text="-">
 
             </TextView>
 

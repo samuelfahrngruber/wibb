@@ -8,12 +8,19 @@ import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wibb.data.Brand
+import com.example.wibb.data.Offer
 import com.example.wibb.data.Store
 import com.example.wibb.ui.GridRecyclerViewAdapter
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.shuhart.stepview.StepView
 import com.triggertrap.seekarc.SeekArc
+import android.widget.ImageView
+
 
 class AddOfferActivity : AppCompatActivity() {
+
+    val offer = Offer()
+    var currentStep = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +42,10 @@ class AddOfferActivity : AppCompatActivity() {
 
         val rvs = findViewById<RecyclerView>(R.id.recyclerView_stores)
         val rvsa = GridRecyclerViewAdapter(this, stores)
+        rvsa.setSelectionListener {
+            setOfferStore(it)
+            nextstep()
+        }
 
         rvs.layoutManager = GridLayoutManager(this, 4)
         rvs.adapter = rvsa
@@ -48,6 +59,10 @@ class AddOfferActivity : AppCompatActivity() {
 
         val rvb = findViewById<RecyclerView>(R.id.recyclerView_beers)
         val rvba = GridRecyclerViewAdapter(this, brands)
+        rvba.setSelectionListener {
+            setOfferBrand(it)
+            nextstep()
+        }
 
         rvb.layoutManager = GridLayoutManager(this, 4)
         rvb.adapter = rvba
@@ -59,7 +74,8 @@ class AddOfferActivity : AppCompatActivity() {
             override fun onProgressChanged(seekArc: SeekArc?, progress: Int, fromUser: Boolean) {
                 val prog = progress + 5;
                 val progressv = findViewById<TextView>(R.id.seekArcProgress)
-                progressv.setText("€" + prog + "~")
+                progressv.setText("€" + prog)
+                setOfferPrice(prog)
             }
 
             override fun onStartTrackingTouch(seekArc: SeekArc?) {
@@ -69,6 +85,39 @@ class AddOfferActivity : AppCompatActivity() {
             }
         })
 
+        val fab = findViewById<FloatingActionButton>(R.id.fab_priceDone)
+        fab.setOnClickListener { nextstep() }
+
+
+    }
+
+    fun setOfferBrand(b: Brand){
+        offer.brand = b
+        val v = findViewById<View>(R.id.incl_cardView_currentOffer)
+        val img = v.findViewById<ImageView>(R.id.offer_card_brand_img)
+        val txt = v.findViewById<TextView>(R.id.offer_card_brand_txt)
+        img.setImageResource(b.icon)
+        txt.text = b.text
+    }
+
+    fun setOfferPrice(p: Int){
+        offer.price = p
+        val v = findViewById<View>(R.id.incl_cardView_currentOffer)
+        val txt = v.findViewById<TextView>(R.id.offer_card_price_txt)
+        txt.text = "€" + p
+    }
+
+    fun setOfferStore(s: Store){
+        offer.store = s
+        val v = findViewById<View>(R.id.incl_cardView_currentOffer)
+        val img = v.findViewById<ImageView>(R.id.offer_card_store_img)
+        val txt = v.findViewById<TextView>(R.id.offer_card_store_txt)
+        img.setImageResource(s.icon)
+        txt.text = s.text
+    }
+
+    fun nextstep(){
+        setstep(++currentStep)
     }
 
     fun setstep(step: Int){
@@ -91,5 +140,7 @@ class AddOfferActivity : AppCompatActivity() {
             findViewById<LinearLayout>(R.id.linearLayout_price).visibility = View.GONE
         else
             findViewById<LinearLayout>(R.id.linearLayout_price).visibility = View.VISIBLE
+
+        currentStep = step
     }
 }
