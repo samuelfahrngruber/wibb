@@ -7,14 +7,14 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.wibb.data.Brand
-import com.example.wibb.data.Offer
-import com.example.wibb.data.Store
 import com.example.wibb.ui.GridRecyclerViewAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.shuhart.stepview.StepView
 import com.triggertrap.seekarc.SeekArc
 import android.widget.ImageView
+import com.example.wibb.data.Brand
+import com.example.wibb.data.Offer
+import com.example.wibb.data.Store
 
 
 class AddOfferActivity : AppCompatActivity() {
