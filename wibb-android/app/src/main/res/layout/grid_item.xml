@@ -5,7 +5,10 @@
     android:layout_width="75dp"
     android:layout_height="100dp"
     android:layout_margin="5dp"
-    cardview:cardCornerRadius="10dp">
+    cardview:cardCornerRadius="10dp"
+
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground">
 
     <LinearLayout
         android:orientation="vertical"

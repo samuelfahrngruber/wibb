@@ -59,7 +59,7 @@ class AddOfferActivity : AppCompatActivity() {
             override fun onProgressChanged(seekArc: SeekArc?, progress: Int, fromUser: Boolean) {
                 val prog = progress + 5;
                 val progressv = findViewById<TextView>(R.id.seekArcProgress)
-                progressv.setText("~" + prog + "€")
+                progressv.setText("€" + prog + "~")
             }
 
             override fun onStartTrackingTouch(seekArc: SeekArc?) {

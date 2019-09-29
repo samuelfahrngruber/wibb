@@ -1,86 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:cardview="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    cardview:cardCornerRadius="10dp">
+    app:cardCornerRadius="10dp">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_height="match_parent"
+    <RelativeLayout
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
-        android:gravity="center">
-
-        <ImageView
-            android:id="@+id/offer_card_store_img"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_margin="5dp"
-            android:scaleType="fitCenter"
-            android:background="@android:color/transparent">
-
-        </ImageView>
-
-        <ImageView
-            android:id="@+id/offer_card_beer_img"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_margin="5dp"
-            android:scaleType="fitCenter"
-            android:background="@android:color/transparent">
-
-        </ImageView>
-
-        <TextView
-            android:id="@+id/offer_card_price_txt"
-            android:gravity="center"
-            android:textSize="30dp"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:text="~23€"
-            android:layout_margin="5dp"
-            android:background="@color/colorAccent">
-
-        </TextView>
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_height="80dp"
-            android:layout_width="80dp"
-            android:gravity="center"
-            android:layout_margin="5dp">
+            android:id="@+id/ll_store"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill_horizontal"
+>
+
+            <ImageView
+                android:id="@+id/offer_card_brand_img"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:src="@drawable/hirter"
+                android:layout_marginRight="10dp">
+
+            </ImageView>
 
             <TextView
-                android:id="@+id/offer_card_from_txt"
-                android:gravity="center"
-                android:textSize="20dp"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="Sun., 23">
-            </TextView>
-
-            <TextView
-                android:gravity="center"
-                android:textSize="15dp"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="to">
-            </TextView>
-
-            <TextView
-                android:id="@+id/offer_card_to_txt"
-                android:gravity="center"
-                android:textSize="20dp"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="Tue., 25">
+                android:id="@+id/offer_card_brand_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:text="Hirter"
+                android:textSize="25sp"
+                android:gravity="center">
 
             </TextView>
 
         </LinearLayout>
 
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_price"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_toRightOf="@+id/ll_store"
+            android:layout_alignParentRight="true"
+            android:gravity="right">
+
+            <ImageView
+                android:id="@+id/offer_card_price_img"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_euro_symbol_black_24dp"
+                android:visibility="invisible">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/offer_card_price_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:text="25€"
+                android:textSize="30sp"
+                android:gravity="center">
+
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_below="@id/ll_price"
+            android:layout_alignParentRight="true"
+
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:text="bei"
+                android:layout_marginRight="5dp">
+
+            </TextView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="5dp"
+                android:layout_margin="5dp"
+                android:backgroundTint="#EEEEEE">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_margin="5dp">
+
+                    <TextView
+                        android:id="@+id/offer_card_store_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="fitCenter"
+                        android:background="@android:color/transparent"
+                        android:text="Merkur"
+                        android:layout_marginRight="5dp">
+
+                    </TextView>
+
+                    <ImageView
+                        android:id="@+id/offer_card_store_img"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:scaleType="fitCenter"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/merkur">
+
+                    </ImageView>
+
+                </LinearLayout>
+
+
+
+            </androidx.cardview.widget.CardView>
+
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:text="("
+                android:layout_marginLeft="5dp">
+            </TextView>
+            <TextView
+                android:id="@+id/offer_card_date_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:text="25. Sep - 1. Okt">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                android:text=")">
+            </TextView>
+
+
+        </LinearLayout>
+    </RelativeLayout>
+
 
 </androidx.cardview.widget.CardView>

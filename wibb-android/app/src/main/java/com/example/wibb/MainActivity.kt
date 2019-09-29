@@ -11,6 +11,7 @@ import com.example.wibb.data.Store
 import com.example.wibb.ui.OfferCardRecyclerViewAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.time.LocalDate
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,14 +40,17 @@ class MainActivity : AppCompatActivity() {
 
         val stores = List(storenames.size) { Store(storenames[it], storeicons.getResourceId(it, R.drawable.ic_shopping_cart_black_24dp)) }
 
-        val o = Offer()
-        o.brand = brands[3]
-        o.store = stores[3]
-        o.end = LocalDate.now()
-        o.start = LocalDate.now()
-        o.price = 15
+        val offers = List(7){
+            Offer()
+        }
 
-        val offers = listOf(o)
+        for(o in offers){
+            o.brand = brands.random()
+            o.store = stores.random()
+            o.end = LocalDate.now()
+            o.start = LocalDate.now()
+            o.price = Random.nextInt(5, 30)
+        }
 
         val rvo = findViewById<RecyclerView>(R.id.recyclerView_offers)
         val rvoa = OfferCardRecyclerViewAdapter(this, offers)

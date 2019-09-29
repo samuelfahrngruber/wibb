@@ -40,12 +40,14 @@ public class OfferCardRecyclerViewAdapter extends RecyclerView.Adapter<OfferCard
         holder.brandImagev.setImageResource(o.getBrand().getDrawable());
         holder.storeImagev.setImageResource(o.getStore().getDrawable());
 
-        holder.priceTextv.setText("~" + o.getPrice() + "€");
+        holder.priceTextv.setText("€" + o.getPrice());
+
+        holder.brandTextv.setText((o.getBrand().getText()));
+        holder.storeTextv.setText((o.getStore().getText()));
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E, d");
 
-        holder.fromTextv.setText(o.getStart().format(formatter));
-        holder.toTextv.setText(o.getEnd().format(formatter));
+        holder.dateTextv.setText(o.getStart().format(formatter) + " - " + o.getEnd().format(formatter));
     }
 
     @Override
@@ -57,19 +59,23 @@ public class OfferCardRecyclerViewAdapter extends RecyclerView.Adapter<OfferCard
 
         ImageView brandImagev;
         ImageView storeImagev;
+
         TextView priceTextv;
-        TextView fromTextv;
-        TextView toTextv;
+        TextView dateTextv;
+        TextView brandTextv;
+        TextView storeTextv;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
             storeImagev = itemView.findViewById(R.id.offer_card_store_img);
-            brandImagev = itemView.findViewById(R.id.offer_card_beer_img);
+            brandImagev = itemView.findViewById(R.id.offer_card_brand_img);
 
             priceTextv = itemView.findViewById(R.id.offer_card_price_txt);
-            fromTextv = itemView.findViewById(R.id.offer_card_from_txt);
-            toTextv = itemView.findViewById(R.id.offer_card_to_txt);
+            dateTextv = itemView.findViewById(R.id.offer_card_date_txt);
+            brandTextv = itemView.findViewById(R.id.offer_card_brand_txt);
+            storeTextv = itemView.findViewById(R.id.offer_card_store_txt);
+
         }
     }
 }
