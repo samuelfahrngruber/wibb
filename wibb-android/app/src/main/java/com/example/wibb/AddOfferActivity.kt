@@ -12,7 +12,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.shuhart.stepview.StepView
 import com.triggertrap.seekarc.SeekArc
 import android.widget.ImageView
-import com.example.wibb.data.Brand
+import com.example.wibb.data.Beer
 import com.example.wibb.data.Offer
 import com.example.wibb.data.Store
 
@@ -52,15 +52,15 @@ class AddOfferActivity : AppCompatActivity() {
 
         // init beer chooser
 
-        val brandnames = resources.getStringArray(R.array.beer_names)
-        val brandicons = resources.obtainTypedArray(R.array.beer_icons)
+        val beerNames = resources.getStringArray(R.array.beer_names)
+        val beerIcons = resources.obtainTypedArray(R.array.beer_icons)
 
-        val brands = List(brandnames.size) { Brand(brandnames[it], brandicons.getResourceId(it, R.drawable.ic_local_drink_black_24dp)) }
+        val beer = List(beerNames.size) { Beer(beerNames[it], beerIcons.getResourceId(it, R.drawable.ic_local_drink_black_24dp)) }
 
         val rvb = findViewById<RecyclerView>(R.id.recyclerView_beers)
-        val rvba = GridRecyclerViewAdapter(this, brands)
+        val rvba = GridRecyclerViewAdapter(this, beer)
         rvba.setSelectionListener {
-            setOfferBrand(it)
+            setOfferBeer(it)
             nextstep()
         }
 
@@ -74,7 +74,7 @@ class AddOfferActivity : AppCompatActivity() {
             override fun onProgressChanged(seekArc: SeekArc?, progress: Int, fromUser: Boolean) {
                 val prog = progress + 5;
                 val progressv = findViewById<TextView>(R.id.seekArcProgress)
-                progressv.setText("€" + prog)
+                progressv.text = "€$prog"
                 setOfferPrice(prog)
             }
 
@@ -91,11 +91,11 @@ class AddOfferActivity : AppCompatActivity() {
 
     }
 
-    fun setOfferBrand(b: Brand){
-        offer.brand = b
+    fun setOfferBeer(b: Beer){
+        offer.beer = b
         val v = findViewById<View>(R.id.incl_cardView_currentOffer)
-        val img = v.findViewById<ImageView>(R.id.offer_card_brand_img)
-        val txt = v.findViewById<TextView>(R.id.offer_card_brand_txt)
+        val img = v.findViewById<ImageView>(R.id.offer_card_beer_img)
+        val txt = v.findViewById<TextView>(R.id.offer_card_beer_txt)
         img.setImageResource(b.icon)
         txt.text = b.text
     }

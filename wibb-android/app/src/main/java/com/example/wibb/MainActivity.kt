@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.wibb.data.Brand
+import com.example.wibb.data.Beer
 import com.example.wibb.data.Offer
 import com.example.wibb.data.Store
 import com.example.wibb.ui.OfferCardRecyclerViewAdapter
@@ -30,10 +30,10 @@ class MainActivity : AppCompatActivity() {
 
         // init offers
 
-        val brandnames = resources.getStringArray(R.array.beer_names)
-        val brandicons = resources.obtainTypedArray(R.array.beer_icons)
+        val beerNames = resources.getStringArray(R.array.beer_names)
+        val beerIcons = resources.obtainTypedArray(R.array.beer_icons)
 
-        val brands = List(brandnames.size) { Brand(brandnames[it], brandicons.getResourceId(it, R.drawable.ic_local_drink_black_24dp)) }
+        val beer = List(beerNames.size) { Beer(beerNames[it], beerIcons.getResourceId(it, R.drawable.ic_local_drink_black_24dp)) }
 
         val storenames = resources.getStringArray(R.array.store_names)
         val storeicons = resources.obtainTypedArray(R.array.store_icons)
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         for(o in offers){
-            o.brand = brands.random()
+            o.beer = beer.random()
             o.store = stores.random()
             o.end = LocalDate.now()
             o.start = LocalDate.now()

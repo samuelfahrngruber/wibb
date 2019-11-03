@@ -1,6 +1,6 @@
 package com.example.wibb.data
 
-class Brand(var name: String, var icon: Int): GridDisplayable {
+class Beer(var name: String, var icon: Int): GridDisplayable {
 
     override val drawable: Int
         get() = icon

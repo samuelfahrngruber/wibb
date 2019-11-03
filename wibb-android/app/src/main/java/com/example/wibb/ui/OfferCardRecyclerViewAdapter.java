@@ -37,12 +37,12 @@ public class OfferCardRecyclerViewAdapter extends RecyclerView.Adapter<OfferCard
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Offer o = data.get(position);
 
-        holder.brandImagev.setImageResource(o.getBrand().getDrawable());
+        holder.brandImagev.setImageResource(o.getBeer().getDrawable());
         holder.storeImagev.setImageResource(o.getStore().getDrawable());
 
         holder.priceTextv.setText("€" + o.getPrice());
 
-        holder.brandTextv.setText((o.getBrand().getText()));
+        holder.brandTextv.setText((o.getBeer().getText()));
         holder.storeTextv.setText((o.getStore().getText()));
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E, d");
@@ -69,11 +69,11 @@ public class OfferCardRecyclerViewAdapter extends RecyclerView.Adapter<OfferCard
             super(itemView);
 
             storeImagev = itemView.findViewById(R.id.offer_card_store_img);
-            brandImagev = itemView.findViewById(R.id.offer_card_brand_img);
+            brandImagev = itemView.findViewById(R.id.offer_card_beer_img);
 
             priceTextv = itemView.findViewById(R.id.offer_card_price_txt);
             dateTextv = itemView.findViewById(R.id.offer_card_date_txt);
-            brandTextv = itemView.findViewById(R.id.offer_card_brand_txt);
+            brandTextv = itemView.findViewById(R.id.offer_card_beer_txt);
             storeTextv = itemView.findViewById(R.id.offer_card_store_txt);
 
         }
