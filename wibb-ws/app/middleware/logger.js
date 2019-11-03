@@ -1,4 +1,4 @@
-module.exports = (req, res, next) => {
+export default (req, res, next) => {
     let date = new Date().toLocaleString('en-GB', {
         hour12: false,
         day: '2-digit',

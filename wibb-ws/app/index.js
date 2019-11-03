@@ -1,7 +1,7 @@
 // packages
-const express = require('express');
-const bodyParser = require('body-parser');
-const logger = require('./middleware/logger');
+import express from 'express';
+import bodyParser from 'body-parser';
+import logger from './middleware/logger.js';
 const app = express();
 
 // middleware
@@ -13,6 +13,9 @@ const port = process.env.PORT || 8080;
 process.env.HOST = process.env.HOST || 'http://localhost' + ':' + port;
 
 // routing
+import defaultRouter from './routing/default.js';
+
+app.use('/wibb', defaultRouter);
 
 // start
 app.listen(port);
