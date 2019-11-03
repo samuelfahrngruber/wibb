@@ -3,6 +3,7 @@
 ## POST `wibb.at/offers`
 ```
 {
+  _id: ObjectId("23fec396ca")
   beer: ObjectId("h23ef31c12"),
   store: objectId("e35fcab2c4"),
   price: 12.6,
@@ -26,7 +27,7 @@
   },
   
   {
-  	_id: ObjectId("5ca6eca21a")
+    _id: ObjectId("5ca6eca21a")
     beer: ObjectId("bc43ead451"),
     store: objectId("de5ca345cc"),
     price: 10.2,
