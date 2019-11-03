@@ -19,7 +19,7 @@
   {
     _id: ObjectId("23fec396ca")
     beer: ObjectId("h23ef31c12"),
-  	store: ObjectId("e35fcab2c4"),
+    store: ObjectId("e35fcab2c4"),
     price: 12.6,
     startDate: "2019-11-03",
     endDate: "2019-11-10"
