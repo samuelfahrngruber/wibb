@@ -17,7 +17,7 @@
 ```
 [
   {
-  	_id: ObjectId("23fec396ca")
+    _id: ObjectId("23fec396ca")
     beer: ObjectId("h23ef31c12"),
   	store: ObjectId("e35fcab2c4"),
     price: 12.6,
@@ -41,14 +41,14 @@
 ## GET `wibb.at/beer`
 ```
 [
-	{
-  	_id: ObjectId("bc43ead451"),
+  {
+    _id: ObjectId("bc43ead451"),
     name: "Gösser",
     icon: "https://wibb.at/res/goesser.png"
   },
   
   {
-  	_id: ObjectId("h23ef31c12"),
+    _id: ObjectId("h23ef31c12"),
     name: "Heineken",
     icon: "https://wibb.at/res/heineken.png"
   }
@@ -60,14 +60,14 @@
 ## GET `wibb.at/stores`
 ```
 [
-	{
-  	_id: ObjectId("e35fcab2c4"),
+  {
+    _id: ObjectId("e35fcab2c4"),
     name: "Hofer",
     icon: "https://wibb.at/res/hofer.png"
   },
   
   {
-  	_id: ObjectId("de5ca345cc"),
+    _id: ObjectId("de5ca345cc"),
     name: "Spar",
     icon: "https://wibb.at/res/spar.png"
   }
