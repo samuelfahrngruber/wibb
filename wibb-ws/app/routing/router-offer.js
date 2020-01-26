@@ -1,7 +1,6 @@
 // packages
 import express from 'express';
 import offerSchema from '../data/schemas/offerschema';
-import mongoConnection from '../data/mongoconnection';
 
 const router = express();
 

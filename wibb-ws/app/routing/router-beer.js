@@ -1,7 +1,6 @@
 // packages
 import express from 'express';
 import beerSchema from '../data/schemas/beerschema';
-import mongoConnection from '../data/mongoconnection';
 
 const router = express();
 

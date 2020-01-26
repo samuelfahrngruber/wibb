@@ -1,14 +1,22 @@
 // packages
 import express from 'express';
 import storeSchema from '../data/schemas/storeschema';
-import mongoConnection from '../data/mongoconnection';
 
 const router = express();
 
 // add routes
 router.get('/', function (req, res) {
-    let ch = storeSchema.find();
-    res.json({changes:ch});
+    storeSchema.find()
+    .exec((err, stores) => {
+        if (err)
+            res.status(500).json(err);
+
+        else if (stores == null || stores.length < 1)
+            res.status(204).json(new Error("NO CONTENT"));
+
+        else
+            res.json(stores);
+    })
 });
 
 export default router;

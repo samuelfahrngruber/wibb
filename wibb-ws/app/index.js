@@ -2,6 +2,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import logger from './middleware/logger.js';
+import mongoose from 'mongoose';
+
 const app = express();
 
 // middleware
@@ -11,6 +13,9 @@ app.use(logger);
 // environment
 const port = process.env.PORT || 8080; 
 process.env.HOST = process.env.HOST || 'http://localhost' + ':' + port;
+
+// db connection
+var connection = mongoose.connect('mongodb://127.0.0.1:27017/wibbdb');
 
 // routing
 import defaultRouter from './routing/router-default.js';
