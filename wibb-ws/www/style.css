@@ -1,5 +1,6 @@
 .horizontal-list-item-content {
     width: 15%;
+    border: none;
 }
 
 .overflow-scroll-custom {
