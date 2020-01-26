@@ -1,0 +1,7 @@
+.horizontal-list-item-content {
+    width: 15%;
+}
+
+.overflow-scroll-custom {
+    overflow-x: scroll;
+}
