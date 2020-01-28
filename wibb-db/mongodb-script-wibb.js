@@ -17,3 +17,7 @@ db.stores.insert({ name: "Merkur", icon: "/res/img/store/merkur.png" });
 db.stores.insert({ name: "MPreis", icon: "/res/img/store/mpreis.png" });
 db.stores.insert({ name: "Spar", icon: "/res/img/store/spar.png" });
 db.stores.insert({ name: "T&G", icon: "/res/img/store/tundg.png" });
+
+db.offers.drop();
+
+db.offers.insert({ beer: { name: "Hirter", icon: "/res/hirter.png" }, store: { name: "Billa", icon: "/res/billa.png" }, price: 15, startDate: new Date("2019-11-20"), endDate: new Date("2019-12-02") });
