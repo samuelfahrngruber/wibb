@@ -19,8 +19,8 @@
 [
   {
     _id: ObjectId("23fec396ca")
-    beer: ObjectId("h23ef31c12"),
-    store: ObjectId("e35fcab2c4"),
+    beer: { name: "Gösser", icon: "/res/goesser.png" },
+    store: { name: "Adeg", icon: "/res/adeg.png" },
     price: 12.6,
     startDate: "2019-11-03",
     endDate: "2019-11-10"
@@ -28,8 +28,8 @@
   
   {
     _id: ObjectId("5ca6eca21a")
-    beer: ObjectId("bc43ead451"),
-    store: objectId("de5ca345cc"),
+    beer: { name: "Hirter", icon: "/res/hirter.png" },
+    store: { name: "Billa", icon: "/res/billa.png" },
     price: 10.2,
     startDate: "2019-11-20",
     endDate: "2019-12-02"
