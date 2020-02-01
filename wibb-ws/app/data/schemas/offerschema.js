@@ -1,10 +1,11 @@
-var mongoose = require('mongoose');
+import mongoose from 'mongoose';
+import BeerSchema from './beerschema';
+import StoreSchema from './storeschema';
 
-var Schema = mongoose.Schema;
+let Schema = mongoose.Schema;
 
-var offerSchema = new Schema(
+let offerSchema = new Schema(
     {
-        _id: Object,
         beer: Object,
         store: Object,
         price: Number,

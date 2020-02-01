@@ -1,6 +1,5 @@
 class Beer {
-    constructor(id, name, icon) {
-        this.id = id;
+    constructor(name, icon) {
         this.name = name;
         this.icon = icon;
     }

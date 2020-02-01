@@ -6,3 +6,7 @@
 .overflow-scroll-custom {
     overflow-x: scroll;
 }
+
+.navbar {
+    margin-bottom: 20px;
+  }

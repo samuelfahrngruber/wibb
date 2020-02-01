@@ -4,7 +4,6 @@ var Schema = mongoose.Schema;
 
 var storeSchema = new Schema(
     {
-        _id: Object,
         name: String,
         icon: String,
     },
