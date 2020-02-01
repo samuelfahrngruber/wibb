@@ -16,8 +16,7 @@
    "endDate":"2020-02-28T00:00:00.000Z"
 }
 ```
-
-
+*beer and store in an offer will be validated on the server
 
 ## GET `wibb.at/offers`
 ```
@@ -48,6 +47,7 @@
 ```
 [
   {
+  * 
     _id: ObjectId("bc43ead451"),
     name: "Gösser",
     icon: "https://wibb.at/res/goesser.png"
