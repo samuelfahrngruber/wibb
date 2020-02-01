@@ -1,6 +1,6 @@
 # Webservice Route Protocol
 
-## POST `wibb.at/offers`
+## POST `wibb.at/api/offers`
 ```
 {
    "beer": {
@@ -18,66 +18,107 @@
 ```
 *beer and store in an offer will be validated on the server
 
-## GET `wibb.at/offers`
+## GET `wibb.at/api/offers`
 ```
 [
-  {
-    _id: ObjectId("23fec396ca")
-    beer: { name: "Gösser", icon: "/res/goesser.png" },
-    store: { name: "Adeg", icon: "/res/adeg.png" },
-    price: 12.6,
-    startDate: "2019-11-03",
-    endDate: "2019-11-10"
-  },
+   {
+      "_id":"5e357e1e9906c0185ca9b5e0",
+      "beer":{
+         "name":"Gösser",
+         "icon":"/res/img/beer/goesser.png"
+      },
+      "store":{
+         "name":"Spar",
+         "icon":"/res/img/store/spar.png"
+      },
+      "price":15,
+      "startDate":"2020-02-12T00:00:00.000Z",
+      "endDate":"2020-02-29T00:00:00.000Z"
+   },
+   {
+      "_id":"5e35b5249beaf41884b8d3d1",
+      "beer":{
+         "name":"Gösser",
+         "icon":"/res/img/beer/goesser.png"
+      },
+      "store":{
+         "name":"Billa",
+         "icon":"/res/img/store/billa.png"
+      },
+      "price":13,
+      "startDate":"2020-01-29T00:00:00.000Z",
+      "endDate":"2020-02-29T00:00:00.000Z"
+   },
   
-  {
-    _id: ObjectId("5ca6eca21a")
-    beer: { name: "Hirter", icon: "/res/hirter.png" },
-    store: { name: "Billa", icon: "/res/billa.png" },
-    price: 10.2,
-    startDate: "2019-11-20",
-    endDate: "2019-12-02"
-  }
-  
-  ...
+   ...
 ]
 ```
 
-## GET `wibb.at/beer`
+## GET `wibb.at/api/beers`
 ```
 [
-  {
-  * 
-    _id: ObjectId("bc43ead451"),
-    name: "Gösser",
-    icon: "https://wibb.at/res/goesser.png"
-  },
-  
-  {
-    _id: ObjectId("h23ef31c12"),
-    name: "Heineken",
-    icon: "https://wibb.at/res/heineken.png"
-  }
-  
-  ...
+   {
+      "_id":"5e2ff2f98e72efe07075507d",
+      "name":"Stiegl",
+      "icon":"/res/img/beer/stiegl.png"
+   },
+   {
+      "_id":"5e2ff2f98e72efe07075507e",
+      "name":"Gösser",
+      "icon":"/res/img/beer/goesser.png"
+   },
+   {
+      "_id":"5e2ff2f98e72efe07075507f",
+      "name":"Hirter",
+      "icon":"/res/img/beer/hirter.png"
+   },
+   {
+      "_id":"5e2ff2f98e72efe070755080",
+      "name":"Villacher",
+      "icon":"/res/img/beer/villacher.png"
+   },
+   ...
 ]
 ```
 
-## GET `wibb.at/stores`
+## GET `wibb.at/api/stores`
 ```
 [
-  {
-    _id: ObjectId("e35fcab2c4"),
-    name: "Hofer",
-    icon: "https://wibb.at/res/hofer.png"
-  },
-  
-  {
-    _id: ObjectId("de5ca345cc"),
-    name: "Spar",
-    icon: "https://wibb.at/res/spar.png"
-  }
-  
-  ...
+   {
+      "_id":"5e2ff2f98e72efe070755081",
+      "name":"Adeg",
+      "icon":"/res/img/store/adeg.png"
+   },
+   {
+      "_id":"5e2ff2f98e72efe070755082",
+      "name":"Billa",
+      "icon":"/res/img/store/billa.png"
+   },
+   {
+      "_id":"5e2ff2f98e72efe070755083",
+      "name":"Hofer",
+      "icon":"/res/img/store/hofer.png"
+   },
+   {
+      "_id":"5e2ff2f98e72efe070755084",
+      "name":"Merkur",
+      "icon":"/res/img/store/merkur.png"
+   },
+   {
+      "_id":"5e2ff2f98e72efe070755085",
+      "name":"MPreis",
+      "icon":"/res/img/store/mpreis.png"
+   },
+   {
+      "_id":"5e2ff2f98e72efe070755086",
+      "name":"Spar",
+      "icon":"/res/img/store/spar.png"
+   },
+   {
+      "_id":"5e2ff2f98e72efe070755087",
+      "name":"T&G",
+      "icon":"/res/img/store/tundg.png"
+   },
+   ...
 ]
 ```
