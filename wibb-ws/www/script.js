@@ -5,6 +5,7 @@ var offers = [];
 function addOffer(o){
     offers.push(o);
     $("#list-offers").append('<li class="list-group-item list-group-item-action"><p class="text-center lead">' + o.store.name + " has " + o.beer.name + " for " + o.price + " until " + o.endDate + '</p></li>');
+    $("#table-offers").append('<tr><td class="align-middle"><img src="' + o.beer.icon + '" height="40px"> ' + o.beer.name + '</th><td class="align-middle">at ' + o.store.name + ' <img src="' + o.store.icon + '" height="40px"></th><td class="align-middle"><h4 class="font-weight-bold">' + o.price + '€</h4></th></tr>');
 }
 
 $(document).ready(function(){
