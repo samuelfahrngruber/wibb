@@ -6,6 +6,8 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/wibb-android-Wibb.iml" filepath="$PROJECT_DIR$/wibb-android-Wibb.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/wibb-android-app.iml" filepath="$PROJECT_DIR$/app/wibb-android-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wibb-wibb-android-Wibb.iml" filepath="$PROJECT_DIR$/wibb-wibb-android-Wibb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/wibb-wibb-android-app.iml" filepath="$PROJECT_DIR$/app/wibb-wibb-android-app.iml" />
     </modules>
   </component>
 </project>

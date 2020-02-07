@@ -9,8 +9,10 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.wibb.R;
 import com.example.wibb.data.Offer;
+import com.example.wibb.tools.URLUnifier;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -37,8 +39,16 @@ public class OfferCardRecyclerViewAdapter extends RecyclerView.Adapter<OfferCard
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Offer o = data.get(position);
 
-        holder.brandImagev.setImageResource(o.getBeer().getDrawable());
-        holder.storeImagev.setImageResource(o.getStore().getDrawable());
+        Glide.with(context)
+                .load(URLUnifier.INSTANCE.unifyImgUrl(o.getBeer().getIcon()))
+                .into(holder.brandImagev);
+
+        Glide.with(context)
+                .load(URLUnifier.INSTANCE.unifyImgUrl(o.getStore().getIcon()))
+                .into(holder.storeImagev);
+
+//        holder.brandImagev.setImageResource(o.getBeer().getDrawable());
+//        holder.storeImagev.setImageResource(o.getStore().getDrawable());
 
         holder.priceTextv.setText("€" + o.getPrice());
 
@@ -47,7 +57,7 @@ public class OfferCardRecyclerViewAdapter extends RecyclerView.Adapter<OfferCard
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E, d");
 
-        holder.dateTextv.setText(o.getStart().format(formatter) + " - " + o.getEnd().format(formatter));
+        holder.dateTextv.setText(o.getStartDate().format(formatter) + " - " + o.getEndDate().format(formatter));
     }
 
     @Override

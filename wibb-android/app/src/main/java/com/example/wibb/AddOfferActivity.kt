@@ -12,9 +12,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.shuhart.stepview.StepView
 import com.triggertrap.seekarc.SeekArc
 import android.widget.ImageView
+import com.bumptech.glide.Glide
+import com.example.wibb.controller.WibbController
 import com.example.wibb.data.Beer
 import com.example.wibb.data.Offer
 import com.example.wibb.data.Store
+import com.example.wibb.tools.URLUnifier
 
 
 class AddOfferActivity : AppCompatActivity() {
@@ -34,11 +37,7 @@ class AddOfferActivity : AppCompatActivity() {
         stepView.setOnStepClickListener { setstep(it) }
 
         // init store chooser
-
-        val storenames = resources.getStringArray(R.array.store_names)
-        val storeicons = resources.obtainTypedArray(R.array.store_icons)
-
-        val stores = List(storenames.size) { Store(storenames[it], storeicons.getResourceId(it, R.drawable.ic_shopping_cart_black_24dp)) }
+        val stores = WibbController.instance.stores
 
         val rvs = findViewById<RecyclerView>(R.id.recyclerView_stores)
         val rvsa = GridRecyclerViewAdapter(this, stores)
@@ -51,14 +50,10 @@ class AddOfferActivity : AppCompatActivity() {
         rvs.adapter = rvsa
 
         // init beer chooser
-
-        val beerNames = resources.getStringArray(R.array.beer_names)
-        val beerIcons = resources.obtainTypedArray(R.array.beer_icons)
-
-        val beer = List(beerNames.size) { Beer(beerNames[it], beerIcons.getResourceId(it, R.drawable.ic_local_drink_black_24dp)) }
+        val beers = WibbController.instance.beers
 
         val rvb = findViewById<RecyclerView>(R.id.recyclerView_beers)
-        val rvba = GridRecyclerViewAdapter(this, beer)
+        val rvba = GridRecyclerViewAdapter(this, beers)
         rvba.setSelectionListener {
             setOfferBeer(it)
             nextstep()
@@ -96,7 +91,9 @@ class AddOfferActivity : AppCompatActivity() {
         val v = findViewById<View>(R.id.incl_cardView_currentOffer)
         val img = v.findViewById<ImageView>(R.id.offer_card_beer_img)
         val txt = v.findViewById<TextView>(R.id.offer_card_beer_txt)
-        img.setImageResource(b.icon)
+        Glide.with(this)
+            .load(URLUnifier.unifyImgUrl(b.icon))
+            .into(img)
         txt.text = b.text
     }
 
@@ -112,7 +109,9 @@ class AddOfferActivity : AppCompatActivity() {
         val v = findViewById<View>(R.id.incl_cardView_currentOffer)
         val img = v.findViewById<ImageView>(R.id.offer_card_store_img)
         val txt = v.findViewById<TextView>(R.id.offer_card_store_txt)
-        img.setImageResource(s.icon)
+        Glide.with(this)
+            .load(URLUnifier.unifyImgUrl(s.icon))
+            .into(img)
         txt.text = s.text
     }
 

@@ -1,40 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string-array name="store_names">
-        <item>Adeg</item>
-        <item>Billa</item>
-        <item>Hofer</item>
-        <item>Merkur</item>
-        <item>M-Preis</item>
-        <item>Spar</item>
-        <item>T&amp;G</item>
-    </string-array>
-
-    <integer-array name="store_icons">
-        <item>@drawable/adeg</item>
-        <item>@drawable/billa</item>
-        <item>@drawable/hofer</item>
-        <item>@drawable/merkur</item>
-        <item>@drawable/mpreis</item>
-        <item>@drawable/spar</item>
-        <item>@drawable/tundg</item>
-    </integer-array>
-
-    <string-array name="beer_names">
-        <item>Gösser</item>
-        <item>Hirter</item>
-        <item>Stiegl</item>
-        <item>Villacher</item>
-    </string-array>
-
-    <integer-array name="beer_icons">
-        <item>@drawable/goesser</item>
-        <item>@drawable/hirter</item>
-        <item>@drawable/stiegl</item>
-        <item>@drawable/villacher</item>
-    </integer-array>
-
     <string-array name="add_offer_steps">
         <item>@string/addoff_choose_store</item>
         <item>@string/addoff_choose_beer</item>

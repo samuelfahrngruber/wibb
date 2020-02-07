@@ -1,6 +1,6 @@
 package com.example.wibb.data
 
 interface GridDisplayable {
-    val drawable: Int
+    val iconurl: String
     val text: String
 }

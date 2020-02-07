@@ -10,8 +10,10 @@ import android.widget.TextView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.wibb.R;
 import com.example.wibb.data.GridDisplayable;
+import com.example.wibb.tools.URLUnifier;
 
 import java.util.List;
 
@@ -44,7 +46,12 @@ public class GridRecyclerViewAdapter<ItemType extends GridDisplayable> extends R
         final GridDisplayable item = data.get(position);
 
         holder.itemTextv.setText(item.getText());
-        holder.itemImagev.setImageResource(item.getDrawable());
+
+        Glide.with(context)
+                .load(URLUnifier.INSTANCE.unifyImgUrl(item.getIconurl()))
+                .into(holder.itemImagev);
+
+        //holder.itemImagev.setImageResource(item.getDrawable());
 
         holder.cardv.setOnClickListener(new View.OnClickListener() {
             @Override

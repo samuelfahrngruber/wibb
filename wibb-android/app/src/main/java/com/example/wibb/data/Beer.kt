@@ -1,10 +1,21 @@
 package com.example.wibb.data
 
-class Beer(var name: String, var icon: Int): GridDisplayable {
+import org.json.JSONObject
 
-    override val drawable: Int
+class Beer(var name: String, var icon: String): GridDisplayable {
+
+    override val iconurl: String
         get() = icon
 
     override val text: String
         get() = name
+
+    companion object {
+        fun fromJSON(jbeer: JSONObject): Beer {
+            return Beer(
+                jbeer.getString("name"),
+                jbeer.getString("icon")
+            )
+        }
+    }
 }
