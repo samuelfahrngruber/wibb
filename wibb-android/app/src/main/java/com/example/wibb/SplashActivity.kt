@@ -15,12 +15,19 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
 
-
+        supportActionBar?.hide()
     }
 
     override fun onResume() {
         super.onResume()
+        doSplashStuff()
+    }
 
+    private fun handleStartupError(){
+
+    }
+
+    private fun doSplashStuff(){
         WibbConnection.instance.initialize(this.applicationContext)
 
         WibbConnection.instance.loadBeers {
@@ -37,11 +44,5 @@ class SplashActivity : AppCompatActivity() {
             }
             else handleStartupError()
         }
-
     }
-
-    private fun handleStartupError(){
-
-    }
-
 }

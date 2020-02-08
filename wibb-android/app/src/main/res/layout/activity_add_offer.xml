@@ -102,12 +102,18 @@
                 </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
             </FrameLayout>
-
-
-
-
-
         </LinearLayout>
+
+        <com.archit.calendardaterangepicker.customviews.DateRangeCalendarView
+            android:id="@+id/calendar_range"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            app:disable_date_color="#ABABAB"
+            app:range_color="@color/colorAccent"
+            app:selected_date_circle_color="#000000"
+            app:title_color="@color/colorAccent">
+        </com.archit.calendardaterangepicker.customviews.DateRangeCalendarView>
 
     </FrameLayout>
 

@@ -1,7 +1,7 @@
 package com.example.wibb.tools
 
 object URLUnifier {
-    private var baseUrl = "http://4096cf53.ngrok.io"
+    private var baseUrl = "http://00fc2dfb.ngrok.io"
 
     fun unifyApiUrl(url: String): String {
         if(url.startsWith(baseUrl)) return url
