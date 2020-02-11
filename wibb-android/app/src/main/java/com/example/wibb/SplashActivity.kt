@@ -24,7 +24,8 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun handleStartupError(){
-
+        // todo: fix 204 no content error
+        Log.e("INITERR", "Error while loading information")
     }
 
     private fun doSplashStuff(){
