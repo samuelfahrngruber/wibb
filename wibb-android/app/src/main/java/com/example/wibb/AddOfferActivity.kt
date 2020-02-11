@@ -3,17 +3,16 @@ package com.example.wibb
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wibb.ui.GridRecyclerViewAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.shuhart.stepview.StepView
 import com.triggertrap.seekarc.SeekArc
-import android.widget.ImageView
 import com.archit.calendardaterangepicker.customviews.DateRangeCalendarView
 import com.bumptech.glide.Glide
+import com.example.wibb.connection.WibbConnection
 import com.example.wibb.controller.WibbController
 import com.example.wibb.data.Beer
 import com.example.wibb.data.Offer
@@ -21,7 +20,6 @@ import com.example.wibb.data.Store
 import com.example.wibb.tools.URLUnifier
 import kotlinx.android.synthetic.main.activity_add_offer.*
 import java.util.*
-import android.widget.Toast
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -104,6 +102,9 @@ class AddOfferActivity : AppCompatActivity() {
                 setOfferDates(startDateLocal, endDateLocal)
             }
         })
+
+        // init menu
+        setOfferMenu()
     }
 
     fun setOfferBeer(b: Beer){
@@ -135,6 +136,16 @@ class AddOfferActivity : AppCompatActivity() {
         txt.text = s.text
     }
 
+    fun setOfferMenu(){
+        val v = findViewById<View>(R.id.incl_cardView_currentOffer)
+        val btn = v.findViewById<ImageButton>(R.id.offer_card_menu_btn)
+        btn.setImageResource(R.drawable.ic_done_black_24dp)
+
+        btn.setOnClickListener {
+            submitNewOffer()
+        }
+    }
+
     fun setOfferstartDate(startDate: LocalDate){
         offer.startDate = startDate
         updateOfferDates()
@@ -160,6 +171,18 @@ class AddOfferActivity : AppCompatActivity() {
 
     fun nextstep(){
         setstep(++currentStep)
+    }
+
+    fun submitNewOffer(){
+        WibbConnection.instance.addOffer(offer){
+            if(it /*worked*/){
+                Toast.makeText(this.applicationContext, "Successfully added new Offer!", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+            else{
+                Toast.makeText(this.applicationContext, "Failed to add Offer!", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     fun setstep(step: Int){

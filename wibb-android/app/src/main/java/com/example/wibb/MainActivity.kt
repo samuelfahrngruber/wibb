@@ -14,6 +14,9 @@ import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
+    private var rvo: RecyclerView? = null
+    private var rvoa: OfferCardRecyclerViewAdapter? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -27,14 +30,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         // init offers
-        val offers = WibbController.instance.offers
+        rvo = findViewById<RecyclerView>(R.id.recyclerView_offers)
+        rvoa = OfferCardRecyclerViewAdapter(this, WibbController.instance.offers)
 
-        val rvo = findViewById<RecyclerView>(R.id.recyclerView_offers)
-        val rvoa = OfferCardRecyclerViewAdapter(this, offers)
-
-        rvo.layoutManager = LinearLayoutManager(this)
-        rvo.adapter = rvoa
+        rvo?.layoutManager = LinearLayoutManager(this)
+        rvo?.adapter = rvoa
     }
 
-
+    override fun onResume() {
+        super.onResume()
+        rvoa?.notifyDataSetChanged()
+    }
 }

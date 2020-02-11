@@ -18,4 +18,11 @@ class Store(var name: String, var icon: String): GridDisplayable {
             )
         }
     }
+
+    fun toJSON(): JSONObject{
+        val jo = JSONObject()
+        jo.put("name", this.name)
+        jo.put("icon", this.icon)
+        return jo
+    }
 }

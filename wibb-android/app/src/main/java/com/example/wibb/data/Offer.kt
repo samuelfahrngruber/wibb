@@ -25,4 +25,14 @@ class Offer {
             return o
         }
     }
+
+    fun toJSON(): JSONObject{
+        val jo = JSONObject()
+        jo.put("beer", this.beer?.toJSON())
+        jo.put("store", this.store?.toJSON())
+        jo.put("startDate", this.startDate?.atStartOfDay()?.format(DateTimeFormatter.ISO_DATE_TIME))
+        jo.put("endDate", this.endDate?.atStartOfDay()?.format(DateTimeFormatter.ISO_DATE_TIME))
+        jo.put("price", this.price)
+        return jo
+    }
 }

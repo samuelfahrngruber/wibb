@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -58,6 +59,8 @@ public class OfferCardRecyclerViewAdapter extends RecyclerView.Adapter<OfferCard
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E, d");
 
         holder.dateTextv.setText(o.getStartDate().format(formatter) + " - " + o.getEndDate().format(formatter));
+
+        holder.menuImageb.setImageResource(R.drawable.ic_more_vert_black_24dp);
     }
 
     @Override
@@ -75,6 +78,8 @@ public class OfferCardRecyclerViewAdapter extends RecyclerView.Adapter<OfferCard
         TextView brandTextv;
         TextView storeTextv;
 
+        ImageButton menuImageb;
+
         public MyViewHolder(View itemView) {
             super(itemView);
 
@@ -86,6 +91,7 @@ public class OfferCardRecyclerViewAdapter extends RecyclerView.Adapter<OfferCard
             brandTextv = itemView.findViewById(R.id.offer_card_beer_txt);
             storeTextv = itemView.findViewById(R.id.offer_card_store_txt);
 
+            menuImageb = itemView.findViewById(R.id.offer_card_menu_btn);
         }
     }
 }

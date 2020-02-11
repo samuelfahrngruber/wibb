@@ -80,6 +80,16 @@ class WibbConnection private constructor() {
         })
     }
 
+    fun addOffer(offer: Offer, cbSuccess: (Boolean) -> Unit){
+        postJSONObject(URLUnifier.unifyApiUrl("/api/offers"), {
+            WibbController.instance.offers.add(Offer.fromJSON(it))
+            cbSuccess(true)
+        }, {
+            cbSuccess(false)
+        },
+        offer.toJSON())
+    }
+
     private fun getJSONArray(url: String, cbSuccess: (JSONArray) -> Unit, cbError: (VolleyError) -> Unit){
         assertInitialized()
 
@@ -94,6 +104,23 @@ class WibbConnection private constructor() {
         )
 
         requestQueue?.add(jsonArrayRequest)
+    }
+
+    private fun postJSONObject(url: String, cbSuccess: (JSONObject) -> Unit, cbError: (VolleyError) -> Unit, jsonObj: JSONObject){
+        assertInitialized()
+
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.POST, URLUnifier.unifyApiUrl(url),
+            jsonObj,
+            Response.Listener { response ->
+                cbSuccess(response)
+            },
+            Response.ErrorListener { error ->
+                cbError(error)
+            }
+        )
+
+        requestQueue?.add(jsonObjectRequest)
     }
 
     private fun assertInitialized(){
