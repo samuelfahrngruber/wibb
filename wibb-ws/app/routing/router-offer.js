@@ -8,7 +8,14 @@ const router = express();
 
 // add routes
 router.get('/', function (req, res) {
-    offerSchema.find()
+    var today = new Date()
+    today.setHours(0,0,0,0)
+
+    // todo fix offer filter with enddate
+
+    offerSchema
+    .find({ endDate: { $gte: today } })    
+    .sort({ price: 1 })
     .exec((err, offers) => {
         if (err)
             res.status(500).json(err);
