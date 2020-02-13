@@ -58,7 +58,7 @@ public class OfferCardRecyclerViewAdapter extends RecyclerView.Adapter<OfferCard
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E, d");
 
-        holder.dateTextv.setText(o.getStartDate().format(formatter) + " - " + o.getEndDate().format(formatter));
+        holder.dateTextv.setText((o.getStartDate() == null ? "" : o.getStartDate().format(formatter)) + " - " + (o.getStartDate() == null ? "" : o.getEndDate().format(formatter)));
 
         holder.menuImageb.setImageResource(R.drawable.ic_more_vert_black_24dp);
     }

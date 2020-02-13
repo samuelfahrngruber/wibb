@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter
 class Offer {
     var store: Store? = null
     var beer: Beer? = null
-    var price: Int = 0
+    var price: Int = -1
     var startDate: LocalDate? = null
     var endDate: LocalDate? = null
 
@@ -19,8 +19,8 @@ class Offer {
             val o = Offer()
             o.beer = Beer.fromJSON(joffer.getJSONObject("beer"))
             o.store = Store.fromJSON(joffer.getJSONObject("store"))
-            o.endDate = LocalDate.parse(joffer.getString("endDate"), DateTimeFormatter.ISO_DATE_TIME)
-            o.startDate = LocalDate.parse(joffer.getString("startDate"), DateTimeFormatter.ISO_DATE_TIME)
+            o.endDate = if (joffer.isNull("endDate")) null else LocalDate.parse(joffer.getString("endDate"), DateTimeFormatter.ISO_DATE_TIME)
+            o.startDate = if (joffer.isNull("startDate")) null else LocalDate.parse(joffer.getString("startDate"), DateTimeFormatter.ISO_DATE_TIME)
             o.price = joffer.getInt("price")
             return o
         }

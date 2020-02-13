@@ -32,16 +32,21 @@ class SplashActivity : AppCompatActivity() {
         WibbConnection.instance.initialize(this.applicationContext)
 
         WibbConnection.instance.loadBeers {
-            if (it) WibbConnection.instance.loadStores {
-                if (it) WibbConnection.instance.loadOffers {
-                    if (it) {
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
-                        finish()
+            if (it) {
+                //progress_icon.setProgress(33, true)
+                WibbConnection.instance.loadStores {
+                    if (it){
+                        WibbConnection.instance.loadOffers {
+                            if (it) {
+                                val intent = Intent(this, MainActivity::class.java)
+                                startActivity(intent)
+                                finish()
+                            }
+                            else handleStartupError()
+                        }
                     }
                     else handleStartupError()
                 }
-                else handleStartupError()
             }
             else handleStartupError()
         }

@@ -174,15 +174,18 @@ class AddOfferActivity : AppCompatActivity() {
     }
 
     fun submitNewOffer(){
-        WibbConnection.instance.addOffer(offer){
-            if(it /*worked*/){
-                Toast.makeText(this.applicationContext, "Successfully added new Offer!", Toast.LENGTH_SHORT).show()
-                finish()
+        if (offer.isValid)
+            WibbConnection.instance.addOffer(offer){
+                if(it /*worked*/){
+                    Toast.makeText(this.applicationContext, "Successfully added new Offer!", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+                else{
+                    Toast.makeText(this.applicationContext, "Failed to add Offer!", Toast.LENGTH_SHORT).show()
+                }
             }
-            else{
-                Toast.makeText(this.applicationContext, "Failed to add Offer!", Toast.LENGTH_SHORT).show()
-            }
-        }
+        else
+            Toast.makeText(this.applicationContext, "This offer is invalid!", Toast.LENGTH_SHORT).show()
     }
 
     fun setstep(step: Int){
