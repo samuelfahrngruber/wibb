@@ -11,6 +11,7 @@ import com.android.volley.toolbox.Volley
 import com.example.wibb.controller.WibbController
 import com.example.wibb.data.Beer
 import com.example.wibb.data.Offer
+import com.example.wibb.data.Report
 import com.example.wibb.data.Store
 import com.example.wibb.tools.URLUnifier
 import org.json.JSONArray
@@ -88,6 +89,15 @@ class WibbConnection private constructor() {
             cbSuccess(false)
         },
         offer.toJSON())
+    }
+
+    fun addReport(report: Report, cbSuccess: (Report?) -> Unit){
+        postJSONObject(URLUnifier.instance.unifyApiUrl("/api/reports"), {
+            cbSuccess(report)
+        }, {
+            cbSuccess(null)
+        },
+            report.toJSON())
     }
 
     private fun getJSONArray(url: String, cbSuccess: (JSONArray) -> Unit, cbError: (VolleyError) -> Unit){

@@ -16,11 +16,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.wibb.R;
+import com.example.wibb.connection.WibbConnection;
 import com.example.wibb.data.Offer;
+import com.example.wibb.data.Report;
 import com.example.wibb.tools.URLUnifier;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 
 public class OfferCardRecyclerViewAdapter extends RecyclerView.Adapter<OfferCardRecyclerViewAdapter.MyViewHolder> {
 
@@ -95,7 +100,19 @@ public class OfferCardRecyclerViewAdapter extends RecyclerView.Adapter<OfferCard
         @Override
         public boolean onMenuItemClick(MenuItem menuItem){
             if(menuItem.getItemId() == R.id.menu_item_offer_report){
-                Toast.makeText(context, "Reported Offer " + offer.getBeer().getName(), Toast.LENGTH_SHORT).show();
+                Report r = new Report(Report.RType.FAKE, "FAKED_BEER_OFFER", offer);
+
+                WibbConnection.Companion.getInstance().addReport(r, new Function1<Report, Unit>() {
+                    @Override
+                    public Unit invoke(Report rep) {
+                        if(rep != null)
+                            Toast.makeText(context, "Successfully reported!  (#" + rep.getId() + ")", Toast.LENGTH_SHORT).show();
+                        else
+                            Toast.makeText(context, "Could not report offer. Try again Later!", Toast.LENGTH_SHORT).show();
+                        return null;
+                    }
+                });
+
                 return true;
             }
             return false;
