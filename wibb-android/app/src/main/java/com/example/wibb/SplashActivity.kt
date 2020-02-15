@@ -7,14 +7,17 @@ import android.util.Log
 import com.example.wibb.connection.WibbConnection
 import com.example.wibb.controller.WibbController
 import kotlinx.android.synthetic.main.activity_splash.*
+import android.content.SharedPreferences
+import android.widget.Toast
+import androidx.preference.PreferenceManager
+import com.example.wibb.tools.URLUnifier
+
 
 class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-
-
         supportActionBar?.hide()
     }
 
@@ -23,12 +26,11 @@ class SplashActivity : AppCompatActivity() {
         doSplashStuff()
     }
 
-    private fun handleStartupError(){
-        // todo: fix 204 no content error
-        Log.e("INITERR", "Error while loading information")
-    }
-
     private fun doSplashStuff(){
+        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+        val apiurl = prefs.getString("apiurl", "http://localhost:8080")
+        URLUnifier.instance.initialize(apiurl!!)
+
         WibbConnection.instance.initialize(this.applicationContext)
 
         WibbConnection.instance.loadBeers {
@@ -50,5 +52,15 @@ class SplashActivity : AppCompatActivity() {
             }
             else handleStartupError()
         }
+    }
+
+    private fun handleStartupError(){
+        // todo: fix 204 no content error
+        Log.e("INITERR", "Error while loading information")
+
+        Toast.makeText(this, "Failed to retrieve data from the Server! (Correct API Server URL?)", Toast.LENGTH_LONG).show()
+
+        val intent =  Intent(this, SettingsActivity::class.java)
+        startActivity(intent)
     }
 }

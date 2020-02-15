@@ -48,7 +48,7 @@ public class GridRecyclerViewAdapter<ItemType extends GridDisplayable> extends R
         holder.itemTextv.setText(item.getText());
 
         Glide.with(context)
-                .load(URLUnifier.INSTANCE.unifyImgUrl(item.getIconurl()))
+                .load(URLUnifier.Companion.getInstance().unifyImgUrl(item.getIconurl()))
                 .into(holder.itemImagev);
 
         //holder.itemImagev.setImageResource(item.getDrawable());

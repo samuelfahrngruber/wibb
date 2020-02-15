@@ -113,7 +113,7 @@ class AddOfferActivity : AppCompatActivity() {
         val img = v.findViewById<ImageView>(R.id.offer_card_beer_img)
         val txt = v.findViewById<TextView>(R.id.offer_card_beer_txt)
         Glide.with(this)
-            .load(URLUnifier.unifyImgUrl(b.icon))
+            .load(URLUnifier.instance.unifyImgUrl(b.icon))
             .into(img)
         txt.text = b.text
     }
@@ -131,7 +131,7 @@ class AddOfferActivity : AppCompatActivity() {
         val img = v.findViewById<ImageView>(R.id.offer_card_store_img)
         val txt = v.findViewById<TextView>(R.id.offer_card_store_txt)
         Glide.with(this)
-            .load(URLUnifier.unifyImgUrl(s.icon))
+            .load(URLUnifier.instance.unifyImgUrl(s.icon))
             .into(img)
         txt.text = s.text
     }

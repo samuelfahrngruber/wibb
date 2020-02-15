@@ -1,9 +1,32 @@
 package com.example.wibb.tools
 
-object URLUnifier {
-    private var baseUrl = "http://3b0981fe.ngrok.io"
+import android.content.Context
+import com.android.volley.RequestQueue
+import com.android.volley.toolbox.Volley
+import com.example.wibb.connection.WibbConnection
+import java.lang.Exception
+
+class URLUnifier private constructor() {
+    private var baseUrl = ""
+
+    private var initialized = false
+
+    companion object {
+        val instance = URLUnifier()
+    }
+
+    fun initialize(serverURL: String){
+        setServerUrl(serverURL)
+        initialized = true
+    }
+
+    fun setServerUrl(serverURL: String){
+        baseUrl = serverURL
+    }
 
     fun unifyApiUrl(url: String): String {
+        assertInitialized()
+
         if(url.startsWith(baseUrl)) return url
 
         var resurlt = url
@@ -20,6 +43,8 @@ object URLUnifier {
     }
 
     fun unifyImgUrl(url: String): String {
+        assertInitialized()
+
         if(url.startsWith(baseUrl)) return url
 
         var irl = url
@@ -37,5 +62,10 @@ object URLUnifier {
         resurlt += irl
 
         return resurlt
+    }
+
+    private fun assertInitialized(){
+        if(!initialized)
+            throw Exception(URLUnifier::class.qualifiedName + " must be initialized first!")
     }
 }

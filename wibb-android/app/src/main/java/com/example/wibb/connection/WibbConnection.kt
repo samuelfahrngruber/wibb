@@ -41,7 +41,7 @@ class WibbConnection private constructor() {
     }
 
     fun loadBeers(cbSuccess: (Boolean) -> Unit){
-        var apiurl = URLUnifier.unifyApiUrl("/api/beers");
+        var apiurl = URLUnifier.instance.unifyApiUrl("/api/beers");
         getJSONArray(apiurl, {
             WibbController.instance.beers.clear()
             for (i in 0 until it.length()) {
@@ -55,7 +55,7 @@ class WibbConnection private constructor() {
     }
 
     fun loadStores(cbSuccess: (Boolean) -> Unit){
-        getJSONArray(URLUnifier.unifyApiUrl("/api/stores"), {
+        getJSONArray(URLUnifier.instance.unifyApiUrl("/api/stores"), {
             WibbController.instance.stores.clear()
             for (i in 0 until it.length()) {
                 val item = it.getJSONObject(i)
@@ -68,7 +68,7 @@ class WibbConnection private constructor() {
     }
 
     fun loadOffers(cbSuccess: (Boolean) -> Unit){
-        getJSONArray(URLUnifier.unifyApiUrl("/api/offers"), {
+        getJSONArray(URLUnifier.instance.unifyApiUrl("/api/offers"), {
             WibbController.instance.offers.clear()
             for (i in 0 until it.length()) {
                 val item = it.getJSONObject(i)
@@ -81,7 +81,7 @@ class WibbConnection private constructor() {
     }
 
     fun addOffer(offer: Offer, cbSuccess: (Boolean) -> Unit){
-        postJSONObject(URLUnifier.unifyApiUrl("/api/offers"), {
+        postJSONObject(URLUnifier.instance.unifyApiUrl("/api/offers"), {
             WibbController.instance.offers.add(Offer.fromJSON(it))
             cbSuccess(true)
         }, {
@@ -94,7 +94,7 @@ class WibbConnection private constructor() {
         assertInitialized()
 
         val jsonArrayRequest = JsonArrayRequest(
-            Request.Method.GET, URLUnifier.unifyApiUrl(url), null,
+            Request.Method.GET, URLUnifier.instance.unifyApiUrl(url), null,
             Response.Listener { response ->
                 cbSuccess(response)
             },
@@ -110,7 +110,7 @@ class WibbConnection private constructor() {
         assertInitialized()
 
         val jsonObjectRequest = JsonObjectRequest(
-            Request.Method.POST, URLUnifier.unifyApiUrl(url),
+            Request.Method.POST, URLUnifier.instance.unifyApiUrl(url),
             jsonObj,
             Response.Listener { response ->
                 cbSuccess(response)
@@ -125,6 +125,6 @@ class WibbConnection private constructor() {
 
     private fun assertInitialized(){
         if(!initialized)
-            throw Exception(RequestQueue::class.qualifiedName + " must be initialized first!")
+            throw Exception(WibbConnection::class.qualifiedName + " must be initialized first!")
     }
 }

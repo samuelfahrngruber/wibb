@@ -2,11 +2,15 @@ package com.example.wibb.ui;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -41,11 +45,11 @@ public class OfferCardRecyclerViewAdapter extends RecyclerView.Adapter<OfferCard
         Offer o = data.get(position);
 
         Glide.with(context)
-                .load(URLUnifier.INSTANCE.unifyImgUrl(o.getBeer().getIcon()))
+                .load(URLUnifier.Companion.getInstance().unifyImgUrl(o.getBeer().getIcon()))
                 .into(holder.brandImagev);
 
         Glide.with(context)
-                .load(URLUnifier.INSTANCE.unifyImgUrl(o.getStore().getIcon()))
+                .load(URLUnifier.Companion.getInstance().unifyImgUrl(o.getStore().getIcon()))
                 .into(holder.storeImagev);
 
 //        holder.brandImagev.setImageResource(o.getBeer().getDrawable());
@@ -61,11 +65,41 @@ public class OfferCardRecyclerViewAdapter extends RecyclerView.Adapter<OfferCard
         holder.dateTextv.setText((o.getStartDate() == null ? "" : o.getStartDate().format(formatter)) + " - " + (o.getStartDate() == null ? "" : o.getEndDate().format(formatter)));
 
         holder.menuImageb.setImageResource(R.drawable.ic_more_vert_black_24dp);
+
+        holder.menuImageb.setOnClickListener(new OfferMenuHelper(o));
+
     }
 
     @Override
     public int getItemCount() {
         return data.size();
+    }
+
+    public class OfferMenuHelper implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
+
+        private Offer offer;
+
+        public OfferMenuHelper(Offer o){
+            this.offer = o;
+        }
+
+        @Override
+        public void onClick(View v) {
+            PopupMenu popup = new PopupMenu(context, v);
+            MenuInflater inflater = popup.getMenuInflater();
+            inflater.inflate(R.menu.offer_menu, popup.getMenu());
+            popup.setOnMenuItemClickListener(this);
+            popup.show();
+        }
+
+        @Override
+        public boolean onMenuItemClick(MenuItem menuItem){
+            if(menuItem.getItemId() == R.id.menu_item_offer_report){
+                Toast.makeText(context, "Reported Offer " + offer.getBeer().getName(), Toast.LENGTH_SHORT).show();
+                return true;
+            }
+            return false;
+        }
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
