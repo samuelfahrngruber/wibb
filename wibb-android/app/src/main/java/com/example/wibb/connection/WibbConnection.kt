@@ -14,6 +14,7 @@ import com.example.wibb.data.Offer
 import com.example.wibb.data.Report
 import com.example.wibb.data.Store
 import com.example.wibb.tools.URLUnifier
+import com.example.wibb.tools.err.WibbError
 import org.json.JSONArray
 import org.json.JSONObject
 import java.lang.Exception
@@ -42,7 +43,7 @@ class WibbConnection private constructor() {
     }
 
     fun loadBeers(cbSuccess: (Boolean) -> Unit){
-        var apiurl = URLUnifier.instance.unifyApiUrl("/api/beers");
+        var apiurl = URLUnifier.instance.unifyApiUrl("/api/beers")
         getJSONArray(apiurl, {
             WibbController.instance.beers.clear()
             for (i in 0 until it.length()) {
@@ -98,6 +99,15 @@ class WibbConnection private constructor() {
             cbSuccess(null)
         },
             report.toJSON())
+    }
+
+    fun addWibbError(err: WibbError, cbSuccess: (Boolean) -> Unit){
+        postJSONObject(URLUnifier.instance.unifyApiUrl("/api/reports"), {
+            cbSuccess(true)
+        }, {
+            cbSuccess(false)
+        },
+            err.toJSON())
     }
 
     private fun getJSONArray(url: String, cbSuccess: (JSONArray) -> Unit, cbError: (VolleyError) -> Unit){
