@@ -11,9 +11,9 @@ router.get('/', function (req, res) {
         if (err)
             res.status(500).json(err);
 
-        else if (beers == null || beers.length < 1)
+        else if (beers == null)
             res.status(204).json(new Error("NO CONTENT"));
-
+            
         else
             res.json(beers);
     })

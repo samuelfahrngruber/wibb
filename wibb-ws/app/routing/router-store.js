@@ -11,7 +11,7 @@ router.get('/', function (req, res) {
         if (err)
             res.status(500).json(err);
 
-        else if (stores == null || stores.length < 1)
+        else if (stores == null)
             res.status(204).json(new Error("NO CONTENT"));
 
         else

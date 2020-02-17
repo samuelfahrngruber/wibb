@@ -20,7 +20,7 @@ router.get('/', function (req, res) {
         if (err)
             res.status(500).json(err);
 
-        else if (offers == null || offers.length < 1)
+        else if (offers == null)
             res.status(204).json(new Error("NO CONTENT"));
 
         else
