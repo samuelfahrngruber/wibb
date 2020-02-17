@@ -22,6 +22,7 @@ import kotlinx.android.synthetic.main.activity_add_offer.*
 import java.util.*
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
 
@@ -97,8 +98,8 @@ class AddOfferActivity : AppCompatActivity() {
                 setOfferstartDate(startDateLocal)
             }
             override fun onDateRangeSelected(startDate: Calendar, endDate: Calendar) {
-                val startDateLocal = LocalDateTime.ofInstant(startDate.toInstant(), startDate.getTimeZone().toZoneId()).toLocalDate()
-                val endDateLocal = LocalDateTime.ofInstant(endDate.toInstant(), endDate.getTimeZone().toZoneId()).toLocalDate()
+                val startDateLocal = LocalDateTime.ofInstant(startDate.toInstant(), ZoneId.systemDefault()).toLocalDate()
+                val endDateLocal = LocalDateTime.ofInstant(endDate.toInstant(), ZoneId.systemDefault()).toLocalDate()
                 setOfferDates(startDateLocal, endDateLocal)
             }
         })
