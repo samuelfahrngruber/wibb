@@ -22,11 +22,13 @@ import defaultRouter from './routing/router-default.js';
 import offerRouter from './routing/router-offer.js';
 import beerRouter from './routing/router-beer.js';
 import storeRouter from './routing/router-store.js';
+import reportRouter from './routing/router-report.js';
 
 app.use('/api', defaultRouter);
 defaultRouter.use('/offers', offerRouter);
 defaultRouter.use('/beers', beerRouter);
 defaultRouter.use('/stores', storeRouter);
+defaultRouter.use('/reports', reportRouter);
 
 app.use(express.static('www'))
 
