@@ -106,7 +106,7 @@ public class OfferCardRecyclerViewAdapter extends RecyclerView.Adapter<OfferCard
                     @Override
                     public Unit invoke(Report rep) {
                         if(rep != null)
-                            Toast.makeText(context, "Successfully reported!  (#" + rep.getId() + ")", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "Report #" + rep.getId() + " submitted!", Toast.LENGTH_SHORT).show();
                         else
                             Toast.makeText(context, "Could not report offer. Try again Later!", Toast.LENGTH_SHORT).show();
                         return null;

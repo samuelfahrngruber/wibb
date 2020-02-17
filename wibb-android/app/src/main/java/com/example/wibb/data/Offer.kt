@@ -32,8 +32,8 @@ class Offer {
         val jo = JSONObject()
         jo.put("beer", this.beer?.toJSON())
         jo.put("store", this.store?.toJSON())
-        jo.put("startDate", this.startDate?.atStartOfDay(ZoneId.systemDefault())?.format(DateTimeFormatter.ISO_DATE_TIME))
-        jo.put("endDate", this.endDate?.atTime(LocalTime.MAX)?.atZone(ZoneId.systemDefault())?.format(DateTimeFormatter.ISO_DATE_TIME))
+        jo.put("startDate", this.startDate?.atStartOfDay(ZoneId.systemDefault())?.toOffsetDateTime()?.format(DateTimeFormatter.ISO_DATE_TIME))
+        jo.put("endDate", this.endDate?.atTime(LocalTime.MAX)?.atZone(ZoneId.systemDefault())?.toOffsetDateTime()?.format(DateTimeFormatter.ISO_DATE_TIME))
         jo.put("price", this.price)
         return jo
     }
