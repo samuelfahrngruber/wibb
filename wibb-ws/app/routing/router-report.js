@@ -39,15 +39,11 @@ router.post('/', function (req, res) {
             "$lte" : tmp_endDate_max
         },
     }
-
-    console.log(offerSchemaSelector)
-
     Promise.all([
         rscheme.save(),
         offerSchema.deleteOne(offerSchemaSelector)
     ])
     .then(([resAddReport, resDelOffer]) => {
-        console.log("resAddReport : " + resAddReport + "\n\nresDelOffer : " + JSON.stringify(resDelOffer));
         if(resDelOffer.n == 1 && resDelOffer.deletedCount == 1){
             rscheme.solved = true
             rscheme.save()
@@ -59,7 +55,6 @@ router.post('/', function (req, res) {
             res.status(200).json(resAddReport)
     })
     .catch(err => {
-        console.log(err)
         res.status(500).json(err);
     });
 });
