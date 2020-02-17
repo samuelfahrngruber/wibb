@@ -94,7 +94,7 @@ class WibbConnection private constructor() {
 
     fun addReport(report: Report, cbSuccess: (Report?) -> Unit){
         postJSONObject(URLUnifier.instance.unifyApiUrl("/api/reports"), {
-            cbSuccess(report)
+            cbSuccess(Report.fromJSON(it))
         }, {
             cbSuccess(null)
         },
