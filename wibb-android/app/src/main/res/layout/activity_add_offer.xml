@@ -87,7 +87,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="0"
+                    android:text="@string/addoff_price_default"
                     android:textSize="60sp" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -127,7 +127,7 @@
         android:layout_alignParentBottom="true">
 
         <TextView
-            android:text="Offer Preview"
+            android:text="@string/addoff_header_offerPreview"
             style="?android:attr/listSeparatorTextViewStyle" />
 
 

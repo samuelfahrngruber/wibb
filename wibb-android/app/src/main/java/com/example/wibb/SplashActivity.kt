@@ -58,7 +58,7 @@ class SplashActivity : AppCompatActivity() {
         // todo: fix 204 no content error
         Log.e("INITERR", "Error while loading information")
 
-        Toast.makeText(this, "Failed to retrieve data from the Server! (Correct API Server URL?)", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, R.string.toast_connectionError, Toast.LENGTH_LONG).show()
 
         val intent =  Intent(this, SettingsActivity::class.java)
         startActivity(intent)

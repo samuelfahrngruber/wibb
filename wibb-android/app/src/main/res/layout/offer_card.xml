@@ -98,7 +98,7 @@
                     android:layout_centerInParent="true"
                     android:layout_alignParentStart="true"
                     android:background="@android:color/transparent"
-                    android:text="bei"
+                    android:text="@string/offerCard_store_prefix"
                     android:layout_marginEnd="5dp">
 
                 </TextView>

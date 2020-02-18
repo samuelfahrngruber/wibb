@@ -71,7 +71,7 @@ public class OfferCardRecyclerViewAdapter extends RecyclerView.Adapter<OfferCard
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E, d");
 
-        holder.dateTextv.setText((o.getStartDate() == null ? "" : o.getStartDate().format(formatter)) + " - " + (o.getStartDate() == null ? "" : o.getEndDate().format(formatter)));
+        holder.dateTextv.setText(String.format("%s - %s", o.getStartDate() == null ? "" : o.getStartDate().format(formatter), o.getEndDate() == null ? "" : o.getEndDate().format(formatter)));
 
         holder.menuImageb.setImageResource(R.drawable.ic_more_vert_black_24dp);
 
@@ -90,7 +90,7 @@ public class OfferCardRecyclerViewAdapter extends RecyclerView.Adapter<OfferCard
 
         private Offer offer;
 
-        public OfferMenuHelper(Offer o){
+        private OfferMenuHelper(Offer o){
             this.offer = o;
         }
 
@@ -117,9 +117,9 @@ public class OfferCardRecyclerViewAdapter extends RecyclerView.Adapter<OfferCard
                     @Override
                     public Unit invoke(Report rep) {
                         if(rep != null)
-                            Toast.makeText(context, "Report #" + rep.getId() + " submitted!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, context.getString(R.string.toast_reportSubmitted, rep.getId()), Toast.LENGTH_SHORT).show();
                         else
-                            Toast.makeText(context, "Could not report offer. Try again Later!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, R.string.toast_reportFailed, Toast.LENGTH_SHORT).show();
                         return null;
                     }
                 });
