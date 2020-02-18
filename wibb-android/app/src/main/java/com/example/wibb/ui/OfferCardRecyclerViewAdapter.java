@@ -1,6 +1,8 @@
 package com.example.wibb.ui;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -12,6 +14,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -19,6 +22,7 @@ import com.example.wibb.R;
 import com.example.wibb.connection.WibbConnection;
 import com.example.wibb.data.Offer;
 import com.example.wibb.data.Report;
+import com.example.wibb.data.Store;
 import com.example.wibb.tools.URLUnifier;
 
 import java.time.format.DateTimeFormatter;
@@ -47,7 +51,7 @@ public class OfferCardRecyclerViewAdapter extends RecyclerView.Adapter<OfferCard
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Offer o = data.get(position);
+        final Offer o = data.get(position);
 
         Glide.with(context)
                 .load(URLUnifier.Companion.getInstance().unifyImgUrl(o.getBeer().getIcon()))
@@ -71,8 +75,10 @@ public class OfferCardRecyclerViewAdapter extends RecyclerView.Adapter<OfferCard
 
         holder.menuImageb.setImageResource(R.drawable.ic_more_vert_black_24dp);
 
-        holder.menuImageb.setOnClickListener(new OfferMenuHelper(o));
+        OfferMenuHelper helper = new OfferMenuHelper(o);
 
+        holder.menuImageb.setOnClickListener(helper);
+        holder.storeCardv.setOnClickListener(helper);
     }
 
     @Override
@@ -90,11 +96,16 @@ public class OfferCardRecyclerViewAdapter extends RecyclerView.Adapter<OfferCard
 
         @Override
         public void onClick(View v) {
-            PopupMenu popup = new PopupMenu(context, v);
-            MenuInflater inflater = popup.getMenuInflater();
-            inflater.inflate(R.menu.offer_menu, popup.getMenu());
-            popup.setOnMenuItemClickListener(this);
-            popup.show();
+            if(v.getId() == R.id.offer_card_menu_btn) {
+                PopupMenu popup = new PopupMenu(context, v);
+                MenuInflater inflater = popup.getMenuInflater();
+                inflater.inflate(R.menu.offer_menu, popup.getMenu());
+                popup.setOnMenuItemClickListener(this);
+                popup.show();
+            }
+            else if(v.getId() == R.id.cardView_offer_card_store){
+                openFindNearbyStoresActivity(offer.getStore());
+            }
         }
 
         @Override
@@ -115,8 +126,22 @@ public class OfferCardRecyclerViewAdapter extends RecyclerView.Adapter<OfferCard
 
                 return true;
             }
+            else if(menuItem.getItemId() == R.id.menu_item_offer_findNearby){
+                openFindNearbyStoresActivity(offer.getStore());
+            }
             return false;
         }
+    }
+
+    private void openFindNearbyActivity(String query){
+        Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + query);
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        context.startActivity(mapIntent);
+    }
+
+    private void openFindNearbyStoresActivity(Store s){
+        openFindNearbyActivity(s.getName() + " Supermarket");
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -130,6 +155,7 @@ public class OfferCardRecyclerViewAdapter extends RecyclerView.Adapter<OfferCard
         TextView storeTextv;
 
         ImageButton menuImageb;
+        CardView storeCardv;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -143,6 +169,7 @@ public class OfferCardRecyclerViewAdapter extends RecyclerView.Adapter<OfferCard
             storeTextv = itemView.findViewById(R.id.offer_card_store_txt);
 
             menuImageb = itemView.findViewById(R.id.offer_card_menu_btn);
+            storeCardv = itemView.findViewById(R.id.cardView_offer_card_store);
         }
     }
 }

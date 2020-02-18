@@ -104,6 +104,7 @@
                 </TextView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView_offer_card_store"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="5dp"

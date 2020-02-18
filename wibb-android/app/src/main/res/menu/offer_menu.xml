@@ -3,4 +3,7 @@
     <item android:id="@+id/menu_item_offer_report"
         android:icon="@drawable/ic_flag_black_24dp"
         android:title="Report Offer" />
+    <item android:id="@+id/menu_item_offer_findNearby"
+        android:icon="@drawable/ic_flag_black_24dp"
+        android:title="Find Nearby" />
 </menu>
