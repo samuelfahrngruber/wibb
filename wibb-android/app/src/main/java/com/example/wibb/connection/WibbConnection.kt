@@ -110,6 +110,17 @@ class WibbConnection private constructor() {
             err.toJSON())
     }
 
+    fun addRequest(requestText: String, cbSuccess: (Boolean) -> Unit){
+        val jo = JSONObject()
+        jo.put("text", requestText)
+        postJSONObject(URLUnifier.instance.unifyApiUrl("/api/requests"), {
+            cbSuccess(true)
+        }, {
+            cbSuccess(false)
+        },
+            jo)
+    }
+
     private fun getJSONArray(url: String, cbSuccess: (JSONArray) -> Unit, cbError: (VolleyError) -> Unit){
         assertInitialized()
 

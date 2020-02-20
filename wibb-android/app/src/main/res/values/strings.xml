@@ -29,4 +29,12 @@
     <string name="toast_reportFailed">Could not report offer. Try again Later!</string>
 
     <string name="offerCard_store_prefix">at</string>
+    <string name="contentRequest_buttonSubmit">Send Request</string>
+    <string name="contentRequest_editText_hint">What would you like to be added to Wibb?</string>
+    <string name="toast_contentRequest_success">Successfully submitted Request!</string>
+    <string name="toast_contentRequest_fail">Could not submit Request!</string>
+    <string name="settings_header_newContent">Request New Content</string>
+    <string name="settings_header_newContent_summary">you can request new content here</string>
+    <string name="settings_newContent_beer">Request a new beer</string>
+    <string name="settings_newContent_store">Request a new store</string>
 </resources>

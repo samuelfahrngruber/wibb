@@ -14,17 +14,48 @@
   ~ limitations under the License.
   -->
 
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
-        app:title="Global Settings"
+        app:title="@string/settings_header_global"
         app:iconSpaceReserved="false">
 
         <EditTextPreference
             app:key="apiurl"
-            app:title="Wibb Server URL"
+            app:title="@string/settings_global_apiurl"
             app:useSimpleSummaryProvider="true"
             app:iconSpaceReserved="false"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/settings_header_newContent"
+        app:summary="@string/settings_header_newContent_summary"
+        app:iconSpaceReserved="false">
+
+        <Preference
+            app:key="pref_req_new_beer"
+            app:title="@string/settings_newContent_beer"
+            app:iconSpaceReserved="false">
+
+            <intent
+                android:targetPackage="com.example.wibb"
+                android:targetClass="com.example.wibb.RequestNewContentActivity"/>
+
+        </Preference>
+
+        <Preference
+            app:key="pref_req_new_store"
+            app:title="@string/settings_newContent_store"
+            app:iconSpaceReserved="false">
+
+            <intent
+                android:targetPackage="com.example.wibb"
+                android:targetClass="com.example.wibb.RequestNewContentActivity"/>
+
+        </Preference>
 
     </PreferenceCategory>
 
