@@ -47,7 +47,7 @@ class AddOfferActivity : AppCompatActivity() {
 
         val rvs = findViewById<RecyclerView>(R.id.recyclerView_stores)
         val rvsa = GridRecyclerViewAdapter(this, stores)
-        rvsa.setSelectionListener {
+        rvsa.setOnItemSelected {
             setOfferStore(it)
             nextstep()
         }
@@ -60,7 +60,7 @@ class AddOfferActivity : AppCompatActivity() {
 
         val rvb = findViewById<RecyclerView>(R.id.recyclerView_beers)
         val rvba = GridRecyclerViewAdapter(this, beers)
-        rvba.setSelectionListener {
+        rvba.setOnItemSelected {
             setOfferBeer(it)
             nextstep()
         }
@@ -73,7 +73,7 @@ class AddOfferActivity : AppCompatActivity() {
         val seekArc = findViewById<SeekArc>(R.id.seekArc)
         seekArc.setOnSeekArcChangeListener(object : SeekArc.OnSeekArcChangeListener {
             override fun onProgressChanged(seekArc: SeekArc?, progress: Int, fromUser: Boolean) {
-                val prog = progress + 5;
+                val prog = progress + 5
                 val progressv = findViewById<TextView>(R.id.seekArcProgress)
                 progressv.text = "€$prog"
                 setOfferPrice(prog)
