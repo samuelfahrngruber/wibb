@@ -39,13 +39,13 @@ class WibbConnection private constructor() {
     }
 
     fun loadAll(cbSuccess: (Boolean) -> Unit){
-        // TODO implement
+        // todo implement
     }
 
     fun loadBeers(cbSuccess: (Boolean) -> Unit){
         var apiurl = URLUnifier.instance.unifyApiUrl("/api/beers")
         getJSONArray(apiurl, {
-            WibbController.instance.beers.clear()
+        WibbController.instance.beers.clear()
             for (i in 0 until it.length()) {
                 val item = it.getJSONObject(i)
                 WibbController.instance.beers.add(Beer.fromJSON(item))
@@ -102,12 +102,13 @@ class WibbConnection private constructor() {
     }
 
     fun addWibbError(err: WibbError, cbSuccess: (Boolean) -> Unit){
-        postJSONObject(URLUnifier.instance.unifyApiUrl("/api/reports"), {
+        postJSONObject(URLUnifier.instance.unifyApiUrl("/api/errors"), {
             cbSuccess(true)
         }, {
             cbSuccess(false)
         },
-            err.toJSON())
+            err.toJSON(),
+            false)
     }
 
     fun addRequest(requestText: String, cbSuccess: (Boolean) -> Unit){
@@ -121,7 +122,11 @@ class WibbConnection private constructor() {
             jo)
     }
 
-    private fun getJSONArray(url: String, cbSuccess: (JSONArray) -> Unit, cbError: (VolleyError) -> Unit){
+    private fun getJSONArray(url: String, cbSuccess: (JSONArray) -> Unit, cbError: (VolleyError) -> Unit) {
+        getJSONArray(url, cbSuccess, cbError, true)
+    }
+
+    private fun getJSONArray(url: String, cbSuccess: (JSONArray) -> Unit, cbError: (VolleyError) -> Unit, reportFailure: Boolean){
         assertInitialized()
 
         val jsonArrayRequest = JsonArrayRequest(
@@ -129,8 +134,9 @@ class WibbConnection private constructor() {
             Response.Listener { response ->
                 cbSuccess(response)
             },
-            Response.ErrorListener { error ->
-                cbError(error)
+            Response.ErrorListener {
+                if(reportFailure) WibbError.fromVolleyError(it).report()
+                cbError(it)
             }
         )
 
@@ -138,6 +144,10 @@ class WibbConnection private constructor() {
     }
 
     private fun postJSONObject(url: String, cbSuccess: (JSONObject) -> Unit, cbError: (VolleyError) -> Unit, jsonObj: JSONObject){
+        postJSONObject(url, cbSuccess, cbError, jsonObj, true)
+    }
+
+    private fun postJSONObject(url: String, cbSuccess: (JSONObject) -> Unit, cbError: (VolleyError) -> Unit, jsonObj: JSONObject, reportFailure: Boolean){
         assertInitialized()
 
         val jsonObjectRequest = JsonObjectRequest(
@@ -146,8 +156,9 @@ class WibbConnection private constructor() {
             Response.Listener { response ->
                 cbSuccess(response)
             },
-            Response.ErrorListener { error ->
-                cbError(error)
+            Response.ErrorListener {
+                if(reportFailure) WibbError.fromVolleyError(it).report()
+                cbError(it)
             }
         )
 

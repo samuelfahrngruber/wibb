@@ -1,5 +1,6 @@
 package com.example.wibb.tools.err
 
+import com.android.volley.VolleyError
 import com.example.wibb.connection.WibbConnection
 import org.json.JSONObject
 
@@ -20,6 +21,15 @@ class WibbError {
             e.message = if(t.message == null) "ERROR_MESSAGE_NULL" else t.message!!
             e.stackTrace = if(t.stackTrace == null) "ERROR_STACKTRACE_NULL" else t.stackTrace.joinToString { "\n> " }
             e.throwable = t
+            return e
+        }
+
+        fun fromVolleyError(err: VolleyError): WibbError{
+            val e = WibbError()
+            e.occurrenceDescription = "VOLLEY_CONNECTION_ERROR"
+            e.message = if(err.message == null) "VOLLEY_ERROR_MESSAGE_NULL" else err.message!!
+            e.stackTrace = if(err.stackTrace == null) "VOLLEY_ERROR_STACKTRACE_NULL" else err.stackTrace.joinToString { "\n> " }
+            e.throwable = err.cause
             return e
         }
     }
