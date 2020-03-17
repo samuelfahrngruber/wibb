@@ -45,13 +45,48 @@ router.post('/', function (req, res) {
         else {
             // then actually insert the offer into the database
             var o = new offerSchema(newOffer);
-            o.save((err) => {
-                if(err) res.status(500).json(err);
-                else res.json(newOffer);
+
+            var tmp_endDate_min = new Date(newOffer.endDate)
+            var tmp_endDate_max = new Date(newOffer.endDate)
+            tmp_endDate_min.setHours(0, 0, 0, 0)
+            tmp_endDate_max.setHours(23, 59, 59, 999)
+
+            var offerSchemaSelector = {
+                "beer.name": newOffer.beer.name,
+                "beer.icon": newOffer.beer.icon,
+                "store.name": newOffer.store.name,
+                "store.icon": newOffer.store.icon,
+                "price": newOffer.price,
+                // no start date cuz its not identifying
+                "endDate": {
+                    "$gte" : tmp_endDate_min, 
+                    "$lte" : tmp_endDate_max
+                }
+            };
+
+            // o.save((err) => {
+            //     if(err) res.status(500).json(err);
+            //     else res.json(newOffer);
+            // });
+
+            offerSchema.findOne(offerSchemaSelector).then(function(offf) {
+                if(!offf) o.save((err) => {
+                    if(err) res.status(500).json(err);
+                    else res.json(newOffer);
+                });
+                else
+                    res.json( {} );
             });
+
+            // offerSchema.findOneAndUpdate(offerSchemaSelector, { $setOnInsert: newOffer }, { upsert: true }, function(err) {
+            //     console.log("err: " + err);
+            //     if(err) res.status(500).json(err);
+            //     else res.json(newOffer);
+            // });
         }
     })
     .catch(err => {
+        console.log("INTERNAL SERVER ERROR: " + err);
         res.status(500).json(err);
     });
 });

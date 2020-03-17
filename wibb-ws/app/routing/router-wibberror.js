@@ -14,4 +14,19 @@ router.post('/', function (req, res) {
     });
 });
 
+// TODO: make private
+router.get('/', function (req, res) {
+    wibbErrorSchema.find()
+    .exec((err, werrors) => {
+        if (err)
+            res.status(500).json(err);
+
+        else if (werrors == null)
+            res.status(204).json(new Error("NO CONTENT"));
+            
+        else
+            res.json(werrors);
+    })
+});
+
 export default router;

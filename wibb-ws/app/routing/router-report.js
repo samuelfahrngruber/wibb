@@ -58,4 +58,20 @@ router.post('/', function (req, res) {
         res.status(500).json(err);
     });
 });
+
+// TODO: make private
+router.get('/', function (req, res) {
+    reportSchema.find()
+    .exec((err, reports) => {
+        if (err)
+            res.status(500).json(err);
+
+        else if (reports == null)
+            res.status(204).json(new Error("NO CONTENT"));
+            
+        else
+            res.json(reports);
+    })
+});
+
 export default router;
