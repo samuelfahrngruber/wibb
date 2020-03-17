@@ -84,7 +84,8 @@ class WibbConnection private constructor() {
 
     fun addOffer(offer: Offer, cbSuccess: (Boolean) -> Unit){
         postJSONObject(URLUnifier.instance.unifyApiUrl("/api/offers"), {
-            WibbController.instance.offers.add(Offer.fromJSON(it))
+            if(it.length() > 0)
+                WibbController.instance.offers.add(Offer.fromJSON(it))
             cbSuccess(true)
         }, {
             cbSuccess(false)

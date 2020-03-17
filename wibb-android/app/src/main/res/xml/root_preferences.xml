@@ -21,15 +21,15 @@
     <PreferenceCategory
         app:title="@string/settings_header_global"
         app:iconSpaceReserved="false"
-        app:isPreferenceVisible="false">
+        app:isPreferenceVisible="true">
 
         <EditTextPreference
             app:key="apiurl"
             app:title="@string/settings_global_apiurl"
             app:useSimpleSummaryProvider="true"
             app:iconSpaceReserved="false"
-            app:isPreferenceVisible="false"
-            app:enabled="false"/>
+            app:isPreferenceVisible="true"
+            app:enabled="true"/>
 
     </PreferenceCategory>
 
