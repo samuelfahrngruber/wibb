@@ -1,106 +1,53 @@
 <html>
 
 <head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-  <link rel="stylesheet" href="style.css">
-
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-  </script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-  </script>
+    <link rel="stylesheet" href="style.css">
 
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
 
-  <script src="script.js"></script>
+
+
+    <script src="script-about.js"></script>
 </head>
 
 <body>
-  <div class="container">
-    <div class="jumbotron">
-      <h1>Wibb</h1>
-    </div>
-    <nav class="navbar navbar-expand navbar-light bg-light">
-      <div class="collapse navbar-collapse">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="index.html">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="about.html">About</a>
-          </li>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Wibb</h1>
+        </div>
+
+        <div class="container">
+        
+        <div class="page-header">
+            <h2>Supported Beers</h1>      
+        </div>
+        <ul class="list-group list-group-horizontal overflow-hidden" id="list-beers">
+            <!--                 <li class="list-group-item list-group-item-action horizontal-list-item-content">
+                    <img class="w-100" src="res/img/beer/goesser.png">
+                    <p class="text-center lead">G&ouml;sser</p>
+                </li> -->
         </ul>
-      </div>
-    </nav>
-    <div class="page-header">
-      <h2>Current Offers</h1>
+        <div class="page-header">
+            <h2>Supported Stores</h1>      
+        </div>
+        <ul class="list-group list-group-horizontal overflow-hidden" id="list-stores">
+            <!--                 <li class="list-group-item list-group-item-action horizontal-list-item-content">
+                    <img class="w-100" src="res/img/store/Spar.png">
+                    <p class="text-center lead">Spar</p>
+                </li> -->
+        </ul>
     </div>
-   <!--  <ul class="list-group" id="list-offers">
-                       <li class="list-group-item list-group-item-action horizontal-list-item-content">
-                                    <img class="w-100" src="res/img/store/Spar.png">
-                                    <p class="text-center lead">Spar</p>
-                                </li> 
-    </ul> -->
-    <table class="table table-hover" id="table-offers">
-      <tr>
-        <th>Beer</th>
-        <th>Store</th>
-        <th>Price</th>
-      </tr>
-      <!-- <tr>
-        <td class="align-middle"><img src="res/img/beer/goesser.png" height="40px"> Gösser</th>
-        <td class="align-middle">at Billa <img src="res/img/store/billa.png" height="40px"></th>
-        <td class="align-middle"><h4 class="font-weight-bold">20€</h4></th>
-      </tr> -->
-    </table>
-    <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">add Offer</button>
-  </div>
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add Offer</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="input_beer">Beer</label>
-            <select class="form-control" id="input_beer" name="beer">
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="input_store">Store</label>
-            <select class="form-control" id="input_store" name="store">
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="input_price">Price</label>
-            <input type="number" class="form-control" id="input_price" name="price">
-          </div>
-          <div class="form-group">
-            <label for="input_startDate">From</label>
-            <input type="date" class="form-control" id="input_startDate" name="startDate">
-          </div>
-          <div class="form-group">
-            <label for="input_endDate">Until</label>
-            <input type="date" class="form-control" id="input_endDate" name="endDate">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" id="button_addOffer">Save changes</button>
-        </div>
-      </div>
     </div>
-  </div>
 </body>
 
 </html>
