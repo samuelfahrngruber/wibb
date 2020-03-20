@@ -1,6 +1,7 @@
 package com.example.wibb.data
 
 import org.json.JSONObject
+import java.util.*
 
 class Report(t: RType, i: String, o: Offer) {
     var type: RType = t
@@ -10,7 +11,13 @@ class Report(t: RType, i: String, o: Offer) {
     var id: String? = null
 
     enum class RType {
-        FAKE, INCORRECT_DATES, DISPLAY_PROBLEM, OTHER
+        FAKE, INCORRECT_DATES, DISPLAY_PROBLEM, OTHER;
+
+        companion object  {
+            fun stringValues(): Array<String> {
+                return values().map { it.toString().replace("_", " ").toLowerCase(Locale.getDefault()) }.toTypedArray()
+            }
+        }
     }
 
     fun toJSON(): JSONObject {

@@ -13,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-
         android:padding="16dp"
         app:sv_animationDuration="300"
         app:sv_animationType="All"
@@ -66,7 +65,7 @@
             <FrameLayout
                 android:id="@+id/seekArcContainer"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:layout_weight="1">
 
                 <com.triggertrap.seekarc.SeekArc
@@ -80,7 +79,9 @@
                     app:rotation="180"
                     app:startAngle="30"
                     app:sweepAngle="300"
-                    app:touchInside="true" />
+                    app:touchInside="true"
+                    app:progressColor="@color/colorAccent"
+                    app:thumb="@drawable/ic_launcher_foreground"/>
 
                 <TextView
                     android:id="@+id/seekArcProgress"
@@ -95,8 +96,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:src="@drawable/ic_done_white_24dp"
-                    app:backgroundTint="@color/green"
+                    android:src="@drawable/ic_arrow_forward_black_24dp"
+                    app:backgroundTint="@color/colorAccent"
+                    app:elevation="0dp"
                     android:layout_gravity="bottom|center_horizontal">
 
                 </com.google.android.material.floatingactionbutton.FloatingActionButton>

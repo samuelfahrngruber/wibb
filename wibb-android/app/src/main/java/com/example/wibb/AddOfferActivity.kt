@@ -75,7 +75,7 @@ class AddOfferActivity : AppCompatActivity() {
             override fun onProgressChanged(seekArc: SeekArc?, progress: Int, fromUser: Boolean) {
                 val prog = progress + 5
                 val progressv = findViewById<TextView>(R.id.seekArcProgress)
-                progressv.text = "€$prog"
+                progressv.text = "~€$prog"
                 setOfferPrice(prog)
             }
 
@@ -167,7 +167,7 @@ class AddOfferActivity : AppCompatActivity() {
         val v = findViewById<View>(R.id.incl_cardView_currentOffer)
         val txt = v.findViewById<TextView>(R.id.offer_card_date_txt)
         val formatter = DateTimeFormatter.ofPattern("E, d")
-        txt.text = offer.startDate?.format(formatter) + " - " + offer.endDate?.format(formatter)
+        txt.text = "${offer.startDate?.format(formatter)} - ${offer.endDate?.format(formatter)}"
     }
 
     fun nextstep(){

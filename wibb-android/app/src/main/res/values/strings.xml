@@ -16,7 +16,7 @@
     <string name="settings_header_global">Global Settings</string>
     <string name="settings_global_apiurl">Wibb Server URL</string>
 
-    <string name="addoff_price_default">€0</string>
+    <string name="addoff_price_default">~€0</string>
     <string name="grid_item_default">DEFAULT</string>
 
     <string name="toast_newOffer_success">Successfully added new offer!</string>
@@ -25,6 +25,9 @@
 
     <string name="toast_connectionError">Failed to retrieve data from the Server! (Correct API Server URL?)</string>
 
+    <string name="alert_header_report">Report offer</string>
+    <string name="alert_button_report">Report</string>
+    <string name="alert_button_cancel">Cancel</string>
     <string name="toast_reportSubmitted">Report #%1$s submitted!</string>
     <string name="toast_reportFailed">Could not report offer. Try again Later!</string>
 
