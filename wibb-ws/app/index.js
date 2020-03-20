@@ -24,6 +24,7 @@ import beerRouter from './routing/router-beer.js';
 import storeRouter from './routing/router-store.js';
 import reportRouter from './routing/router-report.js';
 import wibbErrorRouter from './routing/router-wibberror';
+import requestRouter from './routing/router-request';
 
 app.use('/api', defaultRouter);
 defaultRouter.use('/offers', offerRouter);
@@ -31,8 +32,9 @@ defaultRouter.use('/beers', beerRouter);
 defaultRouter.use('/stores', storeRouter);
 defaultRouter.use('/reports', reportRouter);
 defaultRouter.use('/errors', wibbErrorRouter);
+defaultRouter.use('/requests', requestRouter);
 
-app.use(express.static('www'))
+app.use(express.static('www'));
 
 // start
 app.listen(port);
