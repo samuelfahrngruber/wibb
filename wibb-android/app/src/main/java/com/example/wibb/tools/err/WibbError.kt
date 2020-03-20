@@ -43,6 +43,6 @@ class WibbError {
     }
 
     fun report(){
-        WibbConnection.instance.addWibbError(this){}
+        WibbConnection.addWibbError(this){}
     }
 }

@@ -15,15 +15,15 @@ class Offer {
         get() = price >= 0 && store != null && beer != null && endDate != null
 
     companion object {
-        fun fromJSON(joffer: JSONObject): Offer {
+        fun fromJSON(jOffer: JSONObject): Offer {
             val o = Offer()
-            o.beer = Beer.fromJSON(joffer.getJSONObject("beer"))
-            o.store = Store.fromJSON(joffer.getJSONObject("store"))
-            val zonedStart = ZonedDateTime.parse(joffer.getString("startDate"), DateTimeFormatter.ISO_DATE_TIME)
-            val zonedEnd = ZonedDateTime.parse(joffer.getString("endDate"), DateTimeFormatter.ISO_DATE_TIME)
-            o.startDate = if (joffer.isNull("startDate")) null else zonedStart.withZoneSameInstant(ZoneId.systemDefault()).toLocalDate()
-            o.endDate = if (joffer.isNull("endDate")) null else zonedEnd.withZoneSameInstant(ZoneId.systemDefault()).toLocalDate()
-            o.price = joffer.getInt("price")
+            o.beer = Beer.fromJSON(jOffer.getJSONObject("beer"))
+            o.store = Store.fromJSON(jOffer.getJSONObject("store"))
+            val zonedStart = ZonedDateTime.parse(jOffer.getString("startDate"), DateTimeFormatter.ISO_DATE_TIME)
+            val zonedEnd = ZonedDateTime.parse(jOffer.getString("endDate"), DateTimeFormatter.ISO_DATE_TIME)
+            o.startDate = if (jOffer.isNull("startDate")) null else zonedStart.withZoneSameInstant(ZoneId.systemDefault()).toLocalDate()
+            o.endDate = if (jOffer.isNull("endDate")) null else zonedEnd.withZoneSameInstant(ZoneId.systemDefault()).toLocalDate()
+            o.price = jOffer.getInt("price")
             return o
         }
     }

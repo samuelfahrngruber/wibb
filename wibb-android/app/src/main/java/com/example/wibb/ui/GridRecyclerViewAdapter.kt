@@ -6,13 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.wibb.R
 import com.example.wibb.data.GridDisplayable
-import com.example.wibb.tools.URLUnifier.Companion.instance
+import com.example.wibb.tools.URLUnifier
 
 
 class GridRecyclerViewAdapter<ItemType : GridDisplayable>(private val context: Context, private val data: List<ItemType>): RecyclerView.Adapter<GridRecyclerViewAdapter.MyViewHolder>() {
@@ -31,15 +30,15 @@ class GridRecyclerViewAdapter<ItemType : GridDisplayable>(private val context: C
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val item = data[position]
-        holder.itemTextv.text = item.text
+        holder.itemTextV.text = item.text
 
         Glide.with(context)
-            .load(instance.unifyImgUrl(item.iconurl))
-            .into(holder.itemImagev)
+            .load(URLUnifier.unifyImgUrl(item.iconUrl))
+            .into(holder.itemImageV)
 
-        //holder.itemImagev.setImageResource(item.getDrawable());
+        //holder.itemImageV.setImageResource(item.getDrawable());
 
-        holder.cardv.setOnClickListener {
+        holder.cardV.setOnClickListener {
             onItemSelected?.invoke(item)
         }
     }
@@ -49,8 +48,8 @@ class GridRecyclerViewAdapter<ItemType : GridDisplayable>(private val context: C
     }
 
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        var itemTextv: TextView = itemView.findViewById(R.id.grid_item_text_id)
-        var itemImagev: ImageView = itemView.findViewById(R.id.grid_item_img_id)
-        var cardv: CardView = itemView.findViewById(R.id.id_cardView_gridItem)
+        var itemTextV: TextView = itemView.findViewById(R.id.grid_item_text_id)
+        var itemImageV: ImageView = itemView.findViewById(R.id.grid_item_img_id)
+        var cardV: CardView = itemView.findViewById(R.id.id_cardView_gridItem)
     }
 }

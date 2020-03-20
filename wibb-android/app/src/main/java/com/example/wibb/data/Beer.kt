@@ -4,17 +4,17 @@ import org.json.JSONObject
 
 class Beer(var name: String, var icon: String): GridDisplayable {
 
-    override val iconurl: String
+    override val iconUrl: String
         get() = icon
 
     override val text: String
         get() = name
 
     companion object {
-        fun fromJSON(jbeer: JSONObject): Beer {
+        fun fromJSON(jBeer: JSONObject): Beer {
             return Beer(
-                jbeer.getString("name"),
-                jbeer.getString("icon")
+                jBeer.getString("name"),
+                jBeer.getString("icon")
             )
         }
     }

@@ -1,8 +1,6 @@
 package com.example.wibb.data
 
 import org.json.JSONObject
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
 class Report(t: RType, i: String, o: Offer) {
     var type: RType = t
@@ -24,12 +22,12 @@ class Report(t: RType, i: String, o: Offer) {
     }
 
     companion object {
-        fun fromJSON(jreport: JSONObject): Report {
-            val t = RType.valueOf(jreport.getString("type"))
-            val i = jreport.getString("info")
-            val o = Offer.fromJSON(jreport.getJSONObject("offer"))
+        fun fromJSON(jReport: JSONObject): Report {
+            val t = RType.valueOf(jReport.getString("type"))
+            val i = jReport.getString("info")
+            val o = Offer.fromJSON(jReport.getJSONObject("offer"))
             val r = Report(t, i, o)
-            r.id = jreport.getString("_id")
+            r.id = jReport.getString("_id")
             return r
         }
     }

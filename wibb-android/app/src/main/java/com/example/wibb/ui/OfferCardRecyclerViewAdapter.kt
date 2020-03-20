@@ -31,33 +31,33 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private val dat
         val o = data[position]
 
         Glide.with(context)
-            .load(URLUnifier.instance.unifyImgUrl(o.beer!!.icon))
-            .into(holder.brandImagev)
+            .load(URLUnifier.unifyImgUrl(o.beer!!.icon))
+            .into(holder.brandImageV)
 
         Glide.with(context)
-            .load(URLUnifier.instance.unifyImgUrl(o.store!!.icon))
-            .into(holder.storeImagev)
+            .load(URLUnifier.unifyImgUrl(o.store!!.icon))
+            .into(holder.storeImageV)
 
-        //holder.brandImagev.setImageResource(o.getBeer().getDrawable());
-        //holder.storeImagev.setImageResource(o.getStore().getDrawable());
+        //holder.brandImageV.setImageResource(o.getBeer().getDrawable());
+        //holder.storeImageV.setImageResource(o.getStore().getDrawable());
 
-        holder.priceTextv.text = "€${o.price}"
-        holder.brandTextv.text = o.beer!!.text
-        holder.storeTextv.text = o.store!!.text
+        holder.priceTextV.text = "€${o.price}"
+        holder.brandTextV.text = o.beer!!.text
+        holder.storeTextV.text = o.store!!.text
 
         val formatter = DateTimeFormatter.ofPattern("E, d")
 
-        holder.dateTextv.text = String.format("%s - %s",
+        holder.dateTextV.text = String.format("%s - %s",
             if (o.startDate == null) "" else o.startDate!!.format(formatter),
             if (o.endDate == null) "" else o.endDate!!.format(formatter)
         )
 
-        holder.menuImageb.setImageResource(R.drawable.ic_more_vert_black_24dp)
+        holder.menuImageB.setImageResource(R.drawable.ic_more_vert_black_24dp)
 
         val helper = OfferMenuHelper(o)
 
-        holder.menuImageb.setOnClickListener(helper)
-        holder.storeCardv.setOnClickListener(helper)
+        holder.menuImageB.setOnClickListener(helper)
+        holder.storeCardV.setOnClickListener(helper)
     }
 
     override fun getItemCount(): Int {
@@ -82,7 +82,7 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private val dat
             if (menuItem.itemId == R.id.menu_item_offer_report) {
                 val r = Report(Report.RType.FAKE, "FAKED_BEER_OFFER", offer)
 
-                WibbConnection.instance.addReport(r) { rep: Report? ->
+                WibbConnection.addReport(r) { rep: Report? ->
                     if (rep != null)
                         Toast.makeText(context, context.getString(R.string.toast_reportSubmitted, rep.id), Toast.LENGTH_SHORT).show()
                     else Toast.makeText(context, R.string.toast_reportFailed, Toast.LENGTH_SHORT).show()
@@ -110,14 +110,14 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private val dat
 
     inner class MyViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-        var brandImagev: ImageView = itemView.findViewById(R.id.offer_card_beer_img)
-        var storeImagev: ImageView = itemView.findViewById(R.id.offer_card_store_img)
-        var priceTextv: TextView = itemView.findViewById(R.id.offer_card_price_txt)
-        var dateTextv: TextView = itemView.findViewById(R.id.offer_card_date_txt)
-        var brandTextv: TextView = itemView.findViewById(R.id.offer_card_beer_txt)
-        var storeTextv: TextView = itemView.findViewById(R.id.offer_card_store_txt)
-        var menuImageb: ImageButton = itemView.findViewById(R.id.offer_card_menu_btn)
-        var storeCardv: CardView = itemView.findViewById(R.id.cardView_offer_card_store)
+        var brandImageV: ImageView = itemView.findViewById(R.id.offer_card_beer_img)
+        var storeImageV: ImageView = itemView.findViewById(R.id.offer_card_store_img)
+        var priceTextV: TextView = itemView.findViewById(R.id.offer_card_price_txt)
+        var dateTextV: TextView = itemView.findViewById(R.id.offer_card_date_txt)
+        var brandTextV: TextView = itemView.findViewById(R.id.offer_card_beer_txt)
+        var storeTextV: TextView = itemView.findViewById(R.id.offer_card_store_txt)
+        var menuImageB: ImageButton = itemView.findViewById(R.id.offer_card_menu_btn)
+        var storeCardV: CardView = itemView.findViewById(R.id.cardView_offer_card_store)
     }
 
 }

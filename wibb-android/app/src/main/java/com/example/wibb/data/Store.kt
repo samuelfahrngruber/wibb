@@ -4,17 +4,17 @@ import org.json.JSONObject
 
 class Store(var name: String, var icon: String): GridDisplayable {
 
-    override val iconurl: String
+    override val iconUrl: String
         get() = icon
 
     override val text: String
         get() = name
 
     companion object {
-        fun fromJSON(jstore: JSONObject): Store {
+        fun fromJSON(jStore: JSONObject): Store {
             return Store(
-                jstore.getString("name"),
-                jstore.getString("icon")
+                jStore.getString("name"),
+                jStore.getString("icon")
             )
         }
     }

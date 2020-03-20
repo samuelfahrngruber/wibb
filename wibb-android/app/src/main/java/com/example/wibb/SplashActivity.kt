@@ -29,16 +29,16 @@ class SplashActivity : AppCompatActivity() {
     private fun doSplashStuff(){
         val prefs = PreferenceManager.getDefaultSharedPreferences(this)
         val apiurl = prefs.getString("apiurl", "https://wibb.host")
-        URLUnifier.instance.initialize(apiurl!!)
+        URLUnifier.initialize(apiurl!!)
 
-        WibbConnection.instance.initialize(this.applicationContext)
+        WibbConnection.initialize(this.applicationContext)
 
-        WibbConnection.instance.loadBeers {
+        WibbConnection.loadBeers {
             if (it) {
                 //progress_icon.setProgress(33, true)
-                WibbConnection.instance.loadStores {
+                WibbConnection.loadStores {
                     if (it){
-                        WibbConnection.instance.loadOffers {
+                        WibbConnection.loadOffers {
                             if (it) {
                                 val intent = Intent(this, MainActivity::class.java)
                                 startActivity(intent)

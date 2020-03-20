@@ -6,14 +6,10 @@ import com.android.volley.toolbox.Volley
 import com.example.wibb.connection.WibbConnection
 import java.lang.Exception
 
-class URLUnifier private constructor() {
+object URLUnifier {
     private var baseUrl = ""
 
     private var initialized = false
-
-    companion object {
-        val instance = URLUnifier()
-    }
 
     fun initialize(serverURL: String){
         setServerUrl(serverURL)
@@ -32,10 +28,10 @@ class URLUnifier private constructor() {
         var resurlt = url
 
         if(!resurlt.startsWith("/"))
-            resurlt = "/" + resurlt
+            resurlt = "/$resurlt"
 
         if(!resurlt.startsWith("/api/"))
-            resurlt = "/api" + resurlt
+            resurlt = "/api$resurlt"
 
         resurlt = baseUrl + resurlt
 
@@ -51,7 +47,7 @@ class URLUnifier private constructor() {
         var resurlt = baseUrl
 
         if(!irl.startsWith("/"))
-            irl = "/" + irl
+            irl = "/$irl"
 
 //        if(!irl.startsWith("/res/"))
 //            resurlt += "/res"
@@ -66,6 +62,6 @@ class URLUnifier private constructor() {
 
     private fun assertInitialized(){
         if(!initialized)
-            throw Exception(URLUnifier::class.qualifiedName + " must be initialized first!")
+            throw Exception("${URLUnifier::class.qualifiedName} must be initialized first!")
     }
 }

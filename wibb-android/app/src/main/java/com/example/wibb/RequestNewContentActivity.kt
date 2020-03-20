@@ -16,7 +16,7 @@ class RequestNewContentActivity : AppCompatActivity() {
 
     fun submitRequest(view: View) {
         if(view.id == R.id.button_submitRequest){
-            WibbConnection.instance.addRequest(editText_requestText.text.toString()){
+            WibbConnection.addRequest(editText_requestText.text.toString()){
                 if(it){
                     Toast.makeText(this, R.string.toast_contentRequest_success, Toast.LENGTH_SHORT).show()
                     finish()
