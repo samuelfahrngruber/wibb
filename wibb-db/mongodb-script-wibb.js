@@ -9,6 +9,9 @@ db.beers.insert({ name: "Hirter", icon: "/res/img/beer/hirter.png" });
 db.beers.insert({ name: "Villacher", icon: "/res/img/beer/villacher.png" });
 db.beers.insert({ name: "Puntigamer", icon: "/res/img/beer/puntigamer.png" });
 db.beers.insert({ name: "Murauer", icon: "/res/img/beer/murauer.png" });
+db.beers.insert({ name: "Zipfer", icon: "/res/img/beer/zipfer.png" });
+db.beers.insert({ name: "Wieselburger", icon: "/res/img/beer/wieselburger.png" });
+db.beers.insert({ name: "Egger", icon: "/res/img/beer/egger.png" });
 
 db.stores.drop();
 
@@ -23,5 +26,3 @@ db.stores.insert({ name: "Interspar", icon: "/res/img/store/interspar.png" });
 db.stores.insert({ name: "T&G", icon: "/res/img/store/tundg.png" });
 
 db.offers.drop();
-
-db.offers.insert({ beer: { name: "Hirter", icon: "/res/hirter.png" }, store: { name: "Billa", icon: "/res/billa.png" }, price: 15, startDate: new Date("2019-11-20"), endDate: new Date("2019-12-02") });
