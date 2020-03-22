@@ -43,4 +43,15 @@
     <string name="settings_newContent_store">Request a new store</string>
 
     <string name="no_offers">We couldn\'t find any offers! &#128531;</string>
+
+    <string name="cdrp_mon">Mon</string>
+    <string name="cdrp_tue">Tue</string>
+    <string name="cdrp_wed">Wed</string>
+    <string name="cdrp_thu">Thu</string>
+    <string name="cdrp_fri">Fri</string>
+    <string name="cdrp_sat">Sat</string>
+    <string name="cdrp_sun">Sun</string>
+
+    <string name="menuOffer_find_nearby">Find Nearby</string>
+    <string name="menuOffer_report_offer">Report Offer</string>
 </resources>

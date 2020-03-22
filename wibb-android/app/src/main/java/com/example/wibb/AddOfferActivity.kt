@@ -18,6 +18,7 @@ import com.example.wibb.data.Beer
 import com.example.wibb.data.Offer
 import com.example.wibb.data.Store
 import com.example.wibb.tools.URLUnifier
+import com.example.wibb.tools.err.ErrorHandler
 import kotlinx.android.synthetic.main.activity_add_offer.*
 import java.util.*
 import java.time.LocalDate
@@ -32,80 +33,97 @@ class AddOfferActivity : AppCompatActivity() {
     var currentStep = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_offer)
+        try {
+            super.onCreate(savedInstanceState)
+            setContentView(R.layout.activity_add_offer)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        // init step view
+            // init step view
 
-        val stepView = findViewById<StepView>(R.id.step_view)
-        stepView.setOnStepClickListener { setstep(it) }
+            val stepView = findViewById<StepView>(R.id.step_view)
+            stepView.setOnStepClickListener { setstep(it) }
 
-        // init store chooser
-        val stores = WibbController.stores
+            // init store chooser
+            val stores = WibbController.stores
 
-        val rvs = findViewById<RecyclerView>(R.id.recyclerView_stores)
-        val rvsa = GridRecyclerViewAdapter(this, stores)
-        rvsa.setOnItemSelected {
-            setOfferStore(it)
-            nextstep()
+            val rvs = findViewById<RecyclerView>(R.id.recyclerView_stores)
+            val rvsa = GridRecyclerViewAdapter(this, stores)
+            rvsa.setOnItemSelected {
+                setOfferStore(it)
+                nextstep()
+            }
+
+            rvs.layoutManager = GridLayoutManager(this, 4)
+            rvs.adapter = rvsa
+
+            // init beer chooser
+            val beers = WibbController.beers
+
+            val rvb = findViewById<RecyclerView>(R.id.recyclerView_beers)
+            val rvba = GridRecyclerViewAdapter(this, beers)
+            rvba.setOnItemSelected {
+                setOfferBeer(it)
+                nextstep()
+            }
+
+            rvb.layoutManager = GridLayoutManager(this, 4)
+            rvb.adapter = rvba
+
+            // init seekarc
+
+            val seekArc = findViewById<SeekArc>(R.id.seekArc)
+            seekArc.setOnSeekArcChangeListener(object : SeekArc.OnSeekArcChangeListener {
+                override fun onProgressChanged(
+                    seekArc: SeekArc?,
+                    progress: Int,
+                    fromUser: Boolean
+                ) {
+                    val prog = progress + 5
+                    val progressv = findViewById<TextView>(R.id.seekArcProgress)
+                    progressv.text = "~€$prog"
+                    setOfferPrice(prog)
+                }
+
+                override fun onStartTrackingTouch(seekArc: SeekArc?) {
+                }
+
+                override fun onStopTrackingTouch(seekArc: SeekArc?) {
+                }
+            })
+
+            val fab = findViewById<FloatingActionButton>(R.id.fab_priceDone)
+            fab.setOnClickListener { nextstep() }
+
+            // init calendarpicker
+
+            calendar_range.setSelectedDateRange(Calendar.getInstance(), null)
+            calendar_range.setCalendarListener(object : DateRangeCalendarView.CalendarListener {
+                override fun onFirstDateSelected(startDate: Calendar) {
+                    val startDateLocal = LocalDateTime.ofInstant(
+                        startDate.toInstant(),
+                        startDate.getTimeZone().toZoneId()
+                    ).toLocalDate()
+                    setOfferstartDate(startDateLocal)
+                }
+
+                override fun onDateRangeSelected(startDate: Calendar, endDate: Calendar) {
+                    val startDateLocal =
+                        LocalDateTime.ofInstant(startDate.toInstant(), ZoneId.systemDefault())
+                            .toLocalDate()
+                    val endDateLocal =
+                        LocalDateTime.ofInstant(endDate.toInstant(), ZoneId.systemDefault())
+                            .toLocalDate()
+                    setOfferDates(startDateLocal, endDateLocal)
+                }
+            })
+
+            // init menu
+            setOfferMenu()
         }
-
-        rvs.layoutManager = GridLayoutManager(this, 4)
-        rvs.adapter = rvsa
-
-        // init beer chooser
-        val beers = WibbController.beers
-
-        val rvb = findViewById<RecyclerView>(R.id.recyclerView_beers)
-        val rvba = GridRecyclerViewAdapter(this, beers)
-        rvba.setOnItemSelected {
-            setOfferBeer(it)
-            nextstep()
+        catch(ex: Exception){
+            ErrorHandler.of(this).handle(ex)
         }
-
-        rvb.layoutManager = GridLayoutManager(this, 4)
-        rvb.adapter = rvba
-
-        // init seekarc
-
-        val seekArc = findViewById<SeekArc>(R.id.seekArc)
-        seekArc.setOnSeekArcChangeListener(object : SeekArc.OnSeekArcChangeListener {
-            override fun onProgressChanged(seekArc: SeekArc?, progress: Int, fromUser: Boolean) {
-                val prog = progress + 5
-                val progressv = findViewById<TextView>(R.id.seekArcProgress)
-                progressv.text = "~€$prog"
-                setOfferPrice(prog)
-            }
-
-            override fun onStartTrackingTouch(seekArc: SeekArc?) {
-            }
-
-            override fun onStopTrackingTouch(seekArc: SeekArc?) {
-            }
-        })
-
-        val fab = findViewById<FloatingActionButton>(R.id.fab_priceDone)
-        fab.setOnClickListener { nextstep() }
-
-        // init calendarpicker
-
-        calendar_range.setSelectedDateRange(Calendar.getInstance(), null)
-        calendar_range.setCalendarListener(object : DateRangeCalendarView.CalendarListener {
-            override fun onFirstDateSelected(startDate: Calendar) {
-                val startDateLocal = LocalDateTime.ofInstant(startDate.toInstant(), startDate.getTimeZone().toZoneId()).toLocalDate()
-                setOfferstartDate(startDateLocal)
-            }
-            override fun onDateRangeSelected(startDate: Calendar, endDate: Calendar) {
-                val startDateLocal = LocalDateTime.ofInstant(startDate.toInstant(), ZoneId.systemDefault()).toLocalDate()
-                val endDateLocal = LocalDateTime.ofInstant(endDate.toInstant(), ZoneId.systemDefault()).toLocalDate()
-                setOfferDates(startDateLocal, endDateLocal)
-            }
-        })
-
-        // init menu
-        setOfferMenu()
     }
 
     fun setOfferBeer(b: Beer){

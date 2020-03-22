@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.core.app.ActivityCompat.finishAffinity
 import androidx.core.content.ContextCompat.startActivity
 import android.content.Intent
+import android.util.Log
 import android.widget.Toast
 import com.example.wibb.SplashActivity
 
@@ -49,6 +50,7 @@ class ErrorHandler constructor(context: Context) {
     }
 
     private fun inform(message: String){
+        Log.e("[ErrorHandler.${context.javaClass.name}]", "message")
         Toast.makeText(context, "ERROR: $message", Toast.LENGTH_SHORT).show()
     }
 }
