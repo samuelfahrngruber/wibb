@@ -7,7 +7,16 @@ import android.content.Intent
 import android.widget.Toast
 import com.example.wibb.SplashActivity
 
-
+/*
+ * Usage:
+ *
+ * try {
+ *      // application code
+ * }
+ * catch (exception: Exception) {
+ *      ErrorHandler.of(this).handle(exception)
+ * }
+ */
 class ErrorHandler constructor(context: Context) {
     private val context: Context = context.applicationContext
 
@@ -22,6 +31,8 @@ class ErrorHandler constructor(context: Context) {
     }
 
     fun handle(wibbError: WibbError){
+        if(wibbError.occurrenceDescription.isEmpty())
+            wibbError.occurrenceDescription = "[${context.javaClass.name}]: ${wibbError.occurrenceDescription}"
         inform(wibbError.message)
         wibbError.report()
     }
@@ -31,7 +42,7 @@ class ErrorHandler constructor(context: Context) {
     }
 
     fun handle(message: String, occDesc: String){
-        val e: WibbError = WibbError()
+        val e = WibbError()
         e.message = message
         e.occurrenceDescription = occDesc
         handle(e)

@@ -6,15 +6,15 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.Toast
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wibb.controller.WibbController
-import com.example.wibb.data.Offer
+import com.example.wibb.tools.err.ErrorHandler
 import com.example.wibb.ui.OfferCardRecyclerViewAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import java.time.LocalDate
-import kotlin.random.Random
+import kotlinx.android.synthetic.main.activity_main.*
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,31 +22,34 @@ class MainActivity : AppCompatActivity() {
     private var rvoa: OfferCardRecyclerViewAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        try {
+            super.onCreate(savedInstanceState)
+            setContentView(R.layout.activity_main)
 
-        // init fab
-        val fab_addOffer: FloatingActionButton = findViewById(R.id.fab_addOffer)
+            // init fab
+            val fab_addOffer: FloatingActionButton = findViewById(R.id.fab_addOffer)
 
-        fab_addOffer.setOnClickListener {
-            val intent =  Intent(this, AddOfferActivity::class.java)
-            startActivity(intent)
+            fab_addOffer.setOnClickListener {
+                val intent = Intent(this, AddOfferActivity::class.java)
+                startActivity(intent)
+            }
+
+            // init offers
+            rvo = findViewById<RecyclerView>(R.id.recyclerView_offers)
+            rvoa = OfferCardRecyclerViewAdapter(this, WibbController.offers)
+
+            rvo?.layoutManager = LinearLayoutManager(this)
+            rvo?.adapter = rvoa
         }
-
-
-
-
-        // init offers
-        rvo = findViewById<RecyclerView>(R.id.recyclerView_offers)
-        rvoa = OfferCardRecyclerViewAdapter(this, WibbController.offers)
-
-        rvo?.layoutManager = LinearLayoutManager(this)
-        rvo?.adapter = rvoa
+        catch (ex: Exception){
+            ErrorHandler.of(this).handle(ex)
+        }
     }
 
     override fun onResume() {
         super.onResume()
         rvoa?.notifyDataSetChanged()
+        refreshNoOffersHint()
     }
 
     // init menu
@@ -69,11 +72,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showSettings(){
-        // todo implement settings
-        // Toast.makeText(applicationContext, "Settings not supported yet!", Toast.LENGTH_SHORT).show()
-
         val intent =  Intent(this, SettingsActivity::class.java)
         startActivity(intent)
+    }
+
+    private fun refreshNoOffersHint(){
+        if (WibbController.offers.isEmpty())
+            textView_noOffers.visibility = View.VISIBLE
+        else
+            textView_noOffers.visibility = View.GONE
     }
 
 }

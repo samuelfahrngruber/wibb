@@ -22,13 +22,11 @@ import java.lang.Exception
 object WibbConnection {
 
     private var initialized: Boolean = false
-    private var context: Context? = null
     private var requestQueue: RequestQueue? = null
 
     fun initialize(ctx: Context){
         if(!initialized) {
-            context = ctx
-            requestQueue = Volley.newRequestQueue(context)
+            requestQueue = Volley.newRequestQueue(ctx)
 
             initialized = true
         }
@@ -103,7 +101,8 @@ object WibbConnection {
         }, {
             cbSuccess(false)
         },
-            err.toJSON())
+            err.toJSON(),
+            false)
     }
 
     fun addRequest(requestText: String, cbSuccess: (Boolean) -> Unit){
@@ -118,6 +117,10 @@ object WibbConnection {
     }
 
     private fun getJSONArray(url: String, cbSuccess: (JSONArray) -> Unit, cbError: (VolleyError) -> Unit){
+        WibbConnection.getJSONArray(url, cbSuccess, cbError, true);
+    }
+
+    private fun getJSONArray(url: String, cbSuccess: (JSONArray) -> Unit, cbError: (VolleyError) -> Unit, reportFailure: Boolean){
         assertInitialized()
 
         val jsonArrayRequest = JsonArrayRequest(
@@ -126,6 +129,7 @@ object WibbConnection {
                 cbSuccess(response)
             },
             Response.ErrorListener { error ->
+                if(reportFailure) WibbError.fromVolleyError(error).report();
                 cbError(error)
             }
         )
@@ -134,6 +138,10 @@ object WibbConnection {
     }
 
     private fun postJSONObject(url: String, cbSuccess: (JSONObject) -> Unit, cbError: (VolleyError) -> Unit, jsonObj: JSONObject){
+        postJSONObject(url, cbSuccess, cbError, jsonObj, true);
+    }
+
+    private fun postJSONObject(url: String, cbSuccess: (JSONObject) -> Unit, cbError: (VolleyError) -> Unit, jsonObj: JSONObject, reportFailure: Boolean){
         assertInitialized()
 
         val jsonObjectRequest = JsonObjectRequest(
@@ -143,6 +151,7 @@ object WibbConnection {
                 cbSuccess(response)
             },
             Response.ErrorListener { error ->
+                if (reportFailure) WibbError.fromVolleyError(error).report()
                 cbError(error)
             }
         )
