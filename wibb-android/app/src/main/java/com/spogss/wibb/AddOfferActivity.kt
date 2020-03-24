@@ -1,4 +1,4 @@
-package com.example.wibb
+package com.spogss.wibb
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,19 +6,19 @@ import android.view.View
 import android.widget.*
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.wibb.ui.GridRecyclerViewAdapter
+import com.spogss.wibb.ui.GridRecyclerViewAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.shuhart.stepview.StepView
 import com.triggertrap.seekarc.SeekArc
 import com.archit.calendardaterangepicker.customviews.DateRangeCalendarView
 import com.bumptech.glide.Glide
-import com.example.wibb.connection.WibbConnection
-import com.example.wibb.controller.WibbController
-import com.example.wibb.data.Beer
-import com.example.wibb.data.Offer
-import com.example.wibb.data.Store
-import com.example.wibb.tools.URLUnifier
-import com.example.wibb.tools.err.ErrorHandler
+import com.spogss.wibb.connection.WibbConnection
+import com.spogss.wibb.controller.WibbController
+import com.spogss.wibb.data.Beer
+import com.spogss.wibb.data.Offer
+import com.spogss.wibb.data.Store
+import com.spogss.wibb.tools.URLUnifier
+import com.spogss.wibb.tools.err.ErrorHandler
 import kotlinx.android.synthetic.main.activity_add_offer.*
 import java.util.*
 import java.time.LocalDate

@@ -1,4 +1,4 @@
-package com.example.wibb.ui
+package com.spogss.wibb.ui
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,9 +9,9 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.wibb.R
-import com.example.wibb.data.GridDisplayable
-import com.example.wibb.tools.URLUnifier
+import com.spogss.wibb.R
+import com.spogss.wibb.data.GridDisplayable
+import com.spogss.wibb.tools.URLUnifier
 
 
 class GridRecyclerViewAdapter<ItemType : GridDisplayable>(private val context: Context, private val data: List<ItemType>): RecyclerView.Adapter<GridRecyclerViewAdapter.MyViewHolder>() {

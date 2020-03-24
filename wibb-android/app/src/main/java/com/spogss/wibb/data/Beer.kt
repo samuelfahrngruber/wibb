@@ -1,8 +1,8 @@
-package com.example.wibb.data
+package com.spogss.wibb.data
 
 import org.json.JSONObject
 
-class Store(var name: String, var icon: String): GridDisplayable {
+class Beer(var name: String, var icon: String): GridDisplayable {
 
     override val iconUrl: String
         get() = icon
@@ -11,10 +11,10 @@ class Store(var name: String, var icon: String): GridDisplayable {
         get() = name
 
     companion object {
-        fun fromJSON(jStore: JSONObject): Store {
-            return Store(
-                jStore.getString("name"),
-                jStore.getString("icon")
+        fun fromJSON(jBeer: JSONObject): Beer {
+            return Beer(
+                jBeer.getString("name"),
+                jBeer.getString("icon")
             )
         }
     }

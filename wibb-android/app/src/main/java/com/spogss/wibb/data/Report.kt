@@ -1,4 +1,4 @@
-package com.example.wibb.data
+package com.spogss.wibb.data
 
 import org.json.JSONObject
 import java.util.*

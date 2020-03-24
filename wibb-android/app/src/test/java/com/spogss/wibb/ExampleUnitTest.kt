@@ -1,4 +1,4 @@
-package com.example.wibb
+package com.spogss.wibb
 
 import org.junit.Test
 

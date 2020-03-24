@@ -1,4 +1,4 @@
-package com.example.wibb
+package com.spogss.wibb
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

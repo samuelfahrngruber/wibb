@@ -1,4 +1,4 @@
-package com.example.wibb.connection
+package com.spogss.wibb.connection
 
 import android.content.Context
 import com.android.volley.Request
@@ -8,13 +8,13 @@ import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.example.wibb.controller.WibbController
-import com.example.wibb.data.Beer
-import com.example.wibb.data.Offer
-import com.example.wibb.data.Report
-import com.example.wibb.data.Store
-import com.example.wibb.tools.URLUnifier
-import com.example.wibb.tools.err.WibbError
+import com.spogss.wibb.controller.WibbController
+import com.spogss.wibb.data.Beer
+import com.spogss.wibb.data.Offer
+import com.spogss.wibb.data.Report
+import com.spogss.wibb.data.Store
+import com.spogss.wibb.tools.URLUnifier
+import com.spogss.wibb.tools.err.WibbError
 import org.json.JSONArray
 import org.json.JSONObject
 import java.lang.Exception

@@ -1,13 +1,13 @@
-package com.example.wibb
+package com.spogss.wibb
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.example.wibb.connection.WibbConnection
+import com.spogss.wibb.connection.WibbConnection
 import androidx.preference.PreferenceManager
-import com.example.wibb.tools.URLUnifier
-import com.example.wibb.tools.err.ErrorHandler
+import com.spogss.wibb.tools.URLUnifier
+import com.spogss.wibb.tools.err.ErrorHandler
 import java.lang.Exception
 
 

@@ -1,7 +1,6 @@
-package com.example.wibb.ui
+package com.spogss.wibb.ui
 
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
@@ -13,12 +12,12 @@ import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.wibb.R
-import com.example.wibb.connection.WibbConnection
-import com.example.wibb.data.Offer
-import com.example.wibb.data.Report
-import com.example.wibb.data.Store
-import com.example.wibb.tools.URLUnifier
+import com.spogss.wibb.R
+import com.spogss.wibb.connection.WibbConnection
+import com.spogss.wibb.data.Offer
+import com.spogss.wibb.data.Report
+import com.spogss.wibb.data.Store
+import com.spogss.wibb.tools.URLUnifier
 import java.time.format.DateTimeFormatter
 
 

@@ -1,7 +1,7 @@
-package com.example.wibb.tools.err
+package com.spogss.wibb.tools.err
 
 import com.android.volley.VolleyError
-import com.example.wibb.connection.WibbConnection
+import com.spogss.wibb.connection.WibbConnection
 import org.json.JSONObject
 
 class WibbError {

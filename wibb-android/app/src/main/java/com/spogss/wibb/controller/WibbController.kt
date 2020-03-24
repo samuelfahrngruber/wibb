@@ -1,8 +1,8 @@
-package com.example.wibb.controller
+package com.spogss.wibb.controller
 
-import com.example.wibb.data.Beer
-import com.example.wibb.data.Offer
-import com.example.wibb.data.Store
+import com.spogss.wibb.data.Beer
+import com.spogss.wibb.data.Offer
+import com.spogss.wibb.data.Store
 
 object WibbController {
     val beers = mutableListOf<Beer>()

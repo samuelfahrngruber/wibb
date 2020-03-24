@@ -38,7 +38,7 @@
     <string name="toast_contentRequest_fail">Vorschlag konnte nicht gesendet werden!</string>
     
     <string name="settings_header_newContent">Neuen Inhalt vorschlagen</string>
-    <string name="settings_header_newContent_summary">hier kannst du neuen Inhalte vorschlagen!</string>
+    <string name="settings_header_newContent_summary">Hier kannst du neue Inhalte vorschlagen!</string>
     <string name="settings_newContent_beer">Ein neues Bier vorschlagen</string>
     <string name="settings_newContent_store">Ein neues Geschäft vorschlagen</string>
 

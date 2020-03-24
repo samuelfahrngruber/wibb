@@ -1,10 +1,10 @@
-package com.example.wibb
+package com.spogss.wibb
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import com.example.wibb.connection.WibbConnection
+import com.spogss.wibb.connection.WibbConnection
 import kotlinx.android.synthetic.main.activity_request_new_content.*
 
 class RequestNewContentActivity : AppCompatActivity() {

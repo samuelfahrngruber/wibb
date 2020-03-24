@@ -1,12 +1,8 @@
-package com.example.wibb.tools.err
+package com.spogss.wibb.tools.err
 
 import android.content.Context
-import androidx.core.app.ActivityCompat.finishAffinity
-import androidx.core.content.ContextCompat.startActivity
-import android.content.Intent
 import android.util.Log
 import android.widget.Toast
-import com.example.wibb.SplashActivity
 
 /*
  * Usage:

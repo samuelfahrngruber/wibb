@@ -45,8 +45,8 @@
             app:iconSpaceReserved="false">
 
             <intent
-                android:targetPackage="com.example.wibb"
-                android:targetClass="com.example.wibb.RequestNewContentActivity"/>
+                android:targetPackage="com.spogss.wibb"
+                android:targetClass="com.spogss.wibb.RequestNewContentActivity"/>
 
         </Preference>
 
@@ -56,8 +56,8 @@
             app:iconSpaceReserved="false">
 
             <intent
-                android:targetPackage="com.example.wibb"
-                android:targetClass="com.example.wibb.RequestNewContentActivity"/>
+                android:targetPackage="com.spogss.wibb"
+                android:targetClass="com.spogss.wibb.RequestNewContentActivity"/>
 
         </Preference>
 

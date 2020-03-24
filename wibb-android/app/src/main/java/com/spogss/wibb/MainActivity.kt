@@ -1,4 +1,4 @@
-package com.example.wibb
+package com.spogss.wibb
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,9 +9,9 @@ import android.view.MenuItem
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.wibb.controller.WibbController
-import com.example.wibb.tools.err.ErrorHandler
-import com.example.wibb.ui.OfferCardRecyclerViewAdapter
+import com.spogss.wibb.controller.WibbController
+import com.spogss.wibb.tools.err.ErrorHandler
+import com.spogss.wibb.ui.OfferCardRecyclerViewAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.Exception

@@ -1,9 +1,5 @@
-package com.example.wibb.tools
+package com.spogss.wibb.tools
 
-import android.content.Context
-import com.android.volley.RequestQueue
-import com.android.volley.toolbox.Volley
-import com.example.wibb.connection.WibbConnection
 import java.lang.Exception
 
 object URLUnifier {
