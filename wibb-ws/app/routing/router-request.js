@@ -14,4 +14,19 @@ router.post('/', function (req, res) {
     });
 });
 
+// TODO: make private
+router.get('/', function (req, res) {
+    requestSchema.find()
+    .exec((err, requests) => {
+        if (err)
+            res.status(500).json(err);
+
+        else if (requests == null)
+            res.status(204).json(new Error("NO CONTENT"));
+            
+        else
+            res.json(requests);
+    })
+});
+
 export default router;
