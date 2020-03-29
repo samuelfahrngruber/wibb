@@ -78,7 +78,8 @@ object WibbConnection {
 
     fun addOffer(offer: Offer, cbSuccess: (Boolean) -> Unit){
         postJSONObject(URLUnifier.unifyApiUrl("/api/offers"), {
-            WibbController.offers.add(Offer.fromJSON(it))
+            if(it.length() > 0)
+                WibbController.offers.add(Offer.fromJSON(it))
             cbSuccess(true)
         }, {
             cbSuccess(false)
@@ -160,7 +161,10 @@ object WibbConnection {
     }
 
     private fun assertInitialized(){
-        if(!initialized)
-            throw Exception(WibbConnection::class.qualifiedName + " must be initialized first!")
+        if(!initialized) {
+            val e: Exception = Exception(WibbConnection::class.qualifiedName + " must be initialized first!")
+            WibbError.fromThrowable(e).report();
+            throw e;
+        }
     }
 }
