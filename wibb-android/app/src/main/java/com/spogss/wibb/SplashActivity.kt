@@ -8,6 +8,7 @@ import com.spogss.wibb.connection.WibbConnection
 import androidx.preference.PreferenceManager
 import com.spogss.wibb.tools.URLUnifier
 import com.spogss.wibb.tools.err.ErrorHandler
+import kotlinx.android.synthetic.main.activity_splash.*
 import java.lang.Exception
 
 
@@ -34,9 +35,10 @@ class SplashActivity : AppCompatActivity() {
 
             WibbConnection.loadBeers {
                 if (it) {
-                    //progress_icon.setProgress(33, true)
+                    progress_icon.setProgress(50, 100)
                     WibbConnection.loadStores {
                         if (it) {
+                            progress_icon.setProgress(50, 100, 100)
                             WibbConnection.loadOffers {
                                 if (it) {
                                     val intent = Intent(this, MainActivity::class.java)

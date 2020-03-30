@@ -4,27 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SplashActivity">
+    tools:context=".SplashActivity"
+    android:background="@color/colorAccent">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher" />
-
-<!--    <com.appersiano.progressimage.ProgressImage-->
-<!--        android:id="@+id/progress_icon"-->
-<!--        android:layout_width="200dp"-->
-<!--        android:layout_height="200dp"-->
-<!--        app:imageShadowColor=""-->
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
 <!--        app:layout_constraintBottom_toBottomOf="parent"-->
 <!--        app:layout_constraintEnd_toEndOf="parent"-->
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:srcImage="@drawable/ic_launcher" />-->
+<!--        app:srcCompat="@mipmap/ic_launcher" />-->
+
+<!--    <com.appersiano.progressimage.ProgressImage-->
+<!--        android:id="@+id/vlImage"-->
+<!--        android:layout_width="0dp"-->
+<!--        app:imageShadowColor="#FF0000"-->
+<!--        app:srcImage="@drawable/ic_launcher"-->
+<!--        android:layout_height="200dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"/>-->
+
+    <com.appersiano.progressimage.ProgressImage
+        android:id="@+id/progress_icon"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:imageShadowColor="@color/yelloshadow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcImage="@drawable/ic_launcher_foreground"
+        app:percentageTextColor="@android:color/black"
+        app:showText="true"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
