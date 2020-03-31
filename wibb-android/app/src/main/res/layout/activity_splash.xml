@@ -39,7 +39,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcImage="@drawable/ic_launcher_foreground"
         app:percentageTextColor="@android:color/black"
-        app:percentageBackgroundColor="@android:color/transparent"
-        app:showText="true"/>
+        app:percentageBackgroundColor="@android:color/transparent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
