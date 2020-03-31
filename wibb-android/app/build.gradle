@@ -34,7 +34,7 @@ dependencies {
     implementation 'com.archit.calendar:awesome-calendar:1.1.5'
 
     implementation 'com.android.volley:volley:1.1.1'
-    implementation 'com.github.appersiano:ImageProgressView:3f9d432545f6fe8ea9dacebb36041e12aa75b874'
+    implementation(name: 'progressimage-debug', ext: 'aar')
 
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'

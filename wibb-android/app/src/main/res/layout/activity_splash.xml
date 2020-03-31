@@ -30,7 +30,7 @@
 
     <com.appersiano.progressimage.ProgressImage
         android:id="@+id/progress_icon"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="200dp"
         app:imageShadowColor="@color/yelloshadow"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,6 +39,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcImage="@drawable/ic_launcher_foreground"
         app:percentageTextColor="@android:color/black"
+        app:percentageBackgroundColor="@android:color/transparent"
         app:showText="true"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
