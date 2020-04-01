@@ -1,0 +1,48 @@
+<div class="row clickable" (click)="toggleExpanded()">
+    <div *ngIf="expanded">
+        <div class="col-xs-3">
+            <table class="table borderless">
+                <tbody>
+                <tr>
+                    <th class="col-md-1">Id</th>
+                    <td>{{ report.id }}</td>
+                </tr>
+                <tr>
+                    <th class="col-md-1">Type</th>
+                    <td>{{ report.type }}</td>
+                </tr>
+                <tr>
+                    <th class="col-md-1">Solved</th>
+                    <td>
+                        <span *ngIf="report.solved" class="glyphicon glyphicon-ok solved" aria-hidden="true"></span>
+                        <span *ngIf="!report.solved" class="glyphicon glyphicon-remove unsolved" aria-hidden="true"></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-xs-4">
+            <label for="txt_info">Info:</label>
+            <textarea class="form-control" readonly>{{ report.info }}</textarea>
+        </div>
+        <div class="col-xs-5">
+            <app-offer-item [offer]="report.offer"></app-offer-item>
+        </div>
+    </div>
+    <div *ngIf="!expanded">
+        <div class="col-xs-3">
+            <strong>Solved: </strong>
+            <span *ngIf="report.solved" class="glyphicon glyphicon-ok solved" aria-hidden="true"></span>
+            <span *ngIf="!report.solved" class="glyphicon glyphicon-remove unsolved" aria-hidden="true"></span>
+        </div>
+        <div class="col-xs-4">
+            <strong>Type: </strong>{{ report.type }}
+        </div>
+        <div class="col-xs-5">
+            <img [src]="report.offer.beer.icon" [alt]="report.offer.beer.name">
+             at <img [src]="report.offer.store.icon" [alt]="report.offer.store.name">
+            for €{{ report.offer.price }}
+            until {{ report.offer.endDate | date }}
+        </div>
+    </div>
+</div>

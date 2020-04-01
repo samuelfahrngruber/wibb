@@ -1,0 +1,6 @@
+.sidebar {
+    min-height: 95vh;
+}
+.border-right{
+    border-right: 1px solid #ccc;
+}
