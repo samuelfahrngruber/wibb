@@ -1,0 +1,10 @@
+<div class="container">
+    <h2>Offer Reports</h2>
+    <p>All offers reported by the community for providing falsy content or other problems with the offer are listed here.</p>
+    
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let rep of reports" >
+            <app-offer-report-item [report]="rep"></app-offer-report-item>
+        </li>
+    </ul>
+</div>

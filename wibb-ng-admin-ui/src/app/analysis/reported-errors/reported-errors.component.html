@@ -1,0 +1,14 @@
+<div class="container">
+    <h2>Reported Errors</h2>
+    <p>
+        Wibb supports automatic error reporting. When there is an exception on a
+        client device that is handled using the <code>WibbError</code> class, the error is automatically
+        reported to the server and stored in a MongoDB table that can then be queried using <code>/api/errors</code>.
+    </p>
+    
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let err of errors" >
+            <app-error-item [error]="err"></app-error-item>
+        </li>
+    </ul>
+</div>

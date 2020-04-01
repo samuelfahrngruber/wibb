@@ -1,0 +1,23 @@
+.solved {
+    color: #009900;
+}
+
+.unsolved {
+    color: #990000;
+}
+
+.borderless td, .borderless th {
+    border: none;
+}
+
+textarea {
+    resize: none;
+ }
+
+ img {
+    max-height: 32px;
+}
+
+.clickable{
+    cursor: pointer;
+}
