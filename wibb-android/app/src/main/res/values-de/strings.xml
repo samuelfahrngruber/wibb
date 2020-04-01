@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">Wibb</string>
+
+    <string name="default_heading_addoffer">TASK</string>
+
+    <string name="addoff_choose_store">Welches Geschäft?</string>
+    <string name="addoff_choose_beer">Welches Bier?</string>
+    <string name="addoff_choose_price">Wie teuer?</string>
+    <string name="addoff_choose_time">Bis wann?</string>
+
+    <string name="addoff_header_offerPreview">Vorschau</string>
+
+
+    <string name="title_activity_settings">Einstellungen</string>
+
+    <string name="settings_header_global">Globale Einstellungen</string>
+    <string name="settings_global_apiurl">Wibb Server URL</string>
+
+    <string name="addoff_price_default">~€0</string>
+    <string name="grid_item_default">DEFAULT</string>
+
+    <string name="toast_newOffer_success">Angebot erfolgreich hinzugefügt!</string>
+    <string name="toast_newOffer_fail">Angebot konnte nicht erstellt werden!</string>
+    <string name="toast_newOffer_invalid">Dieses Angebot ist ungültig!</string>
+
+    <string name="toast_connectionError">Verbindung zum Server fehlgeschlagen!</string>
+
+    <string name="alert_header_report">Angebot Melden</string>
+    <string name="alert_button_report">Melden</string>
+    <string name="alert_button_cancel">Abbrechen</string>
+    <string name="toast_reportSubmitted">Meldung #%1$s eingereicht!</string>
+    <string name="toast_reportFailed">Angebot konnte nicht gemeldet werden! Versuche es später erneut!</string>
+
+    <string name="offerCard_store_prefix">bei</string>
+    <string name="contentRequest_buttonSubmit">Vorschlag senden</string>
+    <string name="contentRequest_editText_hint">Was können wir bei Wibb verbessern?</string>
+    <string name="toast_contentRequest_success">Vorschlag erfolgreich gesendet!</string>
+    <string name="toast_contentRequest_fail">Vorschlag konnte nicht gesendet werden!</string>
+    
+    <string name="settings_header_newContent">Neuen Inhalt vorschlagen</string>
+    <string name="settings_header_newContent_summary">Hier kannst du neue Inhalte vorschlagen!</string>
+    <string name="settings_newContent_beer">Ein neues Bier vorschlagen</string>
+    <string name="settings_newContent_store">Ein neues Geschäft vorschlagen</string>
+
+    <string name="no_offers">Wir konnten kein Angebot finden. &#128531;</string>
+
+    <string name="cdrp_mon">Mo</string>
+    <string name="cdrp_tue">Di</string>
+    <string name="cdrp_wed">Mi</string>
+    <string name="cdrp_thu">Do</string>
+    <string name="cdrp_fri">Fr</string>
+    <string name="cdrp_sat">Sa</string>
+    <string name="cdrp_sun">So</string>
+
+    <string name="menuOffer_find_nearby">In Google Maps anzeigen</string>
+    <string name="menuOffer_report_offer">Melden</string>
+</resources>

@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">Wibb</string>
+
+    <string name="default_heading_addoffer">TASK</string>
+
+    <string name="addoff_choose_store">What Store?</string>
+    <string name="addoff_choose_beer">What Beer?</string>
+    <string name="addoff_choose_price">How Expensive?</string>
+    <string name="addoff_choose_time">How Long?</string>
+
+    <string name="addoff_header_offerPreview">Offer Preview</string>
+
+
+    <string name="title_activity_settings">Settings</string>
+
+    <string name="settings_header_global">Global Settings</string>
+    <string name="settings_global_apiurl">Wibb Server URL</string>
+
+    <string name="addoff_price_default">~€0</string>
+    <string name="grid_item_default">DEFAULT</string>
+
+    <string name="toast_newOffer_success">Successfully added new offer!</string>
+    <string name="toast_newOffer_fail">Failed to add new offer!</string>
+    <string name="toast_newOffer_invalid">This offer is invalid!</string>
+
+    <string name="toast_connectionError">Failed to retrieve data from the Server! (Correct API Server URL?)</string>
+
+    <string name="alert_header_report">Report offer</string>
+    <string name="alert_button_report">Report</string>
+    <string name="alert_button_cancel">Cancel</string>
+    <string name="toast_reportSubmitted">Report #%1$s submitted!</string>
+    <string name="toast_reportFailed">Could not report offer. Try again Later!</string>
+
+    <string name="offerCard_store_prefix">at</string>
+    <string name="contentRequest_buttonSubmit">Send Request</string>
+    <string name="contentRequest_editText_hint">What would you like to be added to Wibb?</string>
+    <string name="toast_contentRequest_success">Successfully submitted Request!</string>
+    <string name="toast_contentRequest_fail">Could not submit Request!</string>
+    
+    <string name="settings_header_newContent">Request New Content</string>
+    <string name="settings_header_newContent_summary">you can request new content here</string>
+    <string name="settings_newContent_beer">Request a new beer</string>
+    <string name="settings_newContent_store">Request a new store</string>
+
+    <string name="no_offers">We couldn\'t find any offers! &#128531;</string>
+
+    <string name="cdrp_mon">Mon</string>
+    <string name="cdrp_tue">Tue</string>
+    <string name="cdrp_wed">Wed</string>
+    <string name="cdrp_thu">Thu</string>
+    <string name="cdrp_fri">Fri</string>
+    <string name="cdrp_sat">Sat</string>
+    <string name="cdrp_sun">Sun</string>
+
+    <string name="menuOffer_find_nearby">Find Nearby</string>
+    <string name="menuOffer_report_offer">Report Offer</string>
+</resources>

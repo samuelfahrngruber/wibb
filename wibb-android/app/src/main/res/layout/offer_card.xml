@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+
+        <RelativeLayout
+            android:layout_toStartOf="@id/card_menu"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/ll_store"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill_horizontal">
+
+                <ImageView
+                    android:id="@+id/offer_card_beer_img"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_add_box_black_24dp"
+                    android:layout_marginRight="10dp">
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/offer_card_beer_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:text="-"
+                    android:textSize="25sp"
+                    android:gravity="center">
+
+                </TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_price"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_toEndOf="@+id/ll_store"
+                android:layout_alignParentEnd="true"
+                android:gravity="end">
+
+                <ImageView
+                    android:id="@+id/offer_card_price_img"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_euro_symbol_black_24dp"
+                    android:visibility="invisible">
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/offer_card_price_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:text="-€"
+                    android:textSize="30sp"
+                    android:gravity="center">
+
+                </TextView>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_below="@id/ll_price">
+
+                <TextView
+                    android:id="@+id/bei_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitCenter"
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentStart="true"
+                    android:background="@android:color/transparent"
+                    android:text="@string/offerCard_store_prefix"
+                    android:layout_marginEnd="5dp">
+
+                </TextView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView_offer_card_store"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="5dp"
+                    android:layout_margin="5dp"
+                    android:layout_toEndOf="@+id/bei_txt"
+                    android:backgroundTint="#EEEEEE">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:id="@+id/offer_card_store_txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleType="fitCenter"
+                            android:background="@android:color/transparent"
+                            android:text="-"
+                            android:layout_marginRight="5dp">
+
+                        </TextView>
+
+                        <ImageView
+                            android:id="@+id/offer_card_store_img"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:scaleType="fitCenter"
+                            android:background="@android:color/transparent"
+                            android:src="@drawable/ic_add_box_black_24dp">
+
+                        </ImageView>
+
+                    </LinearLayout>
+
+
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/offer_card_date_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:text="-">
+
+                </TextView>
+
+            </RelativeLayout>
+
+
+
+        </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/card_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:background="@color/colorAccent"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="10dp">
+        <ImageButton
+            android:id="@+id/offer_card_menu_btn"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true">
+
+        </ImageButton>
+    </RelativeLayout>
+
+
+
+
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

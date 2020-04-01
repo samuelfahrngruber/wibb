@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AddOfferActivity">
+
+
+    <com.shuhart.stepview.StepView
+        android:id="@+id/step_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:padding="16dp"
+        app:sv_animationDuration="300"
+        app:sv_animationType="All"
+        app:sv_doneCircleColor="@color/yet"
+        app:sv_doneCircleRadius="12dp"
+        app:sv_doneStepLineColor="@color/yet"
+        app:sv_doneStepMarkColor="@color/colorAccent"
+        app:sv_nextStepLineColor="@color/notyet"
+        app:sv_nextTextColor="@color/notyet"
+        app:sv_selectedCircleColor="@color/colorAccent"
+        app:sv_selectedCircleRadius="12dp"
+        app:sv_selectedStepNumberColor="@color/yet"
+        app:sv_selectedTextColor="@color/yet"
+        app:sv_stepLineWidth="1dp"
+        app:sv_stepNumberTextSize="12sp"
+        app:sv_stepPadding="4dp"
+        app:sv_stepViewStyle="@style/StepView"
+
+        app:sv_steps="@array/add_offer_steps">
+
+    </com.shuhart.stepview.StepView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/ll_footer_addoffer"
+        android:layout_below="@id/step_view">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_stores"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_beers"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout_price"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <FrameLayout
+                android:id="@+id/seekArcContainer"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <com.triggertrap.seekarc.SeekArc
+                    android:id="@+id/seekArc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="20dp"
+                    android:padding="20dp"
+                    app:max="25"
+                    app:rotation="180"
+                    app:startAngle="30"
+                    app:sweepAngle="300"
+                    app:touchInside="true"
+                    app:progressColor="@color/colorAccent"
+                    app:thumb="@drawable/seekarc_thumb"/>
+
+                <TextView
+                    android:id="@+id/seekArcProgress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/addoff_price_default"
+                    android:textSize="60sp" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab_priceDone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/ic_arrow_forward_black_24dp"
+                    app:backgroundTint="@color/colorAccent"
+                    app:elevation="0dp"
+                    android:layout_gravity="bottom|center_horizontal">
+
+                </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+            </FrameLayout>
+        </LinearLayout>
+
+        <com.archit.calendardaterangepicker.customviews.DateRangeCalendarView
+            android:id="@+id/calendar_range"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            app:disable_date_color="#ABABAB"
+            app:range_color="@color/colorAccent"
+            app:selected_date_circle_color="#000000"
+            app:title_color="@color/colorAccent">
+        </com.archit.calendardaterangepicker.customviews.DateRangeCalendarView>
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_footer_addoffer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="vertical"
+
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:text="@string/addoff_header_offerPreview"
+            style="?android:attr/listSeparatorTextViewStyle" />
+
+
+        <include
+            android:id="@+id/incl_cardView_currentOffer"
+            layout="@layout/offer_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"/>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
