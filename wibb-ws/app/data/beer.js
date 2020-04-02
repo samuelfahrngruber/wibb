@@ -1,7 +1,7 @@
 class Beer {
-    constructor(name, icon, iconMeta) {
+    constructor(name, icon, meta) {
         this.name = name;
         this.icon = icon;
-        this.iconMeta = iconMeta;
+        this.meta = meta;
     }
 }

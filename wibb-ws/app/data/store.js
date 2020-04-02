@@ -1,7 +1,7 @@
 class Store {
-    constructor(id, name, icon, iconMeta) {
+    constructor(id, name, icon, meta) {
         this.name = name;
         this.icon = icon;
-        this.iconMeta = iconMeta;
+        this.meta = meta;
     }
 }
