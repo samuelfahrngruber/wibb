@@ -6,6 +6,7 @@ var beerSchema = new Schema(
     {
         name: String,
         icon: String,
+        iconMeta: Object
     },
     {
         versionKey: false
