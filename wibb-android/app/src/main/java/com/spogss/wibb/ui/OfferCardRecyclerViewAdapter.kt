@@ -2,6 +2,8 @@ package com.spogss.wibb.ui
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -18,10 +20,12 @@ import com.spogss.wibb.data.Offer
 import com.spogss.wibb.data.Report
 import com.spogss.wibb.data.Store
 import com.spogss.wibb.tools.URLUnifier
+import kotlinx.android.synthetic.main.offer_card.view.*
 import java.time.format.DateTimeFormatter
 
 
-class OfferCardRecyclerViewAdapter(private val context: Context, private val data: List<Offer>): RecyclerView.Adapter<OfferCardRecyclerViewAdapter.MyViewHolder>() {
+class OfferCardRecyclerViewAdapter(private val context: Context, private val data: List<Offer>):
+    RecyclerView.Adapter<OfferCardRecyclerViewAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val inflater = LayoutInflater.from(context)
@@ -35,31 +39,41 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private val dat
         Glide.with(context)
             .load(URLUnifier.unifyImgUrl(o.beer!!.icon))
             .into(holder.brandImageV)
+        holder.brandImageV.setBackgroundColor(Color.parseColor(o.beer!!.iconBg))
 
         Glide.with(context)
             .load(URLUnifier.unifyImgUrl(o.store!!.icon))
             .into(holder.storeImageV)
+        holder.storeImageV.setBackgroundColor(Color.parseColor(o.store!!.iconBg))
 
-        //holder.brandImageV.setImageResource(o.getBeer().getDrawable());
-        //holder.storeImageV.setImageResource(o.getStore().getDrawable());
+        var gd = GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT,
+            intArrayOf(Color.parseColor(o.beer!!.iconBg), Color.parseColor(o.store!!.iconBg)))
+        gd.cornerRadius = 0f
+
+        holder.gradientImageV.background = gd
+
+        gd = GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT,
+            intArrayOf(Color.parseColor(o.store!!.iconBg), Color.parseColor("#FFFFFF")))
+        gd.cornerRadius = 0f
+
+        holder.offerCardV.setCardBackgroundColor(Color.parseColor(o.store!!.iconBg)) // = gd //
 
         holder.priceTextV.text = "€${o.price}"
-        holder.brandTextV.text = o.beer!!.text
-        holder.storeTextV.text = o.store!!.text
+
 
         val formatter = DateTimeFormatter.ofPattern("E, d")
 
-        holder.dateTextV.text = String.format("%s - %s",
+        holder.dateTextV.text = String.format("%s. - %s.",
             if (o.startDate == null) "" else o.startDate!!.format(formatter),
             if (o.endDate == null) "" else o.endDate!!.format(formatter)
         )
 
         holder.menuImageB.setImageResource(R.drawable.ic_more_vert_black_24dp)
-
-        val helper = OfferMenuHelper(o)
-
-        holder.menuImageB.setOnClickListener(helper)
-        holder.storeCardV.setOnClickListener(helper)
+//
+//        val helper = OfferMenuHelper(o)
+//
+//        holder.menuImageB.setOnClickListener(helper)
+//        holder.storeCardV.setOnClickListener(helper)
     }
 
     override fun getItemCount(): Int {
@@ -69,15 +83,15 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private val dat
     inner class OfferMenuHelper(private val offer: Offer): View.OnClickListener, PopupMenu.OnMenuItemClickListener {
 
         override fun onClick(v: View) {
-            if (v.id == R.id.offer_card_menu_btn) {
-                val popup = PopupMenu(context, v)
-                val inflater = popup.menuInflater
-                inflater.inflate(R.menu.offer_menu, popup.menu)
-                popup.setOnMenuItemClickListener(this)
-                popup.show()
-            } else if (v.id == R.id.cardView_offer_card_store) {
-                openFindNearbyStoresActivity(offer.store)
-            }
+//            if (v.id == R.id.offer_card_menu_btn) {
+//                val popup = PopupMenu(context, v)
+//                val inflater = popup.menuInflater
+//                inflater.inflate(R.menu.offer_menu, popup.menu)
+//                popup.setOnMenuItemClickListener(this)
+//                popup.show()
+//            } else if (v.id == R.id.cardView_offer_card_store) {
+//                openFindNearbyStoresActivity(offer.store)
+//            }
         }
 
         override fun onMenuItemClick(menuItem: MenuItem): Boolean {
@@ -134,11 +148,13 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private val dat
         var brandImageV: ImageView = itemView.findViewById(R.id.offer_card_beer_img)
         var storeImageV: ImageView = itemView.findViewById(R.id.offer_card_store_img)
         var priceTextV: TextView = itemView.findViewById(R.id.offer_card_price_txt)
+        var gradientImageV: ImageView = itemView.findViewById(R.id.offer_card_gradient)
+        var offerCardV: CardView = itemView.findViewById(R.id.offer_card)
         var dateTextV: TextView = itemView.findViewById(R.id.offer_card_date_txt)
-        var brandTextV: TextView = itemView.findViewById(R.id.offer_card_beer_txt)
-        var storeTextV: TextView = itemView.findViewById(R.id.offer_card_store_txt)
+//        var brandTextV: TextView = itemView.findViewById(R.id.offer_card_beer_txt)
+//        var storeTextV: TextView = itemView.findViewById(R.id.offer_card_store_txt)
         var menuImageB: ImageButton = itemView.findViewById(R.id.offer_card_menu_btn)
-        var storeCardV: CardView = itemView.findViewById(R.id.cardView_offer_card_store)
+//        var storeCardV: CardView = itemView.findViewById(R.id.cardView_offer_card_store)
     }
 
 }

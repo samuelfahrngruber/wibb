@@ -130,11 +130,9 @@ class AddOfferActivity : AppCompatActivity() {
         offer.beer = b
         val v = findViewById<View>(R.id.incl_cardView_currentOffer)
         val img = v.findViewById<ImageView>(R.id.offer_card_beer_img)
-        val txt = v.findViewById<TextView>(R.id.offer_card_beer_txt)
         Glide.with(this)
             .load(URLUnifier.unifyImgUrl(b.icon))
             .into(img)
-        txt.text = b.text
     }
 
     fun setOfferPrice(p: Int){
@@ -148,21 +146,19 @@ class AddOfferActivity : AppCompatActivity() {
         offer.store = s
         val v = findViewById<View>(R.id.incl_cardView_currentOffer)
         val img = v.findViewById<ImageView>(R.id.offer_card_store_img)
-        val txt = v.findViewById<TextView>(R.id.offer_card_store_txt)
         Glide.with(this)
             .load(URLUnifier.unifyImgUrl(s.icon))
             .into(img)
-        txt.text = s.text
     }
 
     fun setOfferMenu(){
         val v = findViewById<View>(R.id.incl_cardView_currentOffer)
-        val btn = v.findViewById<ImageButton>(R.id.offer_card_menu_btn)
-        btn.setImageResource(R.drawable.ic_done_black_24dp)
+        //val btn = v.findViewById<ImageButton>(R.id.offer_card_menu_btn)
+        //btn.setImageResource(R.drawable.ic_done_black_24dp)
 
-        btn.setOnClickListener {
-            submitNewOffer()
-        }
+        //btn.setOnClickListener {
+         //   submitNewOffer()
+        //}
     }
 
     fun setOfferstartDate(startDate: LocalDate){
