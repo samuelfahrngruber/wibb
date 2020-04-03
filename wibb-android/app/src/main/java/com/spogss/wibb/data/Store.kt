@@ -29,8 +29,11 @@ class Store(var name: String, var icon: String, var iconBg: String): GridDisplay
 
     fun toJSON(): JSONObject{
         val jo = JSONObject()
+        val meta = JSONObject()
+        meta.put("iconBg", iconBg)
         jo.put("name", this.name)
         jo.put("icon", this.icon)
+        jo.put("meta", meta)
         return jo
     }
 }

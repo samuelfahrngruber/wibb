@@ -116,8 +116,8 @@
             app:selected_date_circle_color="#000000"
             app:title_color="@color/colorAccent">
         </com.archit.calendardaterangepicker.customviews.DateRangeCalendarView>
-
     </FrameLayout>
+
 
     <LinearLayout
         android:id="@+id/ll_footer_addoffer"
@@ -132,13 +132,32 @@
             android:text="@string/addoff_header_offerPreview"
             style="?android:attr/listSeparatorTextViewStyle" />
 
-
-        <include
-            android:id="@+id/incl_cardView_currentOffer"
-            layout="@layout/offer_card"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"/>
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <include
+                android:id="@+id/incl_cardView_currentOffer"
+                layout="@layout/offer_card"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"/>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:layout_margin="5dp"
+                android:onClick="submitNewOffer"
+                android:src="@drawable/ic_done_white_24dp"
+                app:backgroundTint="@color/green"
+                android:layout_weight="0">
+
+            </com.google.android.material.floatingactionbutton.FloatingActionButton>
+        </LinearLayout>
+
+
 
     </LinearLayout>
 

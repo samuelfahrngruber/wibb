@@ -39,6 +39,7 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private val dat
         Glide.with(context)
             .load(URLUnifier.unifyImgUrl(o.beer!!.icon))
             .into(holder.brandImageV)
+        holder.brandImageC.setBackgroundColor(Color.parseColor(o.beer!!.iconBg))
         holder.brandImageV.setBackgroundColor(Color.parseColor(o.beer!!.iconBg))
 
         Glide.with(context)
@@ -46,15 +47,12 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private val dat
             .into(holder.storeImageV)
         holder.storeImageV.setBackgroundColor(Color.parseColor(o.store!!.iconBg))
 
-        var gd = GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT,
+        val gd = GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT,
             intArrayOf(Color.parseColor(o.beer!!.iconBg), Color.parseColor(o.store!!.iconBg)))
         gd.cornerRadius = 0f
 
         holder.gradientImageV.background = gd
 
-        gd = GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT,
-            intArrayOf(Color.parseColor(o.store!!.iconBg), Color.parseColor("#FFFFFF")))
-        gd.cornerRadius = 0f
 
         holder.offerCardV.setCardBackgroundColor(Color.parseColor(o.store!!.iconBg)) // = gd //
 
@@ -63,17 +61,17 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private val dat
 
         val formatter = DateTimeFormatter.ofPattern("E, d")
 
-        holder.dateTextV.text = String.format("%s. - %s.",
+        holder.dateTextV.text = String.format("von %s.\nbis %s.",
             if (o.startDate == null) "" else o.startDate!!.format(formatter),
             if (o.endDate == null) "" else o.endDate!!.format(formatter)
         )
 
         holder.menuImageB.setImageResource(R.drawable.ic_more_vert_black_24dp)
-//
-//        val helper = OfferMenuHelper(o)
-//
-//        holder.menuImageB.setOnClickListener(helper)
-//        holder.storeCardV.setOnClickListener(helper)
+
+        val helper = OfferMenuHelper(o)
+
+        holder.menuImageB.setOnClickListener(helper)
+        holder.storeImageV.setOnClickListener(helper)
     }
 
     override fun getItemCount(): Int {
@@ -83,15 +81,15 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private val dat
     inner class OfferMenuHelper(private val offer: Offer): View.OnClickListener, PopupMenu.OnMenuItemClickListener {
 
         override fun onClick(v: View) {
-//            if (v.id == R.id.offer_card_menu_btn) {
-//                val popup = PopupMenu(context, v)
-//                val inflater = popup.menuInflater
-//                inflater.inflate(R.menu.offer_menu, popup.menu)
-//                popup.setOnMenuItemClickListener(this)
-//                popup.show()
-//            } else if (v.id == R.id.cardView_offer_card_store) {
-//                openFindNearbyStoresActivity(offer.store)
-//            }
+            if (v.id == R.id.offer_card_menu_btn) {
+                val popup = PopupMenu(context, v)
+                val inflater = popup.menuInflater
+                inflater.inflate(R.menu.offer_menu, popup.menu)
+                popup.setOnMenuItemClickListener(this)
+                popup.show()
+            } else if (v.id == R.id.offer_card_store_img) {
+                openFindNearbyStoresActivity(offer.store)
+            }
         }
 
         override fun onMenuItemClick(menuItem: MenuItem): Boolean {
@@ -151,10 +149,8 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private val dat
         var gradientImageV: ImageView = itemView.findViewById(R.id.offer_card_gradient)
         var offerCardV: CardView = itemView.findViewById(R.id.offer_card)
         var dateTextV: TextView = itemView.findViewById(R.id.offer_card_date_txt)
-//        var brandTextV: TextView = itemView.findViewById(R.id.offer_card_beer_txt)
-//        var storeTextV: TextView = itemView.findViewById(R.id.offer_card_store_txt)
+        var brandImageC: FrameLayout = itemView.findViewById(R.id.offer_card_beer_img_container);
         var menuImageB: ImageButton = itemView.findViewById(R.id.offer_card_menu_btn)
-//        var storeCardV: CardView = itemView.findViewById(R.id.cardView_offer_card_store)
     }
 
 }
