@@ -24,5 +24,3 @@ db.stores.insert({ name: "Spar", icon: "/res/img/store/spar.png", meta: { iconBg
 db.stores.insert({ name: "Eurospar", icon: "/res/img/store/eurospar.png", meta: { iconBg: "#FFFFFF" } });
 db.stores.insert({ name: "Interspar", icon: "/res/img/store/interspar.png", meta: { iconBg: "#FFFFFF" } });
 db.stores.insert({ name: "T&G", icon: "/res/img/store/tundg.png", meta: { iconBg: "#2b60a9" } });
-
-db.offers.drop();
