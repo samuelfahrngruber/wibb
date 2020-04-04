@@ -61,9 +61,9 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private val dat
 
         val formatter = DateTimeFormatter.ofPattern("E, d")
 
-        holder.dateTextV.text = String.format("von %s.\nbis %s.",
-            if (o.startDate == null) "" else o.startDate!!.format(formatter),
-            if (o.endDate == null) "" else o.endDate!!.format(formatter)
+        holder.dateTextV.text = String.format(context.getString(R.string.offer_card_datestr_format),
+            if (o.startDate == null) "?" else o.startDate!!.format(formatter),
+            if (o.endDate == null) "?" else o.endDate!!.format(formatter)
         )
 
         holder.menuImageB.setImageResource(R.drawable.ic_more_vert_black_24dp)

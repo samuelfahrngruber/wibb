@@ -21,7 +21,7 @@
     <PreferenceCategory
         app:title="@string/settings_header_global"
         app:iconSpaceReserved="false"
-        app:isPreferenceVisible="true">
+        app:isPreferenceVisible="false">
 
         <EditTextPreference
             app:key="apiurl"
@@ -35,13 +35,13 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        app:title="@string/settings_header_newContent"
-        app:summary="@string/settings_header_newContent_summary"
+        app:title="@string/settings_header_feedback"
         app:iconSpaceReserved="false">
 
         <Preference
             app:key="pref_req_new_beer"
-            app:title="@string/settings_newContent_beer"
+            app:title="@string/settings_feedback_label"
+            app:summary="@string/settings_feedback_suggestion"
             app:iconSpaceReserved="false">
 
             <intent
@@ -50,16 +50,6 @@
 
         </Preference>
 
-        <Preference
-            app:key="pref_req_new_store"
-            app:title="@string/settings_newContent_store"
-            app:iconSpaceReserved="false">
-
-            <intent
-                android:targetPackage="com.spogss.wibb"
-                android:targetClass="com.spogss.wibb.RequestNewContentActivity"/>
-
-        </Preference>
 
     </PreferenceCategory>
 
