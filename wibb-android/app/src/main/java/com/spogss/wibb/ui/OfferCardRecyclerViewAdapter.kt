@@ -14,14 +14,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.spogss.wibb.R
 import com.spogss.wibb.connection.WibbConnection
+import com.spogss.wibb.controller.WibbController
 import com.spogss.wibb.data.Offer
 import com.spogss.wibb.data.Report
 import com.spogss.wibb.data.Store
+import com.spogss.wibb.tools.FavouriteFilter
 import com.spogss.wibb.tools.URLUnifier
 import java.time.format.DateTimeFormatter
 
 
-class OfferCardRecyclerViewAdapter(private val context: Context, private val data: List<Offer>): RecyclerView.Adapter<OfferCardRecyclerViewAdapter.MyViewHolder>() {
+class OfferCardRecyclerViewAdapter(private val context: Context, private var data: List<Offer>): RecyclerView.Adapter<OfferCardRecyclerViewAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val inflater = LayoutInflater.from(context)
@@ -64,6 +66,11 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private val dat
 
     override fun getItemCount(): Int {
         return data.size
+    }
+
+    fun notifyWibbDataChanged(){
+        data = WibbController.offers.filter { FavouriteFilter(it) }
+        notifyDataSetChanged()
     }
 
     inner class OfferMenuHelper(private val offer: Offer): View.OnClickListener, PopupMenu.OnMenuItemClickListener {
