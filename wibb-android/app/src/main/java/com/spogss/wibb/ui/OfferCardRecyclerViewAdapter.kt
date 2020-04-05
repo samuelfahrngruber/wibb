@@ -27,7 +27,7 @@ import java.time.format.DateTimeFormatter
 
 
 
-class OfferCardRecyclerViewAdapter(private val context: Context, private val data: List<Offer>):
+class OfferCardRecyclerViewAdapter(private val context: Context, private var data: List<Offer>):
     RecyclerView.Adapter<OfferCardRecyclerViewAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
