@@ -37,10 +37,9 @@
     <string name="toast_contentRequest_success">Successfully submitted Request!</string>
     <string name="toast_contentRequest_fail">Could not submit Request!</string>
     
-    <string name="settings_header_newContent">Request New Content</string>
-    <string name="settings_header_newContent_summary">you can request new content here</string>
-    <string name="settings_newContent_beer">Request a new beer</string>
-    <string name="settings_newContent_store">Request a new store</string>
+    <string name="settings_header_feedback">Feedback</string>
+    <string name="settings_feedback_label">Give Feedback</string>
+    <string name="settings_feedback_suggestion">You can also request new Beers and Stores here!</string>
 
     <string name="no_offers">We couldn\'t find any offers! &#128531;</string>
 
@@ -54,4 +53,6 @@
 
     <string name="menuOffer_find_nearby">Find Nearby</string>
     <string name="menuOffer_report_offer">Report Offer</string>
+    <string name="offer_card_date_default">from - to</string>
+    <string name="offer_card_datestr_format">from %s.\nto %s.</string>
 </resources>
