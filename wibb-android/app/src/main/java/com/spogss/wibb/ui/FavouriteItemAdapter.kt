@@ -58,7 +58,7 @@ class FavouriteItemAdapter<ItemType : GridDisplayable>(private val context: Cont
             .load(URLUnifier.unifyImgUrl(item.iconUrl))
             .into(holder.itemImageV)
 
-        val col = Color.parseColor("#FFFFFF")
+        val col = Color.parseColor(item.iconBgCol)
         holder.itemImageC.setBackgroundColor(col)
 
         val gd = GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT, intArrayOf(col, Color.WHITE))
