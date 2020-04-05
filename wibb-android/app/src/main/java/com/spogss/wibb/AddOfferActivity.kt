@@ -1,5 +1,7 @@
 package com.spogss.wibb
 
+import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -21,6 +23,8 @@ import com.spogss.wibb.tools.FavouriteFilter
 import com.spogss.wibb.tools.URLUnifier
 import com.spogss.wibb.tools.err.ErrorHandler
 import kotlinx.android.synthetic.main.activity_add_offer.*
+import kotlinx.android.synthetic.main.activity_add_offer.view.*
+import kotlinx.android.synthetic.main.offer_card.view.*
 import java.util.*
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -98,6 +102,10 @@ class AddOfferActivity : AppCompatActivity() {
 
             // init calendarpicker
 
+            val v = findViewById<View>(R.id.incl_cardView_currentOffer)
+            val txt = v.findViewById<TextView>(R.id.offer_card_date_txt)
+            txt.text = ""
+
             calendar_range.setSelectedDateRange(Calendar.getInstance(), null)
             calendar_range.setCalendarListener(object : DateRangeCalendarView.CalendarListener {
                 override fun onFirstDateSelected(startDate: Calendar) {
@@ -118,9 +126,6 @@ class AddOfferActivity : AppCompatActivity() {
                     setOfferDates(startDateLocal, endDateLocal)
                 }
             })
-
-            // init menu
-            setOfferMenu()
         }
         catch(ex: Exception){
             ErrorHandler.of(this).handle(ex)
@@ -131,11 +136,10 @@ class AddOfferActivity : AppCompatActivity() {
         offer.beer = b
         val v = findViewById<View>(R.id.incl_cardView_currentOffer)
         val img = v.findViewById<ImageView>(R.id.offer_card_beer_img)
-        val txt = v.findViewById<TextView>(R.id.offer_card_beer_txt)
         Glide.with(this)
             .load(URLUnifier.unifyImgUrl(b.icon))
             .into(img)
-        txt.text = b.text
+        refreshGradient()
     }
 
     fun setOfferPrice(p: Int){
@@ -149,21 +153,23 @@ class AddOfferActivity : AppCompatActivity() {
         offer.store = s
         val v = findViewById<View>(R.id.incl_cardView_currentOffer)
         val img = v.findViewById<ImageView>(R.id.offer_card_store_img)
-        val txt = v.findViewById<TextView>(R.id.offer_card_store_txt)
         Glide.with(this)
             .load(URLUnifier.unifyImgUrl(s.icon))
             .into(img)
-        txt.text = s.text
+        refreshGradient()
     }
 
-    fun setOfferMenu(){
-        val v = findViewById<View>(R.id.incl_cardView_currentOffer)
-        val btn = v.findViewById<ImageButton>(R.id.offer_card_menu_btn)
-        btn.setImageResource(R.drawable.ic_done_black_24dp)
+    fun refreshGradient() {
+        val col1 = if(offer.beer != null) Color.parseColor(offer.beer!!.iconBg) else Color.WHITE;
+        val col2 = if(offer.store != null) Color.parseColor(offer.store!!.iconBg) else Color.WHITE;
+        val gd = GradientDrawable(
+            GradientDrawable.Orientation.LEFT_RIGHT,
+            intArrayOf(col1, col2))
+        gd.cornerRadius = 0f
 
-        btn.setOnClickListener {
-            submitNewOffer()
-        }
+        incl_cardView_currentOffer.offer_card_beer_img_container.setBackgroundColor(col1)
+        incl_cardView_currentOffer.offer_card_gradient.background = gd
+        incl_cardView_currentOffer.offer_card.setCardBackgroundColor(col2)
     }
 
     fun setOfferstartDate(startDate: LocalDate){
@@ -185,7 +191,7 @@ class AddOfferActivity : AppCompatActivity() {
     fun updateOfferDates(){
         val v = findViewById<View>(R.id.incl_cardView_currentOffer)
         val txt = v.findViewById<TextView>(R.id.offer_card_date_txt)
-        val formatter = DateTimeFormatter.ofPattern("E, d")
+        val formatter = DateTimeFormatter.ofPattern("d.")
         txt.text = "${offer.startDate?.format(formatter)} - ${offer.endDate?.format(formatter)}"
     }
 
@@ -193,7 +199,7 @@ class AddOfferActivity : AppCompatActivity() {
         setstep(++currentStep)
     }
 
-    fun submitNewOffer(){
+    fun submitNewOffer(v: View){
         if (offer.isValid)
             WibbConnection.addOffer(offer){
                 if(it /*worked*/){
