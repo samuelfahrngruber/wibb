@@ -35,6 +35,37 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        app:title="Favourites"
+        app:iconSpaceReserved="false"
+        app:isPreferenceVisible="true">
+
+        <Preference
+            app:key="favb"
+            app:title="Edit Beer Favourites"
+            app:summary="The app will only show beers and offers marked as favourite."
+            app:iconSpaceReserved="false">
+
+            <intent
+                android:targetPackage="com.spogss.wibb"
+                android:targetClass="com.spogss.wibb.FavouriteBeerPreferences"/>
+
+        </Preference>
+
+        <Preference
+            app:key="favs"
+            app:title="Edit Store Favourites"
+            app:summary="The app will only show stores and offers marked as favourite."
+            app:iconSpaceReserved="false">
+
+            <intent
+                android:targetPackage="com.spogss.wibb"
+                android:targetClass="com.spogss.wibb.FavouriteStorePreferences"/>
+
+        </Preference>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
         app:title="@string/settings_header_feedback"
         app:iconSpaceReserved="false">
 

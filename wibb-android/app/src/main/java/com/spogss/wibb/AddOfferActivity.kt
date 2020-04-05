@@ -19,6 +19,7 @@ import com.spogss.wibb.controller.WibbController
 import com.spogss.wibb.data.Beer
 import com.spogss.wibb.data.Offer
 import com.spogss.wibb.data.Store
+import com.spogss.wibb.tools.FavouriteFilter
 import com.spogss.wibb.tools.URLUnifier
 import com.spogss.wibb.tools.err.ErrorHandler
 import kotlinx.android.synthetic.main.activity_add_offer.*
@@ -49,7 +50,7 @@ class AddOfferActivity : AppCompatActivity() {
             stepView.setOnStepClickListener { setstep(it) }
 
             // init store chooser
-            val stores = WibbController.stores
+            val stores = WibbController.stores.filter { FavouriteFilter(it) }
 
             val rvs = findViewById<RecyclerView>(R.id.recyclerView_stores)
             val rvsa = GridRecyclerViewAdapter(this, stores)
@@ -62,7 +63,7 @@ class AddOfferActivity : AppCompatActivity() {
             rvs.adapter = rvsa
 
             // init beer chooser
-            val beers = WibbController.beers
+            val beers = WibbController.beers.filter { FavouriteFilter(it) }
 
             val rvb = findViewById<RecyclerView>(R.id.recyclerView_beers)
             val rvba = GridRecyclerViewAdapter(this, beers)

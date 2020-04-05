@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import com.spogss.wibb.connection.WibbConnection
 import androidx.preference.PreferenceManager
+import com.spogss.wibb.tools.FavouriteFilter
 import com.spogss.wibb.tools.URLUnifier
 import com.spogss.wibb.tools.err.ErrorHandler
 import kotlinx.android.synthetic.main.activity_splash.*
@@ -41,6 +42,7 @@ class SplashActivity : AppCompatActivity() {
                             progress_icon.setProgress(50, 100, 100)
                             WibbConnection.loadOffers {
                                 if (it) {
+                                    FavouriteFilter.readFrom(prefs)
                                     val intent = Intent(this, MainActivity::class.java)
                                     startActivity(intent)
                                     finish()

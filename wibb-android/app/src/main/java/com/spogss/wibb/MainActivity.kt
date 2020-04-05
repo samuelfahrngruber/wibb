@@ -13,6 +13,7 @@ import com.spogss.wibb.controller.WibbController
 import com.spogss.wibb.tools.err.ErrorHandler
 import com.spogss.wibb.ui.OfferCardRecyclerViewAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.spogss.wibb.tools.FavouriteFilter
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.Exception
 
@@ -48,7 +49,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        rvoa?.notifyDataSetChanged()
+        rvoa?.notifyWibbDataChanged()
         refreshNoOffersHint()
     }
 
@@ -77,7 +78,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun refreshNoOffersHint(){
-        if (WibbController.offers.isEmpty())
+        if (rvoa!!.itemCount <= 0)
             textView_noOffers.visibility = View.VISIBLE
         else
             textView_noOffers.visibility = View.GONE
