@@ -1,10 +1,43 @@
-<div class="container">
+<div class="app-card-style">
+  <mat-card>
     <h2>Offer Reports</h2>
-    <p>All offers reported by the community for providing falsy content or other problems with the offer are listed here.</p>
-    
-    <ul class="list-group">
-        <li class="list-group-item" *ngFor="let rep of reports" >
-            <app-offer-report-item [report]="rep"></app-offer-report-item>
-        </li>
-    </ul>
+    <p>All offers reported by the community for providing falsy content or other problems with the offer are listed
+      here.</p>
+  </mat-card>
+</div>
+<div class="app-card-style">
+  <mat-card>
+    <mat-expansion-panel *ngFor="let report of reports">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="custom-mat-panel-title">
+          <mat-chip-list>
+            <mat-chip *ngIf="report.solved" color="alert" selected>Solved</mat-chip>
+            <mat-chip *ngIf="!report.solved" color="warn" selected>Not Solved</mat-chip>
+            <mat-chip>{{ report.type }}</mat-chip>
+          </mat-chip-list>
+        </mat-panel-title>
+        <mat-panel-description class="custom-listitem-description">
+          <div class="col-xs-5">
+            <img [src]="report.offer.beer.icon" [alt]="report.offer.beer.name">
+            at <img [src]="report.offer.store.icon" [alt]="report.offer.store.name">
+            for €{{ report.offer.price }}
+            until {{ report.offer.endDate | date }}
+          </div>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>
+        <strong>ID:</strong> {{ report.id }}
+      </p>
+      <p>
+        <strong>Type:</strong> {{ report.type }}
+      </p>
+      <p>
+        <strong>Solved:</strong> {{ report.solved }}
+      </p>
+
+      <p>
+        <strong>Info:</strong> {{ report.info }}
+      </p>
+    </mat-expansion-panel>
+  </mat-card>
 </div>
