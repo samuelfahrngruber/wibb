@@ -1,0 +1,16 @@
+.app-card-style {
+  margin: 10px;
+}
+
+img {
+  width: 32px;
+  height: 32px;
+}
+
+.custom-listitem-description {
+  text-align: right;
+}
+
+.custom-mat-panel-title {
+  width: 200px;
+}

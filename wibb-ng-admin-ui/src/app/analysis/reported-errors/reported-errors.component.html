@@ -1,14 +1,27 @@
-<div class="container">
+<div class="app-card-style">
+  <mat-card>
     <h2>Reported Errors</h2>
     <p>
-        Wibb supports automatic error reporting. When there is an exception on a
-        client device that is handled using the <code>WibbError</code> class, the error is automatically
-        reported to the server and stored in a MongoDB table that can then be queried using <code>/api/errors</code>.
+      Wibb supports automatic error reporting. When there is an exception on a
+      client device that is handled using the <code>WibbError</code> class, the error is automatically
+      reported to the server and stored in a MongoDB table that can then be queried using <code>/api/errors</code>.
     </p>
-    
-    <ul class="list-group">
-        <li class="list-group-item" *ngFor="let err of errors" >
-            <app-error-item [error]="err"></app-error-item>
-        </li>
-    </ul>
+  </mat-card>
+</div>
+<div class="app-card-style">
+  <mat-card>
+    <mat-expansion-panel *ngFor="let error of errors">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+            <strong>{{ error.id }}</strong>
+            {{ error.message }}
+        </mat-panel-title>
+        <mat-panel-description>
+            <code>{{ error.stackTrace | slice:0:50}} ...</code>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p><strong>Description: </strong>{{ error.occurrenceDescription }}</p>
+      <code>{{ error.stackTrace }}</code>
+    </mat-expansion-panel>
+  </mat-card>
 </div>

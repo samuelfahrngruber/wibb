@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { SideNavComponent } from './analysis/side-nav/side-nav.component';
 import { AnalysisComponent } from './analysis/analysis.component';
 import { ConfigurationComponent } from './configuration/configuration.component';
 
@@ -14,14 +13,21 @@ import { FeedbackComponent } from './analysis/feedback/feedback.component';
 import { RequestListComponent } from './analysis/feedback/request-list/request-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { OfferItemComponent } from './offer-item/offer-item.component';
-import { OfferReportItemComponent } from './analysis/offer-reports/offer-report-item/offer-report-item.component';
-import { ErrorItemComponent } from './analysis/reported-errors/error-item/error-item.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SideNavComponent,
     AnalysisComponent,
     ConfigurationComponent,
     ReportedErrorsComponent,
@@ -29,13 +35,20 @@ import { ErrorItemComponent } from './analysis/reported-errors/error-item/error-
     FeedbackComponent,
     RequestListComponent,
     OfferItemComponent,
-    OfferReportItemComponent,
-    ErrorItemComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatCardModule,
+    MatExpansionModule,
+    MatChipsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

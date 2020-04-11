@@ -9,7 +9,7 @@ import { OfferReportsComponent } from './analysis/offer-reports/offer-reports.co
 const appRoutes: Routes = [
   { path: '', redirectTo: 'analysis', pathMatch: 'full' },
   { path: 'analysis', component: AnalysisComponent, children: [
-    { path: '', redirectTo: 'analysis', pathMatch: 'full' },
+    { path: '', redirectTo: 'errors', pathMatch: 'full' },
     { path: 'errors', component: ReportedErrorsComponent },
     { path: 'reports', component: OfferReportsComponent },
     { path: 'feedback', component: FeedbackComponent },
