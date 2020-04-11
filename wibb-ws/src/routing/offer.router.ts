@@ -1,57 +1,53 @@
-// packages
 import express from 'express';
-import offerSchema from '../data/schemas/offerschema';
-import beerSchema from '../data/schemas/beerschema';
-import storeSchema from '../data/schemas/storeschema';
+import { OfferModel } from '../data/schemas/offer.schema';
+import { BeerModel } from '../data/schemas/beer.schema';
+import { StoreModel } from '../data/schemas/store.schema';
+import { WibbLogger } from '../loggers/logger';
+import { Error as MongooseError } from 'mongoose';
 
 const router = express();
 
-// add routes
-router.get('/', function (req, res) {
-    var today = new Date()
+router.get('/', (req, res) => {
+    const today = new Date()
     today.setHours(0,0,0,0)
 
     // todo fix offer filter with enddate
-
-    offerSchema
-    .find({ endDate: { $gte: today } })    
+    OfferModel
+    .find({ endDate: { $gte: today } })
     .sort({ price: 1 })
     .exec((err, offers) => {
         if (err)
             res.status(500).json(err);
-
         else if (offers == null)
             res.status(204).json(new Error("NO CONTENT"));
-
         else
             res.json(offers);
-    })
+    });
 });
-router.post('/', function (req, res) {
+router.post('/', (req, res) => {
     // first check if beer an store are actually in the database
     // this ensures that there are no fake POST requests with image links to malicious websites
     // or offers for beers that do not exist
-    var newOffer = req.body;
+    const newOffer = req.body;
     Promise.all([
-        beerSchema.findOne({ "name": newOffer.beer.name, "icon": newOffer.beer.icon }),
-        storeSchema.findOne({ "name": newOffer.store.name, "icon": newOffer.store.icon })
+        BeerModel.findOne({ "name": newOffer.beer.name, "icon": newOffer.beer.icon }),
+        StoreModel.findOne({ "name": newOffer.store.name, "icon": newOffer.store.icon })
     ])
     .then(([beers, stores]) => {
-        if(beers == null || stores == null || beers.length < 0 || stores.length < 0){
-            console.log("potentially malicious offer detected:" );
-            console.log(newOffer);
+        if(!beers || !stores) {
+            WibbLogger.logger.warn("potentially malicious offer detected!", newOffer);
             res.status(400).json(new Error("potentially harmful offer"));
         }
         else {
             // then actually insert the offer into the database
-            var o = new offerSchema(newOffer);
+            const offerModel = new OfferModel(newOffer);
 
-            var tmp_endDate_min = new Date(newOffer.endDate)
-            var tmp_endDate_max = new Date(newOffer.endDate)
-            tmp_endDate_min.setHours(0, 0, 0, 0)
-            tmp_endDate_max.setHours(23, 59, 59, 999)
+            const tmpEndDateMin = new Date(newOffer.endDate)
+            const tmpEndDateMax = new Date(newOffer.endDate)
+            tmpEndDateMin.setHours(0, 0, 0, 0)
+            tmpEndDateMax.setHours(23, 59, 59, 999)
 
-            var offerSchemaSelector = {
+            const offerSchemaSelector = {
                 "beer.name": newOffer.beer.name,
                 "beer.icon": newOffer.beer.icon,
                 "store.name": newOffer.store.name,
@@ -59,8 +55,8 @@ router.post('/', function (req, res) {
                 "price": newOffer.price,
                 // no start date cuz its not identifying
                 "endDate": {
-                    "$gte" : tmp_endDate_min, 
-                    "$lte" : tmp_endDate_max
+                    "$gte" : tmpEndDateMin,
+                    "$lte" : tmpEndDateMax
                 }
             };
 
@@ -69,8 +65,8 @@ router.post('/', function (req, res) {
             //     else res.json(newOffer);
             // });
 
-            offerSchema.findOne(offerSchemaSelector).then(function(offf) {
-                if(!offf) o.save((err) => {
+            OfferModel.findOne(offerSchemaSelector).then((offf) => {
+                if(!offf) offerModel.save((err: MongooseError) => {
                     if(err) res.status(500).json(err);
                     else res.json(newOffer);
                 });
@@ -85,9 +81,9 @@ router.post('/', function (req, res) {
             // });
         }
     })
-    .catch(err => {
-        console.log("INTERNAL SERVER ERROR: " + err);
+    .catch((err) => {
+        WibbLogger.logger.error(err.message, err);
         res.status(500).json(err);
     });
 });
-export default router;
+export const OfferRouter = router;
