@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Wibb</string>
 
+    <string name="beer">Beer</string>
+    <string name="store">Store</string>
+
     <string name="default_heading_addoffer">TASK</string>
 
     <string name="addoff_choose_store">What Store?</string>
@@ -55,4 +58,10 @@
     <string name="menuOffer_report_offer">Report Offer</string>
     <string name="offer_card_date_default">from - to</string>
     <string name="offer_card_datestr_format">from %s.\nto %s.</string>
+
+    <string name="settings_header_favourites">Favourites</string>
+    <string name="settings_item_beerFavourites">Edit Beer Favourites</string>
+    <string name="settings_description_beerFavourites">The app will only show beers and offers marked as favourite.</string>
+    <string name="settings_header_storeFavourites">Edit Store Favourites</string>
+    <string name="settings_description_storeFavourites">The app will only show stores and offers marked as favourite.</string>
 </resources>

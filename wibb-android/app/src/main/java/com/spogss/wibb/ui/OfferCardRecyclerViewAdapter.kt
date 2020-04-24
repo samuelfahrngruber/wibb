@@ -44,11 +44,13 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private var dat
             .into(holder.brandImageV)
         holder.brandImageC.setBackgroundColor(Color.parseColor(o.beer!!.iconBg))
         holder.brandImageV.setBackgroundColor(Color.parseColor(o.beer!!.iconBg))
+        holder.brandTextV.text = o.beer!!.name
 
         Glide.with(context)
             .load(URLUnifier.unifyImgUrl(o.store!!.icon))
             .into(holder.storeImageV)
         holder.storeImageV.setBackgroundColor(Color.parseColor(o.store!!.iconBg))
+        holder.storeTextV.text = o.store!!.name
 
         val gd = GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT,
             intArrayOf(Color.parseColor(o.beer!!.iconBg), Color.parseColor(o.store!!.iconBg)))
@@ -157,8 +159,10 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private var dat
         var gradientImageV: ImageView = itemView.findViewById(R.id.offer_card_gradient)
         var offerCardV: CardView = itemView.findViewById(R.id.offer_card)
         var dateTextV: TextView = itemView.findViewById(R.id.offer_card_date_txt)
-        var brandImageC: FrameLayout = itemView.findViewById(R.id.offer_card_beer_img_container);
+        var brandImageC: FrameLayout = itemView.findViewById(R.id.offer_card_beer_img_container)
         var menuImageB: ImageButton = itemView.findViewById(R.id.offer_card_menu_btn)
+        var brandTextV: TextView = itemView.findViewById(R.id.textView_offerCard_beer)
+        var storeTextV: TextView = itemView.findViewById(R.id.textView_offerCard_store)
     }
 
 }

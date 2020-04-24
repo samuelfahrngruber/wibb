@@ -35,14 +35,14 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        app:title="Favourites"
+        app:title="@string/settings_header_favourites"
         app:iconSpaceReserved="false"
         app:isPreferenceVisible="true">
 
         <Preference
             app:key="favb"
-            app:title="Edit Beer Favourites"
-            app:summary="The app will only show beers and offers marked as favourite."
+            app:title="@string/settings_item_beerFavourites"
+            app:summary="@string/settings_description_beerFavourites"
             app:iconSpaceReserved="false">
 
             <intent
@@ -53,8 +53,8 @@
 
         <Preference
             app:key="favs"
-            app:title="Edit Store Favourites"
-            app:summary="The app will only show stores and offers marked as favourite."
+            app:title="@string/settings_header_storeFavourites"
+            app:summary="@string/settings_description_storeFavourites"
             app:iconSpaceReserved="false">
 
             <intent
