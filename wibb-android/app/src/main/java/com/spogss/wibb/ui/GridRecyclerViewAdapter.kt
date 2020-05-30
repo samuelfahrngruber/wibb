@@ -1,6 +1,7 @@
 package com.spogss.wibb.ui
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,7 +37,10 @@ class GridRecyclerViewAdapter<ItemType : GridDisplayable>(private val context: C
             .load(URLUnifier.unifyImgUrl(item.iconUrl))
             .into(holder.itemImageV)
 
-        //holder.itemImageV.setImageResource(item.getDrawable());
+        val col = Color.parseColor(item.iconBgCol)
+        holder.cardV.setCardBackgroundColor(col)
+        if(Color.luminance(col) < 0.5)
+            holder.itemTextV.setTextColor(context.resources.getColor(R.color.white))
 
         holder.cardV.setOnClickListener {
             onItemSelected?.invoke(item)
