@@ -30,7 +30,7 @@ class SplashActivity : AppCompatActivity() {
         try {
             val prefs = PreferenceManager.getDefaultSharedPreferences(this)
             val apiurl = prefs.getString("apiurl", "https://wibb.host")
-            URLUnifier.initialize(apiurl!!)
+            URLUnifier.initialize(apiurl!!, "mini")
 
             WibbConnection.initialize(this.applicationContext)
 

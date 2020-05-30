@@ -3,17 +3,23 @@ package com.spogss.wibb.tools
 import java.lang.Exception
 
 object URLUnifier {
+
     private var baseUrl = ""
-
     private var initialized = false
+    private var resourceTheme: String? = null
 
-    fun initialize(serverURL: String){
+    fun initialize(serverURL: String, resourceTheme: String? = null){
         setServerUrl(serverURL)
         initialized = true
+        this.resourceTheme = resourceTheme
     }
 
     fun setServerUrl(serverURL: String){
         baseUrl = serverURL
+    }
+
+    fun setResourceTheme(theme: String) {
+        resourceTheme = theme
     }
 
     fun unifyApiUrl(url: String): String {
@@ -45,11 +51,8 @@ object URLUnifier {
         if(!irl.startsWith("/"))
             irl = "/$irl"
 
-//        if(!irl.startsWith("/res/"))
-//            resurlt += "/res"
-//
-//        if(!irl.startsWith("/img/"))
-//            resurlt += "/img"
+        if(resourceTheme != null)
+            irl = irl.replace("/res/", "/res/theme/$resourceTheme/")
 
         resurlt += irl
 

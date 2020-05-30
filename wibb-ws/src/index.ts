@@ -11,6 +11,7 @@ import { ReportRouter } from './routing/report.router';
 import { RequestRouter } from './routing/request.router';
 import { OfferRouter } from './routing/offer.router';
 import { WibbLoggerExpress, WibbLogger } from './loggers/logger';
+import { StaticResourceInterceptor } from './routing/static-resource.interceptor.router';
 
 const app = express();
 
@@ -31,6 +32,7 @@ DefaultRouter.use('/errors', WibbErrorRouter);
 DefaultRouter.use('/requests', RequestRouter);
 
 app.use(express.static('web'));
+app.use(StaticResourceInterceptor);
 
 app.listen(port);
 WibbLogger.logger.info('Server started on port ' + port);
