@@ -118,49 +118,49 @@
         </com.archit.calendardaterangepicker.customviews.DateRangeCalendarView>
     </FrameLayout>
 
-
-    <LinearLayout
-        android:id="@+id/ll_footer_addoffer"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:orientation="vertical"
-
+        android:id="@+id/ll_footer_addoffer"
         android:layout_alignParentBottom="true">
 
-        <TextView
-            android:text="@string/addoff_header_offerPreview"
-            style="?android:attr/listSeparatorTextViewStyle" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|top"
+            android:layout_margin="5dp"
+            android:onClick="submitNewOffer"
+            android:src="@drawable/ic_done_white_24dp"
+            app:backgroundTint="@color/green">
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-            <include
-                android:id="@+id/incl_cardView_currentOffer"
-                layout="@layout/offer_card"
-                android:layout_width="0dp"
-                android:layout_height="80dp"
-                android:layout_weight="1"/>
+            android:layout_margin="5dp"
+            android:orientation="vertical">
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:layout_width="wrap_content"
+            <TextView
+                android:text="@string/addoff_header_offerPreview"
+                style="?android:attr/listSeparatorTextViewStyle" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end|center_vertical"
-                android:layout_margin="5dp"
-                android:onClick="submitNewOffer"
-                android:src="@drawable/ic_done_white_24dp"
-                app:backgroundTint="@color/green"
-                android:layout_weight="0">
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:baselineAligned="false">
 
-            </com.google.android.material.floatingactionbutton.FloatingActionButton>
+                <include
+                    android:id="@+id/incl_cardView_currentOffer"
+                    layout="@layout/offer_card_shrinked"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
         </LinearLayout>
-
-
-
-    </LinearLayout>
-
-
+    </FrameLayout>
 
 </RelativeLayout>
