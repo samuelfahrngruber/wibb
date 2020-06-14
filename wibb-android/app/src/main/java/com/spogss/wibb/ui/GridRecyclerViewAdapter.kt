@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.spogss.wibb.R
 import com.spogss.wibb.data.GridDisplayable
+import com.spogss.wibb.tools.UIUtils
 import com.spogss.wibb.tools.URLUnifier
 
 
@@ -39,8 +40,7 @@ class GridRecyclerViewAdapter<ItemType : GridDisplayable>(private val context: C
 
         val col = Color.parseColor(item.iconBgCol)
         holder.cardV.setCardBackgroundColor(col)
-        if(Color.luminance(col) < 0.5)
-            holder.itemTextV.setTextColor(context.resources.getColor(R.color.white))
+        holder.itemTextV.setTextColor(UIUtils.getForegroundColorFor(col, context))
 
         holder.cardV.setOnClickListener {
             onItemSelected?.invoke(item)

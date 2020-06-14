@@ -20,11 +20,13 @@ import com.spogss.wibb.data.Beer
 import com.spogss.wibb.data.Offer
 import com.spogss.wibb.data.Store
 import com.spogss.wibb.tools.FavouriteFilter
+import com.spogss.wibb.tools.UIUtils
 import com.spogss.wibb.tools.URLUnifier
 import com.spogss.wibb.tools.err.ErrorHandler
 import kotlinx.android.synthetic.main.activity_add_offer.*
 import kotlinx.android.synthetic.main.activity_add_offer.view.*
-import kotlinx.android.synthetic.main.offer_card.view.*
+import kotlinx.android.synthetic.main.offer_card_shrinked.*
+import kotlinx.android.synthetic.main.offer_card_shrinked.view.*
 import java.util.*
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -134,13 +136,14 @@ class AddOfferActivity : AppCompatActivity() {
 
     fun setOfferBeer(b: Beer){
         offer.beer = b
-        val v = findViewById<View>(R.id.incl_cardView_currentOffer)
-        val img = v.findViewById<ImageView>(R.id.offer_card_beer_img)
-        val txt = v.findViewById<TextView>(R.id.textView_offerCard_beer)
-        txt.text = b.name
+        textView_offerCard_beer.text = b.name
+        val col = Color.parseColor(b.iconBg)
+        textView_offerCard_beer.setBackgroundColor(col)
+        offer_card_beer_img.setBackgroundColor(col)
+        textView_offerCard_beer.setTextColor(UIUtils.getForegroundColorFor(col, this))
         Glide.with(this)
             .load(URLUnifier.unifyImgUrl(b.icon))
-            .into(img)
+            .into(offer_card_beer_img)
         refreshGradient()
     }
 
@@ -153,27 +156,29 @@ class AddOfferActivity : AppCompatActivity() {
 
     fun setOfferStore(s: Store){
         offer.store = s
-        val v = findViewById<View>(R.id.incl_cardView_currentOffer)
-        val img = v.findViewById<ImageView>(R.id.offer_card_store_img)
-        val txt = v.findViewById<TextView>(R.id.textView_offerCard_store)
-        txt.text = s.name
+        textView_offerCard_store.text = s.name
+        val col = Color.parseColor(s.iconBg)
+        offer_card.setCardBackgroundColor(col)
+        offer_card_store_img.setBackgroundColor(col)
+        val fgcol = UIUtils.getForegroundColorFor(col, this)
+        textView_offerCard_store.setTextColor(fgcol)
+        offer_card_date_txt.setTextColor(fgcol)
+        offer_card_price_txt.setTextColor(fgcol)
         Glide.with(this)
             .load(URLUnifier.unifyImgUrl(s.icon))
-            .into(img)
+            .into(offer_card_store_img)
         refreshGradient()
     }
 
     fun refreshGradient() {
-        val col1 = if(offer.beer != null) Color.parseColor(offer.beer!!.iconBg) else Color.WHITE;
-        val col2 = if(offer.store != null) Color.parseColor(offer.store!!.iconBg) else Color.WHITE;
+        val col1 = if(offer.beer != null) Color.parseColor(offer.beer!!.iconBg) else Color.WHITE
+        val col2 = if(offer.store != null) Color.parseColor(offer.store!!.iconBg) else Color.WHITE
         val gd = GradientDrawable(
             GradientDrawable.Orientation.LEFT_RIGHT,
             intArrayOf(col1, col2))
         gd.cornerRadius = 0f
 
-        incl_cardView_currentOffer.offer_card_beer_img_container.setBackgroundColor(col1)
         incl_cardView_currentOffer.offer_card_gradient.background = gd
-        incl_cardView_currentOffer.offer_card.setCardBackgroundColor(col2)
     }
 
     fun setOfferstartDate(startDate: LocalDate){

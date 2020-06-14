@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="50dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="6dp"
+        app:cardCornerRadius="10dp"
+        android:id="@+id/offer_card">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/offer_card_beer_img"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@android:color/white"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/drop_plus" />
+
+                <TextView
+                    android:id="@+id/textView_offerCard_beer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/beer"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:padding="5dp"
+                    android:background="@color/white" />
+
+                <ImageView
+                    android:id="@+id/offer_card_gradient"
+                    android:layout_width="20dp"
+                    android:layout_height="40dp" />
+
+                <ImageView
+                    android:id="@+id/offer_card_store_img"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@android:color/white"
+                    android:scaleType="fitCenter"
+                    android:src="@mipmap/drop_plus" />
+
+                <TextView
+                    android:id="@+id/textView_offerCard_store"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/store"
+                    android:textSize="12sp"
+                    android:gravity="center_vertical"
+                    android:padding="5dp" />
+
+                <TextView
+                    android:id="@+id/offer_card_date_txt"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:scaleType="fitCenter"
+                    android:text="@string/offer_card_date_default"
+                    android:textSize="15sp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/offer_card_price_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:scaleType="fitCenter"
+                    android:layout_marginEnd="10dp"
+                    android:text="@string/addoff_price_default"
+                    android:textSize="25sp"
+                    android:fontFamily="sans-serif-light"
+                    android:layout_weight="0" />
+
+            </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

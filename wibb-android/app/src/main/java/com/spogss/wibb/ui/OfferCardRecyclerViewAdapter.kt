@@ -21,6 +21,7 @@ import com.spogss.wibb.data.Offer
 import com.spogss.wibb.data.Report
 import com.spogss.wibb.data.Store
 import com.spogss.wibb.tools.FavouriteFilter
+import com.spogss.wibb.tools.UIUtils
 import com.spogss.wibb.tools.URLUnifier
 import kotlinx.android.synthetic.main.offer_card.view.*
 import java.time.format.DateTimeFormatter
@@ -38,19 +39,24 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private var dat
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val o = data[position]
+        var col: Int
 
         Glide.with(context)
             .load(URLUnifier.unifyImgUrl(o.beer!!.icon))
             .into(holder.brandImageV)
-        holder.brandImageC.setBackgroundColor(Color.parseColor(o.beer!!.iconBg))
-        holder.brandImageV.setBackgroundColor(Color.parseColor(o.beer!!.iconBg))
+        col = Color.parseColor(o.beer!!.iconBg)
+        holder.brandImageC.setBackgroundColor(col)
+        holder.brandImageV.setBackgroundColor(col)
         holder.brandTextV.text = o.beer!!.name
+        holder.brandTextV.setTextColor(UIUtils.getForegroundColorFor(col, context))
 
+        col = Color.parseColor(o.store!!.iconBg)
         Glide.with(context)
             .load(URLUnifier.unifyImgUrl(o.store!!.icon))
             .into(holder.storeImageV)
-        holder.storeImageV.setBackgroundColor(Color.parseColor(o.store!!.iconBg))
+        holder.storeImageV.setBackgroundColor(col)
         holder.storeTextV.text = o.store!!.name
+        holder.storeTextV.setTextColor(UIUtils.getForegroundColorFor(col, context))
 
         val gd = GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT,
             intArrayOf(Color.parseColor(o.beer!!.iconBg), Color.parseColor(o.store!!.iconBg)))
@@ -159,7 +165,7 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private var dat
         var gradientImageV: ImageView = itemView.findViewById(R.id.offer_card_gradient)
         var offerCardV: CardView = itemView.findViewById(R.id.offer_card)
         var dateTextV: TextView = itemView.findViewById(R.id.offer_card_date_txt)
-        var brandImageC: FrameLayout = itemView.findViewById(R.id.offer_card_beer_img_container)
+        var brandImageC: LinearLayout = itemView.findViewById(R.id.offer_card_beer_img_container)
         var menuImageB: ImageButton = itemView.findViewById(R.id.offer_card_menu_btn)
         var brandTextV: TextView = itemView.findViewById(R.id.textView_offerCard_beer)
         var storeTextV: TextView = itemView.findViewById(R.id.textView_offerCard_store)
