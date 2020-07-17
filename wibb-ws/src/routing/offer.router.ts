@@ -4,6 +4,7 @@ import { BeerModel } from '../data/schemas/beer.schema';
 import { StoreModel } from '../data/schemas/store.schema';
 import { WibbLogger } from '../loggers/logger';
 import { Error as MongooseError } from 'mongoose';
+import { WibbErrorHandler, WibbErrorSeverity } from '../util/WibbErrorUtil';
 
 const router = express();
 
@@ -16,12 +17,21 @@ router.get('/', (req, res) => {
     .find({ endDate: { $gte: today } })
     .sort({ price: 1 })
     .exec((err, offers) => {
-        if (err)
-            res.status(500).json(err);
-        else if (offers == null)
+        if (err) {
+            new WibbErrorHandler({
+                className: "offer.router",
+                message: err.message,
+                error: err,
+                severity: WibbErrorSeverity.ERROR,
+            })
+            .log()
+            .report()
+            .respond(res, 500);
+        } else if (offers == null) {
             res.status(204).json(new Error("NO CONTENT"));
-        else
+        } else {
             res.json(offers);
+        }
     });
 });
 router.post('/', (req, res) => {
@@ -42,48 +52,58 @@ router.post('/', (req, res) => {
             // then actually insert the offer into the database
             const offerModel = new OfferModel(newOffer);
 
-            const tmpEndDateMin = new Date(newOffer.endDate)
-            const tmpEndDateMax = new Date(newOffer.endDate)
-            tmpEndDateMin.setHours(0, 0, 0, 0)
-            tmpEndDateMax.setHours(23, 59, 59, 999)
-
-            const offerSchemaSelector = {
+            let offerSchemaSelector: any = {
                 "beer.name": newOffer.beer.name,
                 "beer.icon": newOffer.beer.icon,
                 "store.name": newOffer.store.name,
                 "store.icon": newOffer.store.icon,
                 "price": newOffer.price,
-                // no start date cuz its not identifying
-                "endDate": {
-                    "$gte" : tmpEndDateMin,
-                    "$lte" : tmpEndDateMax
-                }
             };
 
-            // o.save((err) => {
-            //     if(err) res.status(500).json(err);
-            //     else res.json(newOffer);
-            // });
+            if(newOffer.endDate) {
+                const tmpEndDateMin = new Date(newOffer.endDate)
+                const tmpEndDateMax = new Date(newOffer.endDate)
+                tmpEndDateMin.setHours(0, 0, 0, 0)
+                tmpEndDateMax.setHours(23, 59, 59, 999)
+                offerSchemaSelector = {
+                    ...offerSchemaSelector,
+                    "endDate": {
+                        "$gte" : tmpEndDateMin,
+                        "$lte" : tmpEndDateMax
+                    }
+                };
+            }
 
             OfferModel.findOne(offerSchemaSelector).then((offf) => {
                 if(!offf) offerModel.save((err: MongooseError) => {
-                    if(err) res.status(500).json(err);
+                    if(err) {
+                        new WibbErrorHandler({
+                            className: "offer.router",
+                            message: err.message,
+                            error: err,
+                            severity: WibbErrorSeverity.ERROR,
+                        })
+                        .log()
+                        .report()
+                        .respond(res, 500);
+                    }
                     else res.json(newOffer);
                 });
                 else
                     res.json( {} );
             });
-
-            // offerSchema.findOneAndUpdate(offerSchemaSelector, { $setOnInsert: newOffer }, { upsert: true }, function(err) {
-            //     console.log("err: " + err);
-            //     if(err) res.status(500).json(err);
-            //     else res.json(newOffer);
-            // });
         }
     })
     .catch((err) => {
-        WibbLogger.logger.error(err.message, err);
-        res.status(500).json(err);
+        new WibbErrorHandler({
+            className: "offer.router",
+            message: err.message,
+            error: err,
+            severity: WibbErrorSeverity.ERROR,
+        })
+        .log()
+        .report()
+        .respond(res, 500);
     });
 });
 export const OfferRouter = router;

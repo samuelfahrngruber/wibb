@@ -1,6 +1,7 @@
 import express from 'express';
 import { ReportModel } from '../data/schemas/report.schema';
 import { OfferModel } from '../data/schemas/offer.schema';
+import { WibbErrorHandler, WibbErrorSeverity } from '../util/WibbErrorUtil';
 
 const router = express();
 
@@ -55,7 +56,15 @@ router.post('/', (req, res) => {
             res.status(200).json(resAddReport)
     })
     .catch(err => {
-        res.status(500).json(err);
+        new WibbErrorHandler({
+            className: "report.router",
+            message: err.message,
+            error: err,
+            severity: WibbErrorSeverity.ERROR,
+        })
+        .log()
+        .report()
+        .respond(res, 500);
     });
 });
 
@@ -63,12 +72,21 @@ router.post('/', (req, res) => {
 router.get('/', (req, res) => {
     ReportModel.find()
         .exec((err, reports) => {
-            if (err)
-                res.status(500).json(err);
-            else if (reports == null)
+            if (err) {
+                new WibbErrorHandler({
+                    className: "report.router",
+                    message: err.message,
+                    error: err,
+                    severity: WibbErrorSeverity.ERROR,
+                })
+                .log()
+                .report()
+                .respond(res, 500);
+            } else if (reports == null) {
                 res.status(204).json(new Error("NO CONTENT"));
-            else
+            } else {
                 res.json(reports);
+            }
         });
 });
 

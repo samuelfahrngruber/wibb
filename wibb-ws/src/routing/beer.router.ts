@@ -1,8 +1,8 @@
-import express, { Router } from 'express';
+import express from 'express';
 import { BeerModel } from '../data/schemas/beer.schema';
 import { Error } from 'mongoose';
 import { Beer } from '../data/models/beer.model';
-import { WibbLogger } from '../loggers/logger.js';
+import { WibbErrorHandler, WibbErrorSeverity } from '../util/WibbErrorUtil';
 
 const router = express();
 
@@ -10,8 +10,15 @@ router.get('/', (req, res) => {
     BeerModel.find()
     .exec((err: Error, beers: Beer[]) => {
         if (err) {
-            WibbLogger.logger.error(err.message, err);
-            res.status(500).json(err);
+            new WibbErrorHandler({
+                className: "beer.router",
+                message: err.message,
+                error: err,
+                severity: WibbErrorSeverity.ERROR,
+            })
+            .log()
+            .report()
+            .respond(res, 500);
         } else if (!beers) {
             res.status(204).json(new Error("NO CONTENT"));
         } else {
