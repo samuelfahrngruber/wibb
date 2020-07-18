@@ -29,7 +29,7 @@ class SplashActivity : AppCompatActivity() {
     private fun doSplashStuff(){
         try {
             val prefs = PreferenceManager.getDefaultSharedPreferences(this)
-            val apiurl = "http://6fd87cb8dea9.ngrok.io" // prefs.getString("apiurl", "https://wibb.host")
+            val apiurl = prefs.getString("apiurl", "https://wibb.host")
             URLUnifier.initialize(apiurl!!, "mini")
 
             WibbConnection.initialize(this.applicationContext)
