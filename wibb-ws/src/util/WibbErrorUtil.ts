@@ -51,3 +51,6 @@ export class WibbErrorHandler {
         return this;
     }
 }
+
+export type WibbOfferType = 'SIXPACK_BOTTLE_6' | 'CRATE_BOTTLE_20' | 'TRAY_CAN_24';
+export const DEFAULT_WIBB_OFFER_TYPE: WibbOfferType = 'CRATE_BOTTLE_20';

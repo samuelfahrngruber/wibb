@@ -4,7 +4,7 @@ import { BeerModel } from '../data/schemas/beer.schema';
 import { StoreModel } from '../data/schemas/store.schema';
 import { WibbLogger } from '../loggers/logger';
 import { Error as MongooseError } from 'mongoose';
-import { WibbErrorHandler, WibbErrorSeverity } from '../util/WibbErrorUtil';
+import { WibbErrorHandler, WibbErrorSeverity, DEFAULT_WIBB_OFFER_TYPE } from '../util/WibbErrorUtil';
 
 const router = express();
 
@@ -13,12 +13,17 @@ router.get('/', (req, res) => {
     today.setHours(0,0,0,0)
 
     // todo fix offer filter with enddate
+    const offerType: string = req.query.type
+        ? req.query.type as string
+        : DEFAULT_WIBB_OFFER_TYPE;
+
     OfferModel
     .find({
         $or: [
             { endDate: { $gte: today } },
             { endDate: { $eq: null } },
         ],
+        type: { $eq: offerType },
     })
     .sort({ price: 1 })
     .exec((err, offers) => {
@@ -55,7 +60,13 @@ router.post('/', (req, res) => {
         }
         else {
             // then actually insert the offer into the database
-            const offerModel = new OfferModel(newOffer);
+            const offerType: string = req.query.type
+                ? req.query.type as string
+                : DEFAULT_WIBB_OFFER_TYPE;
+            const offerModel = new OfferModel({
+                ...newOffer,
+                type: offerType
+            });
 
             let offerSchemaSelector: any = {
                 "beer.name": newOffer.beer.name,
@@ -63,6 +74,7 @@ router.post('/', (req, res) => {
                 "store.name": newOffer.store.name,
                 "store.icon": newOffer.store.icon,
                 "price": newOffer.price,
+                "type": newOffer.type,
             };
 
             if(newOffer.endDate) {
