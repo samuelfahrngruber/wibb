@@ -5,7 +5,8 @@ const OfferSchema = new Schema({
     store: Object,
     price: Number,
     startDate: Date,
-    endDate: Date
+    endDate: Date,
+    type: String
 });
 
 export const OfferModel = model('Offer', OfferSchema);
