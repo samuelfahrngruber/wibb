@@ -4,7 +4,9 @@ import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.View
+import android.view.animation.LinearInterpolator
 import android.widget.*
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,8 +25,9 @@ import com.spogss.wibb.tools.FavouriteFilter
 import com.spogss.wibb.tools.UIUtils
 import com.spogss.wibb.tools.URLUnifier
 import com.spogss.wibb.tools.err.ErrorHandler
+import com.spogss.wibb.ui.GridAutofitLayoutManager
 import kotlinx.android.synthetic.main.activity_add_offer.*
-import kotlinx.android.synthetic.main.activity_add_offer.view.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.offer_card_shrinked.*
 import kotlinx.android.synthetic.main.offer_card_shrinked.view.*
 import java.util.*
@@ -36,8 +39,8 @@ import java.time.format.DateTimeFormatter
 
 class AddOfferActivity : AppCompatActivity() {
 
-    val offer = Offer()
-    var currentStep = 0
+    private val offer = Offer()
+    private var currentStep = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         try {
@@ -47,11 +50,16 @@ class AddOfferActivity : AppCompatActivity() {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
             // init step view
-
             val stepView = findViewById<StepView>(R.id.step_view)
-            stepView.setOnStepClickListener { setstep(it) }
+            stepView.setOnStepClickListener { setStep(it) }
 
             // init store chooser
+            val columnWidth = TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                85f,
+                this.resources.displayMetrics
+            ).toInt()
+
             val stores = WibbController.stores.filter { FavouriteFilter(it) }
 
             val rvs = findViewById<RecyclerView>(R.id.recyclerView_stores)
@@ -61,7 +69,7 @@ class AddOfferActivity : AppCompatActivity() {
                 nextstep()
             }
 
-            rvs.layoutManager = GridLayoutManager(this, 4)
+            rvs.layoutManager = GridAutofitLayoutManager(this, columnWidth)
             rvs.adapter = rvsa
 
             // init beer chooser
@@ -74,11 +82,10 @@ class AddOfferActivity : AppCompatActivity() {
                 nextstep()
             }
 
-            rvb.layoutManager = GridLayoutManager(this, 4)
+            rvb.layoutManager = GridAutofitLayoutManager(this, columnWidth)
             rvb.adapter = rvba
 
             // init seekarc
-
             val seekArc = findViewById<SeekArc>(R.id.seekArc)
             seekArc.setOnSeekArcChangeListener(object : SeekArc.OnSeekArcChangeListener {
                 override fun onProgressChanged(
@@ -103,7 +110,6 @@ class AddOfferActivity : AppCompatActivity() {
             fab.setOnClickListener { nextstep() }
 
             // init calendarpicker
-
             val v = findViewById<View>(R.id.incl_cardView_currentOffer)
             val txt = v.findViewById<TextView>(R.id.offer_card_date_txt)
             txt.text = ""
@@ -115,7 +121,7 @@ class AddOfferActivity : AppCompatActivity() {
                         startDate.toInstant(),
                         startDate.getTimeZone().toZoneId()
                     ).toLocalDate()
-                    setOfferstartDate(startDateLocal)
+                    setOfferStartDate(startDateLocal)
                 }
 
                 override fun onDateRangeSelected(startDate: Calendar, endDate: Calendar) {
@@ -134,7 +140,7 @@ class AddOfferActivity : AppCompatActivity() {
         }
     }
 
-    fun setOfferBeer(b: Beer){
+    private fun setOfferBeer(b: Beer){
         offer.beer = b
         textView_offerCard_beer.text = b.name
         val col = Color.parseColor(b.iconBg)
@@ -145,16 +151,18 @@ class AddOfferActivity : AppCompatActivity() {
             .load(URLUnifier.unifyImgUrl(b.icon))
             .into(offer_card_beer_img)
         refreshGradient()
+        onNewOfferInputChanged()
     }
 
-    fun setOfferPrice(p: Int){
+    private fun setOfferPrice(p: Int){
         offer.price = p
         val v = findViewById<View>(R.id.incl_cardView_currentOffer)
         val txt = v.findViewById<TextView>(R.id.offer_card_price_txt)
         txt.text = "€$p"
+        onNewOfferInputChanged()
     }
 
-    fun setOfferStore(s: Store){
+    private fun setOfferStore(s: Store){
         offer.store = s
         textView_offerCard_store.text = s.name
         val col = Color.parseColor(s.iconBg)
@@ -168,9 +176,10 @@ class AddOfferActivity : AppCompatActivity() {
             .load(URLUnifier.unifyImgUrl(s.icon))
             .into(offer_card_store_img)
         refreshGradient()
+        onNewOfferInputChanged()
     }
 
-    fun refreshGradient() {
+    private fun refreshGradient() {
         val col1 = if(offer.beer != null) Color.parseColor(offer.beer!!.iconBg) else Color.WHITE
         val col2 = if(offer.store != null) Color.parseColor(offer.store!!.iconBg) else Color.WHITE
         val gd = GradientDrawable(
@@ -181,31 +190,39 @@ class AddOfferActivity : AppCompatActivity() {
         incl_cardView_currentOffer.offer_card_gradient.background = gd
     }
 
-    fun setOfferstartDate(startDate: LocalDate){
+    private fun setOfferStartDate(startDate: LocalDate){
         offer.startDate = startDate
         updateOfferDates()
+        onNewOfferInputChanged()
     }
 
     fun setOfferEndDate(endDate: LocalDate){
         offer.endDate = endDate
         updateOfferDates()
+        onNewOfferInputChanged()
     }
 
-    fun setOfferDates(startDate: LocalDate, endDate: LocalDate){
-        offer.startDate = startDate
-        offer.endDate = endDate
+    private fun setOfferDates(startDate: LocalDate, endDate: LocalDate){
+        if(startDate.isBefore(endDate)) {
+            offer.startDate = startDate
+            offer.endDate = endDate
+        } else {
+            offer.endDate = startDate
+            offer.startDate = endDate
+        }
         updateOfferDates()
+        onNewOfferInputChanged()
     }
 
-    fun updateOfferDates(){
+    private fun updateOfferDates(){
         val v = findViewById<View>(R.id.incl_cardView_currentOffer)
         val txt = v.findViewById<TextView>(R.id.offer_card_date_txt)
         val formatter = DateTimeFormatter.ofPattern("d.")
         txt.text = "${offer.startDate?.format(formatter)} - ${offer.endDate?.format(formatter)}"
     }
 
-    fun nextstep(){
-        setstep(++currentStep)
+    private fun nextstep(){
+        setStep(++currentStep)
     }
 
     fun submitNewOffer(v: View){
@@ -223,7 +240,7 @@ class AddOfferActivity : AppCompatActivity() {
             Toast.makeText(this.applicationContext, R.string.toast_newOffer_invalid, Toast.LENGTH_SHORT).show()
     }
 
-    fun setstep(step: Int){
+    private fun setStep(step: Int){
         if(step < 0 || step > 3)
             return
 
@@ -249,7 +266,16 @@ class AddOfferActivity : AppCompatActivity() {
         else
             findViewById<DateRangeCalendarView>(R.id.calendar_range).visibility = View.VISIBLE
 
-
         currentStep = step
+    }
+
+    private fun onNewOfferInputChanged() {
+        setFabSubmitVisible(offer.isValid)
+    }
+
+    private fun setFabSubmitVisible(visible: Boolean) {
+        fab_submitOffer.animate().translationY(
+            if(visible) 0f else ll_footer_addoffer.height.toFloat()
+        ).setInterpolator(LinearInterpolator()).start();
     }
 }

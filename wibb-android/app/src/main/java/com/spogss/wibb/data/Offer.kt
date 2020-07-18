@@ -12,17 +12,21 @@ class Offer {
     var endDate: LocalDate? = null
 
     val isValid: Boolean
-        get() = price >= 0 && store != null && beer != null && endDate != null
+        get() = price >= 0 && store != null && beer != null
 
     companion object {
         fun fromJSON(jOffer: JSONObject): Offer {
             val o = Offer()
             o.beer = Beer.fromJSON(jOffer.getJSONObject("beer"))
             o.store = Store.fromJSON(jOffer.getJSONObject("store"))
-            val zonedStart = ZonedDateTime.parse(jOffer.getString("startDate"), DateTimeFormatter.ISO_DATE_TIME)
-            val zonedEnd = ZonedDateTime.parse(jOffer.getString("endDate"), DateTimeFormatter.ISO_DATE_TIME)
-            o.startDate = if (jOffer.isNull("startDate")) null else zonedStart.withZoneSameInstant(ZoneId.systemDefault()).toLocalDate()
-            o.endDate = if (jOffer.isNull("endDate")) null else zonedEnd.withZoneSameInstant(ZoneId.systemDefault()).toLocalDate()
+            if (jOffer.has("startDate") && !jOffer.isNull("startDate")) {
+                val zonedStart = ZonedDateTime.parse(jOffer.getString("startDate"), DateTimeFormatter.ISO_DATE_TIME)
+                o.startDate = if (jOffer.isNull("startDate")) null else zonedStart.withZoneSameInstant(ZoneId.systemDefault()).toLocalDate()
+            }
+            if (jOffer.has("endDate") && !jOffer.isNull("endDate")) {
+                val zonedEnd = ZonedDateTime.parse(jOffer.getString("endDate"), DateTimeFormatter.ISO_DATE_TIME)
+                o.endDate = if (jOffer.isNull("endDate")) null else zonedEnd.withZoneSameInstant(ZoneId.systemDefault()).toLocalDate()
+            }
             o.price = jOffer.getInt("price")
             return o
         }

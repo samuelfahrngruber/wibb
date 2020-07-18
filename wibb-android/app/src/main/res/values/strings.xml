@@ -64,4 +64,7 @@
     <string name="settings_description_beerFavourites">The app will only show beers and offers marked as favourite.</string>
     <string name="settings_header_storeFavourites">Edit Store Favourites</string>
     <string name="settings_description_storeFavourites">The app will only show stores and offers marked as favourite.</string>
+
+    <string name="offer_card_no_date_hint">May be expired!</string>
+    <string name="remove_this_offer_it_is_invalid">Remove this offer, it is invalid</string>
 </resources>

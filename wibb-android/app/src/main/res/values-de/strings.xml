@@ -64,4 +64,7 @@
     <string name="settings_description_beerFavourites">Dir werden nur deine Lieblingsbiere angezeigt.</string>
     <string name="settings_header_storeFavourites">Lieblingsgeschäfte ändern</string>
     <string name="settings_description_storeFavourites">Dir werden nur deine Lieblingsgeschäfte angezeigt.</string>
+
+    <string name="offer_card_no_date_hint">Vielleicht ungültig!</string>
+    <string name="remove_this_offer_it_is_invalid">Angebot löschen, es ist ungültig</string>
 </resources>

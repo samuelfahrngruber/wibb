@@ -4,17 +4,37 @@ import com.android.volley.VolleyError
 import com.spogss.wibb.connection.WibbConnection
 import org.json.JSONObject
 
+/**
+ * An error that occurred in the wibb application.
+ * Should always be handled by [ErrorHandler].
+ */
 class WibbError {
+
     var occurrenceDescription: String = ""
     var message: String = ""
     var stackTrace: String = ""
     var throwable: Throwable? = null
 
     companion object {
+
+        /**
+         * Creates a wibb error by just providing a throwable.
+         * The message will be extracted,
+         * the occurrence description will be "OCCURRENCE_DESCRIPTION_NOT_SPECIFIED".
+         * @param t The throwable to create this wibb error on.
+         * @return the newly created wibb error.
+         */
         fun fromThrowable(t: Throwable): WibbError {
-            return Companion.fromThrowable(t, "OCCURRENCE_DESCRIPTION_NOT_SPECIFIED")
+            return fromThrowable(t, "OCCURRENCE_DESCRIPTION_NOT_SPECIFIED")
         }
 
+        /**
+         * Creates a wibb error by just providing a throwable.
+         * The message will be extracted,
+         * @param t The throwable to create this wibb error on.
+         * @param occDesc The description how the error occurred.
+         * @return the newly created wibb error.
+         */
         fun fromThrowable(t: Throwable, occDesc: String): WibbError{
             val e = WibbError()
             e.occurrenceDescription = occDesc
@@ -24,6 +44,11 @@ class WibbError {
             return e
         }
 
+        /**
+         * Creates a wibb error from a Volley connection error
+         * @param err The volley error to create this wibb error on.
+         * @return the newly created wibb error.
+         */
         fun fromVolleyError(err: VolleyError): WibbError{
             val e = WibbError()
             e.occurrenceDescription = "VOLLEY_CONNECTION_ERROR"
@@ -34,6 +59,10 @@ class WibbError {
         }
     }
 
+    /**
+     * Serializes this error into JSON.
+     * @return The json object representing this error.
+     */
     fun toJSON(): JSONObject{
         val jo = JSONObject()
         jo.put("occurrenceDescription", this.occurrenceDescription)
@@ -42,6 +71,10 @@ class WibbError {
         return jo
     }
 
+    /**
+     * Reports this error.
+     * @see WibbConnection.addWibbError
+     */
     fun report(){
         WibbConnection.addWibbError(this){}
     }

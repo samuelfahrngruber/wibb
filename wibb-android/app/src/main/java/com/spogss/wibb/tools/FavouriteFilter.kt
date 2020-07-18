@@ -2,13 +2,11 @@ package com.spogss.wibb.tools
 
 import android.content.SharedPreferences
 import com.spogss.wibb.controller.WibbController
-import com.spogss.wibb.data.Beer
 import com.spogss.wibb.data.GridDisplayable
 import com.spogss.wibb.data.Offer
-import com.spogss.wibb.data.Store
 
 object FavouriteFilter {
-    const val DEFAULT_FAVOURITE = true;
+    const val DEFAULT_FAVOURITE = true
 
     val favourites = mutableListOf<GridDisplayable>()
 
