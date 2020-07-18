@@ -23,10 +23,7 @@ import com.spogss.wibb.data.Store
 import com.spogss.wibb.tools.FavouriteFilter
 import com.spogss.wibb.tools.UIUtils
 import com.spogss.wibb.tools.URLUnifier
-import kotlinx.android.synthetic.main.offer_card.view.*
 import java.time.format.DateTimeFormatter
-
-
 
 class OfferCardRecyclerViewAdapter(private val context: Context, private var data: List<Offer>):
     RecyclerView.Adapter<OfferCardRecyclerViewAdapter.MyViewHolder>() {
@@ -64,18 +61,23 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private var dat
 
         holder.gradientImageV.background = gd
 
-
         holder.offerCardV.setCardBackgroundColor(Color.parseColor(o.store!!.iconBg)) // = gd //
 
         holder.priceTextV.text = "€${o.price}"
 
-
         val formatter = DateTimeFormatter.ofPattern("E, d")
 
-        holder.dateTextV.text = String.format(context.getString(R.string.offer_card_datestr_format),
-            if (o.startDate == null) "?" else o.startDate!!.format(formatter),
-            if (o.endDate == null) "?" else o.endDate!!.format(formatter)
-        )
+        if (o.startDate != null && o.endDate != null) {
+            holder.dateTextV.text = String.format(context.getString(R.string.offer_card_datestr_format),
+                o.startDate!!.format(formatter),
+                o.endDate!!.format(formatter))
+            holder.dateTextV.setTextColor(UIUtils.getForegroundColorFor(Color.WHITE, context))
+            holder.dateHintImageV.visibility = View.GONE
+        } else {
+            holder.dateTextV.text = context.getString(R.string.offer_card_no_date_hint)
+            holder.dateTextV.setTextColor(Color.RED)
+            holder.dateHintImageV.visibility = View.VISIBLE
+        }
 
         holder.menuImageB.setImageResource(R.drawable.ic_more_vert_black_24dp)
 
@@ -101,6 +103,9 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private var dat
                 val popup = PopupMenu(context, v)
                 val inflater = popup.menuInflater
                 inflater.inflate(R.menu.offer_menu, popup.menu)
+                if(offer.endDate == null || offer.startDate == null) {
+                    popup.menu.findItem(R.id.remove_this_offer).isVisible = true
+                }
                 popup.setOnMenuItemClickListener(this)
                 popup.show()
             } else if (v.id == R.id.offer_card_store_img) {
@@ -110,20 +115,23 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private var dat
 
         override fun onMenuItemClick(menuItem: MenuItem): Boolean {
             if (menuItem.itemId == R.id.menu_item_offer_report) {
-
                 callDialog {
                     val r = Report(Report.RType.values()[it], "NO_MESSAGE", offer)
                     WibbConnection.addReport(r) { rep: Report? ->
-                        if (rep != null)
-                            Toast.makeText(context, context.getString(R.string.toast_reportSubmitted, rep.id), Toast.LENGTH_SHORT).show()
-                            else Toast.makeText(context, R.string.toast_reportFailed, Toast.LENGTH_SHORT).show()
+                        if (rep != null) Toast.makeText(context, context.getString(R.string.toast_reportSubmitted, rep.id), Toast.LENGTH_SHORT).show()
+                        else Toast.makeText(context, R.string.toast_reportFailed, Toast.LENGTH_SHORT).show()
                     }
                 }
-
                 return true
-
-            } else if (menuItem.itemId == R.id.menu_item_offer_findNearby)
+            } else if (menuItem.itemId == R.id.menu_item_offer_findNearby) {
                 openFindNearbyStoresActivity(offer.store)
+            } else if (menuItem.itemId == R.id.remove_this_offer) {
+                val r = Report(Report.RType.INCORRECT_DATES, "Shown with warning; Reported as invalid", offer)
+                WibbConnection.addReport(r) { rep: Report? ->
+                    if (rep != null) Toast.makeText(context, context.getString(R.string.toast_reportSubmitted, rep.id), Toast.LENGTH_SHORT).show()
+                    else Toast.makeText(context, R.string.toast_reportFailed, Toast.LENGTH_SHORT).show()
+                }
+            }
 
             return false
         }
@@ -164,6 +172,7 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private var dat
         var priceTextV: TextView = itemView.findViewById(R.id.offer_card_price_txt)
         var gradientImageV: ImageView = itemView.findViewById(R.id.offer_card_gradient)
         var offerCardV: CardView = itemView.findViewById(R.id.offer_card)
+        var dateHintImageV: ImageView = itemView.findViewById(R.id.offer_card_no_date_err_icon)
         var dateTextV: TextView = itemView.findViewById(R.id.offer_card_date_txt)
         var brandImageC: LinearLayout = itemView.findViewById(R.id.offer_card_beer_img_container)
         var menuImageB: ImageButton = itemView.findViewById(R.id.offer_card_menu_btn)

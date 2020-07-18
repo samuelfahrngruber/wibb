@@ -15,10 +15,10 @@ open class FavouritePreferences : AppCompatActivity {
     private val type: FavouriteType
 
     constructor(type: FavouriteType) : super() {
-        this.type = type;
+        this.type = type
     }
     constructor(type: FavouriteType, contentLayoutId: Int) : super(contentLayoutId) {
-        this.type = type;
+        this.type = type
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -16,7 +16,9 @@ import com.spogss.wibb.tools.UIUtils
 import com.spogss.wibb.tools.URLUnifier
 
 
-class GridRecyclerViewAdapter<ItemType : GridDisplayable>(private val context: Context, private val data: List<ItemType>): RecyclerView.Adapter<GridRecyclerViewAdapter.MyViewHolder>() {
+class GridRecyclerViewAdapter<ItemType : GridDisplayable>
+    (private val context: Context, private val data: List<ItemType>)
+    : RecyclerView.Adapter<GridRecyclerViewAdapter.MyViewHolder>() {
 
     private var onItemSelected: ((ItemType) -> Unit)? = null
 

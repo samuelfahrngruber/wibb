@@ -20,7 +20,8 @@
                 android:id="@+id/offer_card_beer_img_container"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingStart="5dp">
 
                 <ImageView
                     android:id="@+id/offer_card_beer_img"
@@ -49,7 +50,8 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingEnd="5dp">
 
                 <ImageView
                     android:id="@+id/offer_card_store_img"
@@ -80,13 +82,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="end"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingStart="5dp">
+
+                    <ImageView
+                        android:id="@+id/offer_card_no_date_err_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_baseline_error_outline_24"
+                        android:visibility="gone"/>
 
                     <TextView
                         android:id="@+id/offer_card_date_txt"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginStart="5dp"
                         android:layout_marginEnd="10dp"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif-light"

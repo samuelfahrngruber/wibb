@@ -14,7 +14,12 @@ router.get('/', (req, res) => {
 
     // todo fix offer filter with enddate
     OfferModel
-    .find({ endDate: { $gte: today } })
+    .find({
+        $or: [
+            { endDate: { $gte: today } },
+            { endDate: { $eq: null } },
+        ],
+    })
     .sort({ price: 1 })
     .exec((err, offers) => {
         if (err) {
