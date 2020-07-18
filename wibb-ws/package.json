@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "tsc && node dist/index.js",
+    "start-prod": "tsc && pm2 stop \"Wibb Prod Server\" && git fetch && git checkout origin/master && pm2 start npm --name \"Wibb Prod Server\" -- start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "tslint -p tsconfig.json"
   },
