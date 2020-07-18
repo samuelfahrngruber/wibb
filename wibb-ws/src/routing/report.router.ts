@@ -14,15 +14,23 @@ router.post('/', (req, res) => {
 
     const reportModel = new ReportModel(report);
 
-    const tmpStartDateMin = new Date(report.offer.startDate)
-    const tmpStartDateMax = new Date(report.offer.startDate)
-    tmpStartDateMin.setHours(0, 0, 0, 0)
-    tmpStartDateMax.setHours(23, 59, 59, 999)
+    let tmpStartDateMin = null;
+    let tmpStartDateMax = null
+    if (report.offer.startDate) {
+        tmpStartDateMin = new Date(report.offer.startDate)
+        tmpStartDateMax = new Date(report.offer.startDate)
+        tmpStartDateMin.setHours(0, 0, 0, 0)
+        tmpStartDateMax.setHours(23, 59, 59, 999)
+    }
 
-    const tmpEndDateMin = new Date(report.offer.endDate)
-    const tmpEndDateMax = new Date(report.offer.endDate)
-    tmpEndDateMin.setHours(0, 0, 0, 0)
-    tmpEndDateMax.setHours(23, 59, 59, 999)
+    let tmpEndDateMin = null
+    let tmpEndDateMax = null
+    if (report.offer.endDate) {
+        tmpEndDateMin = new Date(report.offer.endDate)
+        tmpEndDateMax = new Date(report.offer.endDate)
+        tmpEndDateMin.setHours(0, 0, 0, 0)
+        tmpEndDateMax.setHours(23, 59, 59, 999)
+    }
 
     const offerSchemaSelector = {
         "beer.name": report.offer.beer.name,
@@ -30,11 +38,11 @@ router.post('/', (req, res) => {
         "store.name": report.offer.store.name,
         "store.icon": report.offer.store.icon,
         "price": report.offer.price,
-        "startDate": {
+        "startDate": tmpStartDateMin === null ? null : {
             "$gte" : tmpStartDateMin,
             "$lte" : tmpStartDateMax
         },
-        "endDate": {
+        "endDate": tmpEndDateMin === null ? null : {
             "$gte" : tmpEndDateMin,
             "$lte" : tmpEndDateMax
         },
