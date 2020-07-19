@@ -132,7 +132,8 @@
             android:layout_margin="5dp"
             android:onClick="submitNewOffer"
             android:src="@drawable/ic_done_white_24dp"
-            app:backgroundTint="@color/green">
+            app:backgroundTint="@color/green"
+            android:translationY="100dp">
         </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
         <LinearLayout

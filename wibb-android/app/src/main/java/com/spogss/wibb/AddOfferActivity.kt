@@ -276,6 +276,6 @@ class AddOfferActivity : AppCompatActivity() {
     private fun setFabSubmitVisible(visible: Boolean) {
         fab_submitOffer.animate().translationY(
             if(visible) 0f else ll_footer_addoffer.height.toFloat()
-        ).setInterpolator(LinearInterpolator()).start();
+        ).setInterpolator(LinearInterpolator()).start()
     }
 }
