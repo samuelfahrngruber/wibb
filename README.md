@@ -8,6 +8,3 @@ The *wibb* repository contains following folders:
 * `wibb-android` is the root directory for the android application project
 * `wibb-ws` is the root directory for the webservice project
 * `wibb-db` contains all files concerning the *wibb* database
-* `doc` holds all files that illustrate the design idea behind *wibb* and all development guidelines
-* `img` contains images that represent the different supermarkets and beer brands in Austria
-* `other`
