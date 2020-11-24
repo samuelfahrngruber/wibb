@@ -38,7 +38,7 @@ class GridAutofitLayoutManager : GridLayoutManager {
             do so. */
             columnWidth = TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP, 48f,
-                context.getResources().getDisplayMetrics()
+                context.resources.displayMetrics
             ).toInt()
         }
         return columnWidth

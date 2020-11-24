@@ -44,14 +44,16 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_stores"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
             android:visibility="visible" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_beers"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
             android:visibility="gone" />
 
         <LinearLayout
@@ -76,12 +78,12 @@
                     android:layout_margin="20dp"
                     android:padding="20dp"
                     app:max="25"
+                    app:progressColor="@color/colorAccent"
                     app:rotation="180"
                     app:startAngle="30"
                     app:sweepAngle="300"
-                    app:touchInside="true"
-                    app:progressColor="@color/colorAccent"
-                    app:thumb="@drawable/seekarc_thumb"/>
+                    app:thumb="@drawable/seekarc_thumb"
+                    app:touchInside="true" />
 
                 <TextView
                     android:id="@+id/seekArcProgress"
@@ -95,11 +97,11 @@
                     android:id="@+id/fab_priceDone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
                     android:layout_margin="5dp"
                     android:src="@drawable/ic_arrow_forward_black_24dp"
                     app:backgroundTint="@color/colorAccent"
-                    app:elevation="0dp"
-                    android:layout_gravity="bottom|center_horizontal">
+                    app:elevation="0dp">
 
                 </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
@@ -114,14 +116,13 @@
             app:disable_date_color="#ABABAB"
             app:range_color="@color/colorAccent"
             app:selected_date_circle_color="#000000"
-            app:title_color="@color/colorAccent">
-        </com.archit.calendardaterangepicker.customviews.DateRangeCalendarView>
+            app:title_color="@color/colorAccent"></com.archit.calendardaterangepicker.customviews.DateRangeCalendarView>
     </FrameLayout>
 
     <FrameLayout
+        android:id="@+id/ll_footer_addoffer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ll_footer_addoffer"
         android:layout_alignParentBottom="true">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -132,9 +133,8 @@
             android:layout_margin="5dp"
             android:onClick="submitNewOffer"
             android:src="@drawable/ic_done_white_24dp"
-            app:backgroundTint="@color/green"
-            android:translationY="100dp">
-        </com.google.android.material.floatingactionbutton.FloatingActionButton>
+            android:translationY="100dp"
+            app:backgroundTint="@color/green"></com.google.android.material.floatingactionbutton.FloatingActionButton>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -143,22 +143,22 @@
             android:orientation="vertical">
 
             <TextView
-                android:text="@string/addoff_header_offerPreview"
-                style="?android:attr/listSeparatorTextViewStyle" />
+                style="?android:attr/listSeparatorTextViewStyle"
+                android:text="@string/addoff_header_offerPreview" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:baselineAligned="false"
                 android:gravity="center_vertical"
-                android:baselineAligned="false">
+                android:orientation="horizontal">
 
                 <include
                     android:id="@+id/incl_cardView_currentOffer"
                     layout="@layout/offer_card_shrinked"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
             </LinearLayout>
 
