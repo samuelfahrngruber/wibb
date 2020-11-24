@@ -7,6 +7,7 @@ import { Error as MongooseError } from 'mongoose';
 import { WibbErrorHandler, WibbErrorSeverity, DEFAULT_WIBB_OFFER_TYPE } from '../util/WibbErrorUtil';
 
 const router = express();
+const WEEK_MILLISECONDS = 7 * 24 * 60 * 60 * 1000;
 
 router.get('/', (req, res) => {
     const today = new Date()
@@ -21,7 +22,7 @@ router.get('/', (req, res) => {
     .find({
         $or: [
             { endDate: { $gte: today } },
-            { endDate: { $eq: null } },
+            { expires: { $gte: today } },
         ],
         type: { $eq: offerType },
     })
@@ -65,7 +66,8 @@ router.post('/', (req, res) => {
                 : DEFAULT_WIBB_OFFER_TYPE;
             const offerModel = new OfferModel({
                 ...newOffer,
-                type: offerType
+                type: offerType,
+                expires: newOffer.endDate ? newOffer.endDate : new Date(new Date().getTime() + WEEK_MILLISECONDS),
             });
 
             let offerSchemaSelector: any = {
