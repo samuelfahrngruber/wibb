@@ -11,6 +11,6 @@
     <color name="yello">#FFC107</color>
     <color name="yelloshadow">#b38600</color>
 
-    <color name="red">#bb0000</color>
+    <color name="red">#FF0000</color>
     <color name="green">#009900</color>
 </resources>

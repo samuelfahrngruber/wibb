@@ -39,7 +39,7 @@
     <string name="contentRequest_editText_hint">What would you like to be added to Wibb?</string>
     <string name="toast_contentRequest_success">Successfully submitted Request!</string>
     <string name="toast_contentRequest_fail">Could not submit Request!</string>
-    
+
     <string name="settings_header_feedback">Feedback</string>
     <string name="settings_feedback_label">Give Feedback</string>
     <string name="settings_feedback_suggestion">You can also request new Beers and Stores here!</string>
@@ -67,4 +67,5 @@
 
     <string name="offer_card_no_date_hint">May be expired!</string>
     <string name="remove_this_offer_it_is_invalid">Remove this offer, it is invalid</string>
+    <string name="some_offers_listed_here">Some offers listed here were reported without an end date, which means they may be expired. We will remove such offers after 7 days.</string>
 </resources>

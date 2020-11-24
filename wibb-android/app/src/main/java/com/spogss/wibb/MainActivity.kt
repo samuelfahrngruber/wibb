@@ -1,21 +1,18 @@
 package com.spogss.wibb
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
+import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.spogss.wibb.controller.WibbController
 import com.spogss.wibb.tools.err.ErrorHandler
 import com.spogss.wibb.ui.OfferCardRecyclerViewAdapter
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.spogss.wibb.tools.FavouriteFilter
 import kotlinx.android.synthetic.main.activity_main.*
-import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
@@ -51,6 +48,7 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         rvoa?.notifyWibbDataChanged()
         refreshNoOffersHint()
+        card_invalid_hint.visibility = if (WibbController.offers.any { it.endDate == null }) View.VISIBLE else View.GONE
     }
 
     // init menu
@@ -84,4 +82,17 @@ class MainActivity : AppCompatActivity() {
             textView_noOffers.visibility = View.GONE
     }
 
+    fun hideInvalidHint(view: View) {
+        val animationOffset = card_invalid_hint.height + (card_invalid_hint.layoutParams as ViewGroup.MarginLayoutParams).topMargin * 2
+        linearLayout.animate()
+            .translationY(-animationOffset.toFloat())
+            .setDuration(300)
+            .setListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator?) {
+                    super.onAnimationEnd(animation)
+                    linearLayout.translationY = 0.0.toFloat()
+                    card_invalid_hint.visibility = View.GONE
+                }
+            })
+    }
 }
