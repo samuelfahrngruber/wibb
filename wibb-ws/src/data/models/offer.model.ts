@@ -9,6 +9,7 @@ export class Offer {
         public price: number,
         public startDate: Date,
         public endDate: Date,
-        public type: WibbOfferType) {
-    }
+        public expires: Date,
+        public type: WibbOfferType
+    ) {}
 }

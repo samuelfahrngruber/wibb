@@ -6,6 +6,7 @@ const OfferSchema = new Schema({
     price: Number,
     startDate: Date,
     endDate: Date,
+    expires: Date,
     type: String
 });
 
