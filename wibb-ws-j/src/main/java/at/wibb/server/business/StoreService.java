@@ -7,20 +7,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
-import at.wibb.server.persistence.repositories.BeerRepository;
-import at.wibb.server.shared.Beer;
+import at.wibb.server.persistence.repositories.StoreRepository;
+import at.wibb.server.shared.Store;
 
 @Component
-public class BeerService {
+public class StoreService {
 
     @Autowired
-    private BeerRepository beerRepository;
+    private StoreRepository beerRepository;
     
     @NonNull
-    public List<Beer> getAllBeers() {
+    public List<Store> getAllStores() {
         return beerRepository.findAll()
             .stream()
-            .map(TransformUtil::transformBeer)
+            .map(TransformUtil::transformStore)
             .collect(Collectors.toList());
     }
 
