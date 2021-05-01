@@ -29,7 +29,7 @@ public class StoreTemplate {
         return meta;
     }
 
-    public void setIcon(Metadata meta) {
+    public void setMeta(Metadata meta) {
         this.meta = meta;
     }
 
