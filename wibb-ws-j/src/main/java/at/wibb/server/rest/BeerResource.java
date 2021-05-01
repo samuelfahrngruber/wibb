@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 import at.wibb.server.business.BeerService;
 import at.wibb.server.shared.Beer;
 
-@RestController("/beers")
+@RestController
 public class BeerResource {
 
     @Autowired
     private BeerService beerService;
 
-    @GetMapping("/beers")
+    @GetMapping("/api/beers")
     public List<Beer> getBeers() {
         return beerService.getAllBeers();
     }
