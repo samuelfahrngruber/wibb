@@ -68,4 +68,9 @@
     <string name="offer_card_no_date_hint">Kein Datum!</string>
     <string name="remove_this_offer_it_is_invalid">Angebot löschen, es ist ungültig</string>
     <string name="some_offers_listed_here">Einige Angebote wurden ohne Datum eingatragen und könnten veraltet sein. Wir löschen solche Angebote nach 7 Tagen.</string>
+    <string name="settings_header_appearance">Aussehen</string>
+
+    <string name="theme_light">Hell</string>
+    <string name="theme_dark">Dunkel</string>
+    <string name="theme_system">Gleich wie Android</string>
 </resources>

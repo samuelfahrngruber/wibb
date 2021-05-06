@@ -1,12 +1,14 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight">
+
+        <!-- Branding -->
         <item name="colorAccent">@color/colorAccent</item>
-<!--        <item name="android:fontFamily">sans-serif-light</item>-->
+
+        <!-- Additional Style Elements -->
+        <item name="cornerRadius">5dp</item>
+
     </style>
 
 </resources>
