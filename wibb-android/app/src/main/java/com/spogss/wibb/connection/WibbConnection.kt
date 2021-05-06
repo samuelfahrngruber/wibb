@@ -143,7 +143,7 @@ object WibbConnection {
      * @throws WibbConnectionNotInitializedException when the connection is not initialized yet.
      */
     fun addWibbError(error: WibbError, cbSuccess: (Boolean) -> Unit){
-        postJSONObject(URLUnifier.unifyApiUrl("/api/reports"), {
+        postJSONObject(URLUnifier.unifyApiUrl("/api/errors"), {
             cbSuccess(true)
         }, {
             cbSuccess(false)
