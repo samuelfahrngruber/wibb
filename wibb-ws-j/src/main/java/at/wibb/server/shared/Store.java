@@ -4,6 +4,8 @@ import static at.wibb.server.shared.Preconditions.checkNotNull;
 
 import org.springframework.lang.NonNull;
 
+import java.util.Objects;
+
 public class Store {
 
     private final String name;
@@ -24,4 +26,16 @@ public class Store {
         return icon;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Store store = (Store) o;
+        return Objects.equals(name, store.name) && Objects.equals(icon, store.icon);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, icon);
+    }
 }
