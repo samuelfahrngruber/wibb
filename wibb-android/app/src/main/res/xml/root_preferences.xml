@@ -14,74 +14,88 @@
   ~ limitations under the License.
   -->
 
-<PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
-        app:title="@string/settings_header_global"
-        app:iconSpaceReserved="false"
-        app:isPreferenceVisible="false">
+            app:title="@string/settings_header_global"
+            app:iconSpaceReserved="false"
+            app:isPreferenceVisible="true">
 
         <EditTextPreference
-            app:key="apiurl"
-            app:title="@string/settings_global_apiurl"
-            app:useSimpleSummaryProvider="true"
+                app:key="apiurl"
+                app:title="@string/settings_global_apiurl"
+                app:useSimpleSummaryProvider="true"
+                app:iconSpaceReserved="false"
+                app:isPreferenceVisible="true"
+                app:enabled="true"
+                app:defaultValue="https://wibb.host" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+            app:title="@string/settings_header_favourites"
             app:iconSpaceReserved="false"
-            app:isPreferenceVisible="true"
-            app:enabled="true"
-            app:defaultValue="https://wibb.host"/>
-
-    </PreferenceCategory>
-
-    <PreferenceCategory
-        app:title="@string/settings_header_favourites"
-        app:iconSpaceReserved="false"
-        app:isPreferenceVisible="true">
+            app:isPreferenceVisible="true">
 
         <Preference
-            app:key="favb"
-            app:title="@string/settings_item_beerFavourites"
-            app:summary="@string/settings_description_beerFavourites"
-            app:iconSpaceReserved="false">
+                app:key="favb"
+                app:title="@string/settings_item_beerFavourites"
+                app:summary="@string/settings_description_beerFavourites"
+                app:iconSpaceReserved="false">
 
             <intent
-                android:targetPackage="com.spogss.wibb"
-                android:targetClass="com.spogss.wibb.FavouriteBeerPreferences"/>
+                    android:targetPackage="com.spogss.wibb"
+                    android:targetClass="com.spogss.wibb.FavouriteBeerPreferences" />
 
         </Preference>
 
         <Preference
-            app:key="favs"
-            app:title="@string/settings_header_storeFavourites"
-            app:summary="@string/settings_description_storeFavourites"
-            app:iconSpaceReserved="false">
+                app:key="favs"
+                app:title="@string/settings_header_storeFavourites"
+                app:summary="@string/settings_description_storeFavourites"
+                app:iconSpaceReserved="false">
 
             <intent
-                android:targetPackage="com.spogss.wibb"
-                android:targetClass="com.spogss.wibb.FavouriteStorePreferences"/>
+                    android:targetPackage="com.spogss.wibb"
+                    android:targetClass="com.spogss.wibb.FavouriteStorePreferences" />
 
         </Preference>
 
     </PreferenceCategory>
 
     <PreferenceCategory
-        app:title="@string/settings_header_feedback"
-        app:iconSpaceReserved="false">
-
-        <Preference
-            app:key="pref_req_new_beer"
-            app:title="@string/settings_feedback_label"
-            app:summary="@string/settings_feedback_suggestion"
+            app:title="@string/settings_header_feedback"
             app:iconSpaceReserved="false">
 
+        <Preference
+                app:key="pref_req_new_beer"
+                app:title="@string/settings_feedback_label"
+                app:summary="@string/settings_feedback_suggestion"
+                app:iconSpaceReserved="false">
+
             <intent
-                android:targetPackage="com.spogss.wibb"
-                android:targetClass="com.spogss.wibb.RequestNewContentActivity"/>
+                    android:targetPackage="com.spogss.wibb"
+                    android:targetClass="com.spogss.wibb.RequestNewContentActivity" />
 
         </Preference>
 
 
+    </PreferenceCategory>
+    
+    <PreferenceCategory
+            app:title="@string/settings_header_appearance"
+            app:iconSpaceReserved="false"
+            app:isPreferenceVisible="true">
+        <ListPreference
+                app:defaultValue="@string/theme_system"
+                app:iconSpaceReserved="false"
+                app:title="@string/settings_theme_desc"
+                app:entries="@array/theme_labels"
+                app:entryValues="@array/theme_keys"
+                app:key="pref_theme"
+                app:useSimpleSummaryProvider="true"
+                />
     </PreferenceCategory>
 
 </PreferenceScreen>

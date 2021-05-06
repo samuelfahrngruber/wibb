@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Stiegl",
+    "icon": "/res/img/beer/stiegl.png",
+    "F": { "iconBg": "#ffffff" }
+  },
+  {
+    "name": "Gösser",
+    "icon": "/res/img/beer/goesser.png",
+    "meta": { "iconBg": "#296e3b" }
+  },
+  {
+    "name": "Hirter",
+    "icon": "/res/img/beer/hirter.png",
+    "meta": { "iconBg": "#281b81" }
+  },
+  {
+    "name": "Villacher",
+    "icon": "/res/img/beer/villacher.png",
+    "meta": { "iconBg": "#ffffff" }
+  },
+  {
+    "name": "Puntigamer",
+    "icon": "/res/img/beer/puntigamer.png",
+    "meta": { "iconBg": "#0027af" }
+  },
+  {
+    "name": "Murauer",
+    "icon": "/res/img/beer/murauer.png",
+    "meta": { "iconBg": "#ffff00" }
+  },
+  {
+    "name": "Zipfer",
+    "icon": "/res/img/beer/zipfer.png",
+    "meta": { "iconBg": "#ffffff" }
+  },
+  {
+    "name": "Wieselburger",
+    "icon": "/res/img/beer/wieselburger.png",
+    "meta": { "iconBg": "#fef7e2" }
+  },
+  {
+    "name": "Egger",
+    "icon": "/res/img/beer/egger.png",
+    "meta": { "iconBg": "#2f593a" }
+  }
+]

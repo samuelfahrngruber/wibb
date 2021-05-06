@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/remove_this_offer"
-        android:icon="@drawable/ic_baseline_error_outline_24"
+        android:icon="@drawable/ic_baseline_error_outline_24dp"
         android:title="@string/remove_this_offer_it_is_invalid"
         android:visible="false"/>
     <item android:id="@+id/menu_item_offer_report"
-        android:icon="@drawable/ic_flag_black_24dp"
+        android:icon="@drawable/ic_flag_24dp"
         android:title="@string/menuOffer_report_offer" />
     <item android:id="@+id/menu_item_offer_findNearby"
-        android:icon="@drawable/ic_location_on_black_24dp"
+        android:icon="@drawable/ic_location_on_24dp"
         android:title="@string/menuOffer_find_nearby"/>
 </menu>

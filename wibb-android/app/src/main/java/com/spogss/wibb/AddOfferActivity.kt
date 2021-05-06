@@ -27,7 +27,6 @@ import com.spogss.wibb.tools.URLUnifier
 import com.spogss.wibb.tools.err.ErrorHandler
 import com.spogss.wibb.ui.GridAutofitLayoutManager
 import kotlinx.android.synthetic.main.activity_add_offer.*
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.offer_card_shrinked.*
 import kotlinx.android.synthetic.main.offer_card_shrinked.view.*
 import java.util.*
@@ -180,8 +179,8 @@ class AddOfferActivity : AppCompatActivity() {
     }
 
     private fun refreshGradient() {
-        val col1 = if(offer.beer != null) Color.parseColor(offer.beer!!.iconBg) else Color.WHITE
-        val col2 = if(offer.store != null) Color.parseColor(offer.store!!.iconBg) else Color.WHITE
+        val col1 = if(offer.beer != null) Color.parseColor(offer.beer!!.iconBg) else Color.TRANSPARENT
+        val col2 = if(offer.store != null) Color.parseColor(offer.store!!.iconBg) else Color.TRANSPARENT
         val gd = GradientDrawable(
             GradientDrawable.Orientation.LEFT_RIGHT,
             intArrayOf(col1, col2))
@@ -275,7 +274,7 @@ class AddOfferActivity : AppCompatActivity() {
 
     private fun setFabSubmitVisible(visible: Boolean) {
         fab_submitOffer.animate().translationY(
-            if(visible) 0f else ll_footer_addoffer.height.toFloat()
+            if(visible) 0f else ll_footer_add_offer.height.toFloat()
         ).setInterpolator(LinearInterpolator()).start()
     }
 }

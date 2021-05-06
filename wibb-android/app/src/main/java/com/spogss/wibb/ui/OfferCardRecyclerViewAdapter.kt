@@ -75,11 +75,11 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private var dat
             holder.dateHintImageV.visibility = View.GONE
         } else {
             holder.dateTextV.text = context.getString(R.string.offer_card_no_date_hint)
-            holder.dateTextV.setTextColor(Color.RED)
+            holder.dateTextV.setTextColor(context.getColor(R.color.red))
             holder.dateHintImageV.visibility = View.VISIBLE
         }
 
-        holder.menuImageB.setImageResource(R.drawable.ic_more_vert_black_24dp)
+        holder.menuImageB.setImageResource(R.drawable.ic_more_vert_24dp)
 
         val helper = OfferMenuHelper(o)
 

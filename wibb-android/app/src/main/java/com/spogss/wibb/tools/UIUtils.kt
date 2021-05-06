@@ -18,7 +18,7 @@ object UIUtils {
      * @return The color that should be used for text on this background color.
      */
     fun getForegroundColorFor(col: Int, context: Context): Int {
-        return if(Color.luminance(col) < 0.5) context.getColor(R.color.white)
+        return if(Color.luminance(col) < 0.5) context.getColor(R.color.textLight)
             else context.getColor(android.R.color.tab_indicator_text)
     }
 }

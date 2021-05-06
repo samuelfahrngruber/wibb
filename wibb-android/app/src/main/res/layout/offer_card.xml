@@ -1,132 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/offer_card"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        app:cardCornerRadius="10dp">
+            android:id="@+id/offer_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="?attr/cornerRadius">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/offer_card_beer_img_container"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingStart="5dp">
+                    android:id="@+id/offer_card_beer_img_container"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingStart="5dp">
 
                 <ImageView
-                    android:id="@+id/offer_card_beer_img"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:background="@android:color/transparent"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_beer_black_24dp" />
+                        android:id="@+id/offer_card_beer_img"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@android:color/transparent"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_beer_24dp" />
 
                 <TextView
-                    android:id="@+id/textView_offerCard_beer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:gravity="center"
-                    android:text="@string/beer"
-                    android:textSize="12sp" />
+                        android:id="@+id/textView_offerCard_beer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:text="@string/beer"
+                        android:textSize="12sp" />
 
             </LinearLayout>
 
             <ImageView
-                android:id="@+id/offer_card_gradient"
-                android:layout_width="20dp"
-                android:layout_height="match_parent" />
+                    android:id="@+id/offer_card_gradient"
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:paddingEnd="5dp">
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingEnd="5dp">
 
                 <ImageView
-                    android:id="@+id/offer_card_store_img"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:background="@android:color/transparent"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_shopping_cart_black_24dp" />
+                        android:id="@+id/offer_card_store_img"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@android:color/transparent"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_shopping_cart_24dp" />
 
                 <TextView
-                    android:id="@+id/textView_offerCard_store"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:gravity="center"
-                    android:text="@string/store"
-                    android:textSize="12sp" />
+                        android:id="@+id/textView_offerCard_store"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:text="@string/store"
+                        android:textSize="12sp" />
 
             </LinearLayout>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/offer_card_inner_card"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:cardCornerRadius="10dp">
+                    android:id="@+id/offer_card_inner_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="end"
-                    android:orientation="horizontal"
-                    android:paddingStart="5dp">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="end"
+                        android:orientation="horizontal"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp">
 
                     <ImageView
-                        android:id="@+id/offer_card_no_date_err_icon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_baseline_error_outline_24"
-                        android:visibility="gone"/>
+                            android:id="@+id/offer_card_no_date_err_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/ic_baseline_error_outline_24dp"
+                            app:tint="@color/red"
+                            android:visibility="gone" />
 
                     <TextView
-                        android:id="@+id/offer_card_date_txt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif-light"
-                        android:gravity="center_vertical|start"
-                        android:scaleType="fitCenter"
-                        android:text="@string/offer_card_date_default"
-                        android:textSize="15sp" />
+                            android:id="@+id/offer_card_date_txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:fontFamily="sans-serif-light"
+                            android:gravity="center_vertical|start"
+                            android:scaleType="fitCenter"
+                            android:text="@string/offer_card_date_default"
+                            android:textSize="15sp" />
 
                     <TextView
-                        android:id="@+id/offer_card_price_txt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginEnd="10dp"
-                        android:layout_weight="0"
-                        android:fontFamily="sans-serif-light"
-                        android:gravity="center_vertical"
-                        android:scaleType="fitCenter"
-                        android:text="@string/addoff_price_default"
-                        android:textSize="35sp" />
+                            android:id="@+id/offer_card_price_txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="0"
+                            android:fontFamily="sans-serif-light"
+                            android:gravity="center_vertical"
+                            android:scaleType="fitCenter"
+                            android:text="@string/addoff_price_default"
+                            android:textSize="35sp" />
 
                     <ImageButton
-                        android:id="@+id/offer_card_menu_btn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="0"
-                        android:background="@android:color/transparent" />
+                            android:id="@+id/offer_card_menu_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="0"
+                            android:background="@android:color/transparent" />
 
                 </LinearLayout>
-
+                
             </androidx.cardview.widget.CardView>
 
         </LinearLayout>

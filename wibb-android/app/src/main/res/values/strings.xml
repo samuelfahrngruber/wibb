@@ -68,4 +68,10 @@
     <string name="offer_card_no_date_hint">May be expired!</string>
     <string name="remove_this_offer_it_is_invalid">Remove this offer, it is invalid</string>
     <string name="some_offers_listed_here">Some offers listed here were reported without an end date, which means they may be expired. We will remove such offers after 7 days.</string>
+    <string name="settings_header_appearance">Appearance</string>
+
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_system">System default</string>
+    <string name="settings_theme_desc">Choose Theme</string>
 </resources>
