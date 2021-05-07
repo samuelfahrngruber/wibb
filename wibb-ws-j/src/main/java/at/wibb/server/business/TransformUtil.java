@@ -56,4 +56,16 @@ class TransformUtil {
         offerTemplate.setType(offer.getType());
         return offerTemplate;
     }
+
+    static Offer transformOffer(OfferTemplate offer) {
+        return new Offer(
+                transformBeer(offer.getBeer()),
+                transformStore(offer.getStore()),
+                offer.getPrice(),
+                offer.getStartDate(),
+                offer.getEndDate(),
+                offer.getExpires(),
+                offer.getType()
+        );
+    }
 }
