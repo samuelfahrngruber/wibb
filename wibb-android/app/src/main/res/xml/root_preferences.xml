@@ -82,7 +82,7 @@
 
 
     </PreferenceCategory>
-    
+
     <PreferenceCategory
             app:title="@string/settings_header_appearance"
             app:iconSpaceReserved="false"
@@ -94,8 +94,7 @@
                 app:entries="@array/theme_labels"
                 app:entryValues="@array/theme_keys"
                 app:key="pref_theme"
-                app:useSimpleSummaryProvider="true"
-                />
+                app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
 
 </PreferenceScreen>

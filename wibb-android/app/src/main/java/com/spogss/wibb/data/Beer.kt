@@ -3,7 +3,7 @@ package com.spogss.wibb.data
 import com.spogss.wibb.data.constants.Constants
 import org.json.JSONObject
 
-class Beer(var name: String, var icon: String, var iconBg: String): GridDisplayable {
+class Beer(var name: String, var icon: String, var iconBg: String) : GridDisplayable {
 
     override val iconUrl: String
         get() = icon
@@ -27,7 +27,7 @@ class Beer(var name: String, var icon: String, var iconBg: String): GridDisplaya
         }
     }
 
-    fun toJSON(): JSONObject{
+    fun toJSON(): JSONObject {
         val jo = JSONObject()
         val meta = JSONObject()
         meta.put("iconBg", iconBg)

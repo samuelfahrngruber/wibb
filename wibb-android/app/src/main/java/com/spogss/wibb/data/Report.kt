@@ -13,9 +13,11 @@ class Report(t: RType, i: String, o: Offer) {
     enum class RType {
         FAKE, INCORRECT_DATES, DISPLAY_PROBLEM, OTHER;
 
-        companion object  {
+        companion object {
             fun stringValues(): Array<String> {
-                return values().map { it.toString().replace("_", " ").toLowerCase(Locale.getDefault()) }.toTypedArray()
+                return values().map {
+                    it.toString().replace("_", " ").toLowerCase(Locale.getDefault())
+                }.toTypedArray()
             }
         }
     }

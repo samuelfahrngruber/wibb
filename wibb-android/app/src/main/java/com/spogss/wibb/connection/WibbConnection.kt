@@ -27,15 +27,15 @@ object WibbConnection {
      * Has to be called in order for the connection to be properly established.
      * The context is needed for the HttpRequests sent with Volley.
      */
-    fun initialize(ctx: Context){
-        if(!initialized) {
+    fun initialize(ctx: Context) {
+        if (!initialized) {
             requestQueue = Volley.newRequestQueue(ctx)
 
             initialized = true
         }
     }
 
-    fun loadAll(cbSuccess: (Boolean) -> Unit){
+    fun loadAll(cbSuccess: (Boolean) -> Unit) {
         // TODO implement
     }
 
@@ -46,7 +46,7 @@ object WibbConnection {
      *                  It receives the success status in form of a boolean.
      * @throws WibbConnectionNotInitializedException when the connection is not initialized yet.
      */
-    fun loadBeers(cbSuccess: (Boolean) -> Unit){
+    fun loadBeers(cbSuccess: (Boolean) -> Unit) {
         val apiurl = URLUnifier.unifyApiUrl("/api/beers")
         getJSONArray(apiurl, {
             WibbController.beers.clear()
@@ -67,7 +67,7 @@ object WibbConnection {
      *                  It receives the success status in form of a boolean.
      * @throws WibbConnectionNotInitializedException when the connection is not initialized yet.
      */
-    fun loadStores(cbSuccess: (Boolean) -> Unit){
+    fun loadStores(cbSuccess: (Boolean) -> Unit) {
         getJSONArray(URLUnifier.unifyApiUrl("/api/stores"), {
             WibbController.stores.clear()
             for (i in 0 until it.length()) {
@@ -87,7 +87,7 @@ object WibbConnection {
      *                  It receives the success status in form of a boolean.
      * @throws WibbConnectionNotInitializedException when the connection is not initialized yet.
      */
-    fun loadOffers(cbSuccess: (Boolean) -> Unit){
+    fun loadOffers(cbSuccess: (Boolean) -> Unit) {
         getJSONArray(URLUnifier.unifyApiUrl("/api/offers"), {
             WibbController.offers.clear()
             for (i in 0 until it.length()) {
@@ -107,15 +107,16 @@ object WibbConnection {
      *                  It receives the success status in form of a boolean.
      * @throws WibbConnectionNotInitializedException when the connection is not initialized yet.
      */
-    fun addOffer(offer: Offer, cbSuccess: (Boolean) -> Unit){
+    fun addOffer(offer: Offer, cbSuccess: (Boolean) -> Unit) {
         postJSONObject(URLUnifier.unifyApiUrl("/api/offers"), {
-            if(it.length() > 0)
+            if (it.length() > 0)
                 WibbController.offers.add(Offer.fromJSON(it))
             cbSuccess(true)
         }, {
             cbSuccess(false)
         },
-        offer.toJSON())
+            offer.toJSON()
+        )
     }
 
     /**
@@ -126,13 +127,14 @@ object WibbConnection {
      *                  It receives the report in form of [Report] or null if it was not successful.
      * @throws WibbConnectionNotInitializedException when the connection is not initialized yet.
      */
-    fun addReport(report: Report, cbSuccess: (Report?) -> Unit){
+    fun addReport(report: Report, cbSuccess: (Report?) -> Unit) {
         postJSONObject(URLUnifier.unifyApiUrl("/api/reports"), {
             cbSuccess(Report.fromJSON(it))
         }, {
             cbSuccess(null)
         },
-            report.toJSON())
+            report.toJSON()
+        )
     }
 
     /**
@@ -149,7 +151,8 @@ object WibbConnection {
             cbSuccess(false)
         },
             error.toJSON(),
-            false)
+            false
+        )
     }
 
     /**
@@ -159,7 +162,7 @@ object WibbConnection {
      *                  It receives the success status in form of a boolean.
      * @throws WibbConnectionNotInitializedException when the connection is not initialized yet.
      */
-    fun addRequest(requestText: String, cbSuccess: (Boolean) -> Unit){
+    fun addRequest(requestText: String, cbSuccess: (Boolean) -> Unit) {
         val jo = JSONObject()
         jo.put("text", requestText)
         postJSONObject(URLUnifier.unifyApiUrl("/api/requests"), {
@@ -167,14 +170,24 @@ object WibbConnection {
         }, {
             cbSuccess(false)
         },
-            jo)
+            jo
+        )
     }
 
-    private fun getJSONArray(url: String, cbSuccess: (JSONArray) -> Unit, cbError: (VolleyError) -> Unit){
+    private fun getJSONArray(
+        url: String,
+        cbSuccess: (JSONArray) -> Unit,
+        cbError: (VolleyError) -> Unit
+    ) {
         WibbConnection.getJSONArray(url, cbSuccess, cbError, true)
     }
 
-    private fun getJSONArray(url: String, cbSuccess: (JSONArray) -> Unit, cbError: (VolleyError) -> Unit, reportFailure: Boolean){
+    private fun getJSONArray(
+        url: String,
+        cbSuccess: (JSONArray) -> Unit,
+        cbError: (VolleyError) -> Unit,
+        reportFailure: Boolean
+    ) {
         assertInitialized()
 
         val jsonArrayRequest = JsonArrayRequest(
@@ -183,7 +196,7 @@ object WibbConnection {
                 cbSuccess(response)
             },
             Response.ErrorListener { error ->
-                if(reportFailure) WibbError.fromVolleyError(error).report()
+                if (reportFailure) WibbError.fromVolleyError(error).report()
                 cbError(error)
             }
         )
@@ -191,11 +204,22 @@ object WibbConnection {
         requestQueue?.add(jsonArrayRequest)
     }
 
-    private fun postJSONObject(url: String, cbSuccess: (JSONObject) -> Unit, cbError: (VolleyError) -> Unit, jsonObj: JSONObject){
+    private fun postJSONObject(
+        url: String,
+        cbSuccess: (JSONObject) -> Unit,
+        cbError: (VolleyError) -> Unit,
+        jsonObj: JSONObject
+    ) {
         postJSONObject(url, cbSuccess, cbError, jsonObj, true)
     }
 
-    private fun postJSONObject(url: String, cbSuccess: (JSONObject) -> Unit, cbError: (VolleyError) -> Unit, jsonObj: JSONObject, reportFailure: Boolean){
+    private fun postJSONObject(
+        url: String,
+        cbSuccess: (JSONObject) -> Unit,
+        cbError: (VolleyError) -> Unit,
+        jsonObj: JSONObject,
+        reportFailure: Boolean
+    ) {
         assertInitialized()
 
         val jsonObjectRequest = JsonObjectRequest(
@@ -213,10 +237,10 @@ object WibbConnection {
         requestQueue?.add(jsonObjectRequest)
     }
 
-    private fun assertInitialized(){
-        if(!initialized) {
-            val connectionNotInitializedException
-                    = WibbConnectionNotInitializedException(WibbConnection::class.qualifiedName + " must be initialized first!")
+    private fun assertInitialized() {
+        if (!initialized) {
+            val connectionNotInitializedException =
+                WibbConnectionNotInitializedException(WibbConnection::class.qualifiedName + " must be initialized first!")
             WibbError.fromThrowable(connectionNotInitializedException).report()
             throw connectionNotInitializedException
         }

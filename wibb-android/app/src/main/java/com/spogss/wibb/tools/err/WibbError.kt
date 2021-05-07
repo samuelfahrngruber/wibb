@@ -35,11 +35,12 @@ class WibbError {
          * @param occDesc The description how the error occurred.
          * @return the newly created wibb error.
          */
-        fun fromThrowable(t: Throwable, occDesc: String): WibbError{
+        fun fromThrowable(t: Throwable, occDesc: String): WibbError {
             val e = WibbError()
             e.occurrenceDescription = occDesc
-            e.message = if(t.message == null) "ERROR_MESSAGE_NULL" else t.message!!
-            e.stackTrace = if(t.stackTrace == null) "ERROR_STACKTRACE_NULL" else t.stackTrace.joinToString { "\n> " }
+            e.message = if (t.message == null) "ERROR_MESSAGE_NULL" else t.message!!
+            e.stackTrace =
+                if (t.stackTrace == null) "ERROR_STACKTRACE_NULL" else t.stackTrace.joinToString { "\n> " }
             e.throwable = t
             return e
         }
@@ -49,11 +50,12 @@ class WibbError {
          * @param err The volley error to create this wibb error on.
          * @return the newly created wibb error.
          */
-        fun fromVolleyError(err: VolleyError): WibbError{
+        fun fromVolleyError(err: VolleyError): WibbError {
             val e = WibbError()
             e.occurrenceDescription = "VOLLEY_CONNECTION_ERROR"
-            e.message = if(err.message == null) "VOLLEY_ERROR_MESSAGE_NULL" else err.message!!
-            e.stackTrace = if(err.stackTrace == null) "VOLLEY_ERROR_STACKTRACE_NULL" else err.stackTrace.joinToString { "\n> " }
+            e.message = if (err.message == null) "VOLLEY_ERROR_MESSAGE_NULL" else err.message!!
+            e.stackTrace =
+                if (err.stackTrace == null) "VOLLEY_ERROR_STACKTRACE_NULL" else err.stackTrace.joinToString { "\n> " }
             e.throwable = err.cause
             return e
         }
@@ -63,7 +65,7 @@ class WibbError {
      * Serializes this error into JSON.
      * @return The json object representing this error.
      */
-    fun toJSON(): JSONObject{
+    fun toJSON(): JSONObject {
         val jo = JSONObject()
         jo.put("occurrenceDescription", this.occurrenceDescription)
         jo.put("message", this.message)
@@ -75,7 +77,7 @@ class WibbError {
      * Reports this error.
      * @see WibbConnection.addWibbError
      */
-    fun report(){
-        WibbConnection.addWibbError(this){}
+    fun report() {
+        WibbConnection.addWibbError(this) {}
     }
 }

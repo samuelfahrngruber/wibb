@@ -1,14 +1,12 @@
 package com.spogss.wibb
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.spogss.wibb.controller.WibbController
 import com.spogss.wibb.data.GridDisplayable
 import com.spogss.wibb.ui.FavouriteItemAdapter
-import com.spogss.wibb.ui.GridRecyclerViewAdapter
 
 
 open class FavouritePreferences : AppCompatActivity {
@@ -17,6 +15,7 @@ open class FavouritePreferences : AppCompatActivity {
     constructor(type: FavouriteType) : super() {
         this.type = type
     }
+
     constructor(type: FavouriteType, contentLayoutId: Int) : super(contentLayoutId) {
         this.type = type
     }
@@ -27,9 +26,9 @@ open class FavouritePreferences : AppCompatActivity {
 
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
-        val values: List<GridDisplayable>
-                = if(this.type == FavouriteType.STORE) WibbController.stores
-                  else WibbController.beers
+        val values: List<GridDisplayable> =
+            if (this.type == FavouriteType.STORE) WibbController.stores
+            else WibbController.beers
 
         val rvs = findViewById<RecyclerView>(R.id.recyclerView_favourites)
         val rvsa = FavouriteItemAdapter(this, values)

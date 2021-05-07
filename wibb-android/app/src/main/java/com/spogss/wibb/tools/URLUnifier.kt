@@ -1,20 +1,18 @@
 package com.spogss.wibb.tools
 
-import java.lang.Exception
-
 object URLUnifier {
 
     private var baseUrl = ""
     private var initialized = false
     private var resourceTheme: String? = null
 
-    fun initialize(serverURL: String, resourceTheme: String? = null){
+    fun initialize(serverURL: String, resourceTheme: String? = null) {
         setServerUrl(serverURL)
         initialized = true
         this.resourceTheme = resourceTheme
     }
 
-    fun setServerUrl(serverURL: String){
+    fun setServerUrl(serverURL: String) {
         baseUrl = serverURL
     }
 
@@ -25,14 +23,14 @@ object URLUnifier {
     fun unifyApiUrl(url: String): String {
         assertInitialized()
 
-        if(url.startsWith(baseUrl)) return url
+        if (url.startsWith(baseUrl)) return url
 
         var resurlt = url
 
-        if(!resurlt.startsWith("/"))
+        if (!resurlt.startsWith("/"))
             resurlt = "/$resurlt"
 
-        if(!resurlt.startsWith("/api/"))
+        if (!resurlt.startsWith("/api/"))
             resurlt = "/api$resurlt"
 
         resurlt = baseUrl + resurlt
@@ -43,15 +41,15 @@ object URLUnifier {
     fun unifyImgUrl(url: String): String {
         assertInitialized()
 
-        if(url.startsWith(baseUrl)) return url
+        if (url.startsWith(baseUrl)) return url
 
         var irl = url
         var resurlt = baseUrl
 
-        if(!irl.startsWith("/"))
+        if (!irl.startsWith("/"))
             irl = "/$irl"
 
-        if(resourceTheme != null)
+        if (resourceTheme != null)
             irl = irl.replace("/res/", "/res/theme/$resourceTheme/")
 
         resurlt += irl
@@ -59,8 +57,8 @@ object URLUnifier {
         return resurlt
     }
 
-    private fun assertInitialized(){
-        if(!initialized)
+    private fun assertInitialized() {
+        if (!initialized)
             throw Exception("${URLUnifier::class.qualifiedName} must be initialized first!")
     }
 }

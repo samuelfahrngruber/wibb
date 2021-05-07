@@ -23,14 +23,14 @@ object FavouriteFilter {
         return b1 && b2
     }
 
-    fun readFrom(sp: SharedPreferences){
+    fun readFrom(sp: SharedPreferences) {
         favourites.clear()
         WibbController.beers.forEach {
-            if(sp.getBoolean(it.name, DEFAULT_FAVOURITE))
+            if (sp.getBoolean(it.name, DEFAULT_FAVOURITE))
                 favourites.add(it)
         }
         WibbController.stores.forEach {
-            if(sp.getBoolean(it.name, DEFAULT_FAVOURITE))
+            if (sp.getBoolean(it.name, DEFAULT_FAVOURITE))
                 favourites.add(it)
         }
     }
