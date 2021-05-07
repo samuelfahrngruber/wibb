@@ -4,6 +4,7 @@ import static at.wibb.server.shared.Preconditions.checkArgument;
 import static at.wibb.server.shared.Preconditions.checkNotNull;
 
 import java.util.Date;
+import java.util.Objects;
 
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
@@ -69,5 +70,24 @@ public class Offer {
     @NonNull
     public OfferType getType() {
         return type;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Offer offer = (Offer) o;
+        return Double.compare(offer.price, price) == 0
+                && Objects.equals(beer, offer.beer)
+                && Objects.equals(store, offer.store)
+                && Objects.equals(startDate, offer.startDate)
+                && Objects.equals(endDate, offer.endDate)
+                && Objects.equals(expires, offer.expires)
+                && type == offer.type;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(beer, store, price, startDate, endDate, expires, type);
     }
 }
