@@ -25,7 +25,7 @@ import com.spogss.wibb.tools.UIUtils
 import com.spogss.wibb.tools.URLUnifier
 import java.time.format.DateTimeFormatter
 
-class OfferCardRecyclerViewAdapter(private val context: Context, private var data: List<Offer>):
+class OfferCardRecyclerViewAdapter(private val context: Context, private var data: List<Offer>) :
     RecyclerView.Adapter<OfferCardRecyclerViewAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -55,8 +55,10 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private var dat
         holder.storeTextV.text = o.store!!.name
         holder.storeTextV.setTextColor(UIUtils.getForegroundColorFor(col, context))
 
-        val gd = GradientDrawable(GradientDrawable.Orientation.LEFT_RIGHT,
-            intArrayOf(Color.parseColor(o.beer!!.iconBg), Color.parseColor(o.store!!.iconBg)))
+        val gd = GradientDrawable(
+            GradientDrawable.Orientation.LEFT_RIGHT,
+            intArrayOf(Color.parseColor(o.beer!!.iconBg), Color.parseColor(o.store!!.iconBg))
+        )
         gd.cornerRadius = 0f
 
         holder.gradientImageV.background = gd
@@ -68,9 +70,11 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private var dat
         val formatter = DateTimeFormatter.ofPattern("E, d")
 
         if (o.startDate != null && o.endDate != null) {
-            holder.dateTextV.text = String.format(context.getString(R.string.offer_card_datestr_format),
+            holder.dateTextV.text = String.format(
+                context.getString(R.string.offer_card_datestr_format),
                 o.startDate!!.format(formatter),
-                o.endDate!!.format(formatter))
+                o.endDate!!.format(formatter)
+            )
             holder.dateTextV.setTextColor(UIUtils.getForegroundColorFor(Color.WHITE, context))
             holder.dateHintImageV.visibility = View.GONE
         } else {
@@ -91,19 +95,20 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private var dat
         return data.size
     }
 
-    fun notifyWibbDataChanged(){
+    fun notifyWibbDataChanged() {
         data = WibbController.offers.filter { FavouriteFilter(it) }
         notifyDataSetChanged()
     }
 
-    inner class OfferMenuHelper(private val offer: Offer): View.OnClickListener, PopupMenu.OnMenuItemClickListener {
+    inner class OfferMenuHelper(private val offer: Offer) : View.OnClickListener,
+        PopupMenu.OnMenuItemClickListener {
 
         override fun onClick(v: View) {
             if (v.id == R.id.offer_card_menu_btn) {
                 val popup = PopupMenu(context, v)
                 val inflater = popup.menuInflater
                 inflater.inflate(R.menu.offer_menu, popup.menu)
-                if(offer.endDate == null || offer.startDate == null) {
+                if (offer.endDate == null || offer.startDate == null) {
                     popup.menu.findItem(R.id.remove_this_offer).isVisible = true
                 }
                 popup.setOnMenuItemClickListener(this)
@@ -118,18 +123,35 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private var dat
                 callDialog {
                     val r = Report(Report.RType.values()[it], "NO_MESSAGE", offer)
                     WibbConnection.addReport(r) { rep: Report? ->
-                        if (rep != null) Toast.makeText(context, context.getString(R.string.toast_reportSubmitted, rep.id), Toast.LENGTH_SHORT).show()
-                        else Toast.makeText(context, R.string.toast_reportFailed, Toast.LENGTH_SHORT).show()
+                        if (rep != null) Toast.makeText(
+                            context,
+                            context.getString(R.string.toast_reportSubmitted, rep.id),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        else Toast.makeText(
+                            context,
+                            R.string.toast_reportFailed,
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
                 return true
             } else if (menuItem.itemId == R.id.menu_item_offer_findNearby) {
                 openFindNearbyStoresActivity(offer.store)
             } else if (menuItem.itemId == R.id.remove_this_offer) {
-                val r = Report(Report.RType.INCORRECT_DATES, "Shown with warning; Reported as invalid", offer)
+                val r = Report(
+                    Report.RType.INCORRECT_DATES,
+                    "Shown with warning; Reported as invalid",
+                    offer
+                )
                 WibbConnection.addReport(r) { rep: Report? ->
-                    if (rep != null) Toast.makeText(context, context.getString(R.string.toast_reportSubmitted, rep.id), Toast.LENGTH_SHORT).show()
-                    else Toast.makeText(context, R.string.toast_reportFailed, Toast.LENGTH_SHORT).show()
+                    if (rep != null) Toast.makeText(
+                        context,
+                        context.getString(R.string.toast_reportSubmitted, rep.id),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    else Toast.makeText(context, R.string.toast_reportFailed, Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
 

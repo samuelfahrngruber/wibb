@@ -17,8 +17,8 @@ import com.spogss.wibb.tools.URLUnifier
 
 
 class GridRecyclerViewAdapter<ItemType : GridDisplayable>
-    (private val context: Context, private val data: List<ItemType>)
-    : RecyclerView.Adapter<GridRecyclerViewAdapter.MyViewHolder>() {
+    (private val context: Context, private val data: List<ItemType>) :
+    RecyclerView.Adapter<GridRecyclerViewAdapter.MyViewHolder>() {
 
     private var onItemSelected: ((ItemType) -> Unit)? = null
 
@@ -53,7 +53,7 @@ class GridRecyclerViewAdapter<ItemType : GridDisplayable>
         return data.size
     }
 
-    class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var itemTextV: TextView = itemView.findViewById(R.id.grid_item_text_id)
         var itemImageV: ImageView = itemView.findViewById(R.id.grid_item_img_id)
         var cardV: CardView = itemView.findViewById(R.id.id_cardView_gridItem)

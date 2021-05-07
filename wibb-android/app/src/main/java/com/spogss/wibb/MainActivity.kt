@@ -38,8 +38,7 @@ class MainActivity : AppCompatActivity() {
 
             rvo?.layoutManager = LinearLayoutManager(this)
             rvo?.adapter = rvoa
-        }
-        catch (ex: Exception){
+        } catch (ex: Exception) {
             ErrorHandler.of(this).handle(ex)
         }
     }
@@ -48,7 +47,8 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         rvoa?.notifyWibbDataChanged()
         refreshNoOffersHint()
-        card_invalid_hint.visibility = if (WibbController.offers.any { it.endDate == null }) View.VISIBLE else View.GONE
+        card_invalid_hint.visibility =
+            if (WibbController.offers.any { it.endDate == null }) View.VISIBLE else View.GONE
     }
 
     // init menu
@@ -70,12 +70,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showSettings(){
-        val intent =  Intent(this, SettingsActivity::class.java)
+    private fun showSettings() {
+        val intent = Intent(this, SettingsActivity::class.java)
         startActivity(intent)
     }
 
-    private fun refreshNoOffersHint(){
+    private fun refreshNoOffersHint() {
         if (rvoa!!.itemCount <= 0)
             textView_noOffers.visibility = View.VISIBLE
         else
@@ -83,7 +83,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun hideInvalidHint(view: View) {
-        val animationOffset = card_invalid_hint.height + (card_invalid_hint.layoutParams as ViewGroup.MarginLayoutParams).topMargin * 2
+        val animationOffset =
+            card_invalid_hint.height + (card_invalid_hint.layoutParams as ViewGroup.MarginLayoutParams).topMargin * 2
         linearLayout.animate()
             .translationY(-animationOffset.toFloat())
             .setDuration(300)

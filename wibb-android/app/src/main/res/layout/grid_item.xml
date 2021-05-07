@@ -1,39 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    android:id="@+id/id_cardView_gridItem"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:cardview="http://schemas.android.com/apk/res-auto"
-    android:layout_width="75dp"
-    android:layout_height="100dp"
-    android:layout_margin="5dp"
-    cardview:cardCornerRadius="?attr/cornerRadius"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:cardview="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/id_cardView_gridItem"
+        android:layout_width="75dp"
+        android:layout_height="100dp"
+        android:layout_margin="5dp"
+        cardview:cardCornerRadius="?attr/cornerRadius"
 
-    android:clickable="true"
-    android:foreground="?android:attr/selectableItemBackground">
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground">
 
     <LinearLayout
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
 
         <ImageView
-            android:id="@+id/grid_item_img_id"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
-            android:layout_margin="5dp"
-            android:scaleType="fitCenter"
-            android:background="@android:color/transparent">
+                android:id="@+id/grid_item_img_id"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_margin="5dp"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent">
 
         </ImageView>
 
         <TextView
-            android:id="@+id/grid_item_text_id"
-            android:gravity="center"
-            android:textSize="15sp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/grid_item_default">
+                android:id="@+id/grid_item_text_id"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/grid_item_default">
 
         </TextView>
 

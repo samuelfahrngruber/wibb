@@ -1,9 +1,9 @@
 package com.spogss.wibb.data
 
-import org.json.JSONObject
 import com.spogss.wibb.data.constants.Constants.DEFAULT_META_OBJ
+import org.json.JSONObject
 
-class Store(var name: String, var icon: String, var iconBg: String): GridDisplayable {
+class Store(var name: String, var icon: String, var iconBg: String) : GridDisplayable {
 
     override val iconUrl: String
         get() = icon
@@ -27,7 +27,7 @@ class Store(var name: String, var icon: String, var iconBg: String): GridDisplay
         }
     }
 
-    fun toJSON(): JSONObject{
+    fun toJSON(): JSONObject {
         val jo = JSONObject()
         val meta = JSONObject()
         meta.put("iconBg", iconBg)

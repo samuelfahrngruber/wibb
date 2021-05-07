@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="50dp">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="6dp"
-        app:cardCornerRadius="?attr/cornerRadius"
-        android:id="@+id/offer_card">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="6dp"
+            app:cardCornerRadius="?attr/cornerRadius"
+            android:id="@+id/offer_card">
 
-            <LinearLayout
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <ImageView
+            <ImageView
                     android:id="@+id/offer_card_beer_img"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:scaleType="fitCenter"
                     android:src="@mipmap/drop_plus" />
 
-                <TextView
+            <TextView
                     android:id="@+id/textView_offerCard_beer"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -35,19 +35,19 @@
                     android:gravity="center_vertical"
                     android:padding="5dp" />
 
-                <ImageView
+            <ImageView
                     android:id="@+id/offer_card_gradient"
                     android:layout_width="20dp"
                     android:layout_height="40dp" />
 
-                <ImageView
+            <ImageView
                     android:id="@+id/offer_card_store_img"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:scaleType="fitCenter"
                     android:src="@mipmap/drop_plus" />
 
-                <TextView
+            <TextView
                     android:id="@+id/textView_offerCard_store"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -56,7 +56,7 @@
                     android:gravity="center_vertical"
                     android:padding="5dp" />
 
-                <TextView
+            <TextView
                     android:id="@+id/offer_card_date_txt"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -66,7 +66,7 @@
                     android:textSize="15sp"
                     android:layout_weight="1" />
 
-                <TextView
+            <TextView
                     android:id="@+id/offer_card_price_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -78,7 +78,7 @@
                     android:fontFamily="sans-serif-light"
                     android:layout_weight="0" />
 
-            </LinearLayout>
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 

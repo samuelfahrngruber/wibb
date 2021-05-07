@@ -36,7 +36,7 @@ class ErrorHandler private constructor(context: Context) {
      * @param throwable A throwable that caused the error.
      * Missing information will be extracted from this throwable (e.g. message).
      */
-    fun handle(throwable: Throwable){
+    fun handle(throwable: Throwable) {
         handle(WibbError.fromThrowable(throwable))
     }
 
@@ -44,9 +44,10 @@ class ErrorHandler private constructor(context: Context) {
      * Handles a wibb error accordingly.
      * @param wibbError A error containing all necessary information.
      */
-    fun handle(wibbError: WibbError){
-        if(wibbError.occurrenceDescription.isEmpty())
-            wibbError.occurrenceDescription = "[${context.javaClass.name}]: ${wibbError.occurrenceDescription}"
+    fun handle(wibbError: WibbError) {
+        if (wibbError.occurrenceDescription.isEmpty())
+            wibbError.occurrenceDescription =
+                "[${context.javaClass.name}]: ${wibbError.occurrenceDescription}"
         inform(wibbError.message)
         wibbError.report()
     }
@@ -56,7 +57,7 @@ class ErrorHandler private constructor(context: Context) {
      * The occurrence description will be set to "NO_OCCURRENCE_DESC_HANDLER".
      * @param message The error message.
      */
-    fun handle(message: String){
+    fun handle(message: String) {
         handle(message, "NO_OCCURRENCE_DESC_HANDLER")
     }
 
@@ -65,14 +66,14 @@ class ErrorHandler private constructor(context: Context) {
      * @param message The error message.
      * @param occDesc The occurrence description describing what was done that the error occurred.
      */
-    fun handle(message: String, occDesc: String){
+    fun handle(message: String, occDesc: String) {
         val e = WibbError()
         e.message = message
         e.occurrenceDescription = occDesc
         handle(e)
     }
 
-    private fun inform(message: String){
+    private fun inform(message: String) {
         Log.e("[ErrorHandler.${context.javaClass.name}]", "message")
         Toast.makeText(context, "ERROR: $message", Toast.LENGTH_SHORT).show()
     }
