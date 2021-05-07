@@ -7,10 +7,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.PreferenceManager
 import com.spogss.wibb.connection.WibbConnection
+import com.spogss.wibb.controller.WibbController
 import com.spogss.wibb.tools.FavouriteFilter
 import com.spogss.wibb.tools.URLUnifier
 import com.spogss.wibb.tools.err.ErrorHandler
 import kotlinx.android.synthetic.main.activity_splash.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class SplashActivity : AppCompatActivity() {
@@ -23,53 +28,61 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        doSplashStuff()
-    }
 
-    private fun doSplashStuff() {
+        var intent = Intent(this, MainActivity::class.java)
+
         try {
-            val prefs = PreferenceManager.getDefaultSharedPreferences(this)
-            val apiurl = prefs.getString("apiurl", "https://wibb.host")
-            URLUnifier.initialize(apiurl!!, "mini")
+            setup()
+            startActivity(intent)
+            finish()
+        } catch (e: Exception) {
+            Log.e("INITERR", "Error while loading information. " + e.message)
+            ErrorHandler.of(this).handle(getString(R.string.toast_connectionError))
 
-            WibbConnection.initialize(this.applicationContext)
-
-            WibbConnection.loadBeers {
-                if (it) {
-                    progress_icon.setProgress(50, 100)
-                    WibbConnection.loadStores {
-                        if (it) {
-                            progress_icon.setProgress(50, 100, 100)
-                            WibbConnection.loadOffers {
-                                if (it) {
-                                    FavouriteFilter.readFrom(prefs)
-                                    val intent = Intent(this, MainActivity::class.java)
-                                    startActivity(intent)
-                                    finish()
-                                } else handleStartupError()
-                            }
-                        } else handleStartupError()
-                    }
-                } else handleStartupError()
-            }
-
-            // Set theme
-            prefs.getString("pref_theme", "-1")?.let {
-                val nightMode = Integer.parseInt(it)
-                AppCompatDelegate.setDefaultNightMode(nightMode)
-            }
-
-        } catch (ex: Exception) {
-            ErrorHandler.of(this).handle(ex)
+            intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 
-    private fun handleStartupError() {
-        Log.e("INITERR", "Error while loading information")
+    /**
+     * Loads all required data and prepares the app.
+     */
+    private fun setup() {
+        GlobalScope.launch {
+            val prefs = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+            val apiUrl = prefs.getString("pref_api_url", "https://wibb.host")
+            val nightMode = prefs.getString("pref_theme", "-1")
 
-        ErrorHandler.of(this).handle(getString(R.string.toast_connectionError))
+            loadStaticData(apiUrl)
+            applyTheme(nightMode)
+            FavouriteFilter.readFrom(prefs)
+        }
+    }
 
-        val intent = Intent(this, SettingsActivity::class.java)
-        startActivity(intent)
+    /**
+     * Applies theme from a given night-mode.
+     */
+    private fun applyTheme(nightMode: String?) {
+        nightMode?.let {
+            AppCompatDelegate.setDefaultNightMode(Integer.parseInt(it))
+        }
+    }
+
+    /**
+     * Loads all required static data from the backend.
+     */
+    private suspend fun loadStaticData(apiUrl: String?) = withContext(Dispatchers.Default) {
+        URLUnifier.initialize(apiUrl!!, "mini")
+        WibbConnection.initialize(applicationContext)
+
+        WibbController.setBeers(WibbConnection.getBeers())
+        runOnUiThread { progress_icon.setProgress(33, 100) }
+
+        WibbController.setStores(WibbConnection.getStores())
+        runOnUiThread { progress_icon.setProgress(33, 66, 100) }
+
+        WibbController.setOffers(WibbConnection.getOffers())
+        runOnUiThread { progress_icon.setProgress(66, 100, 100) }
     }
 }

@@ -24,8 +24,8 @@
             app:isPreferenceVisible="false">
 
         <EditTextPreference
-                app:key="apiurl"
-                app:title="@string/settings_global_apiurl"
+                app:key="pref_api_url"
+                app:title="@string/settings_dev_mode_api_url"
                 app:useSimpleSummaryProvider="true"
                 app:iconSpaceReserved="false"
                 app:isPreferenceVisible="true"

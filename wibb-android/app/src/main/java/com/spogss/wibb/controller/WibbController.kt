@@ -13,4 +13,19 @@ object WibbController {
     val beers = mutableListOf<Beer>()
     val stores = mutableListOf<Store>()
     val offers = mutableListOf<Offer>()
+
+    fun setBeers(newBeers: List<Beer>) {
+        beers.clear()
+        beers.addAll(newBeers)
+    }
+
+    fun setStores(newStores: List<Store>) {
+        stores.clear()
+        stores.addAll(newStores)
+    }
+
+    fun setOffers(newOffers: List<Offer>) {
+        offers.clear()
+        offers.addAll(newOffers)
+    }
 }
