@@ -1,10 +1,12 @@
 package com.spogss.wibb
 
 import android.os.Bundle
+import android.provider.Settings
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode
 import androidx.preference.ListPreference
 import androidx.preference.Preference
+import androidx.preference.PreferenceCategory
 import androidx.preference.PreferenceFragmentCompat
 
 
@@ -21,8 +23,19 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     class SettingsFragment : PreferenceFragmentCompat() {
+
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
+
+            // show developer options in dev mode
+            findPreference<PreferenceCategory>("dev_mode_prefs")?.let { devModePrefs ->
+                val isDevMode: Int = Settings.Global.getInt(
+                    context?.applicationContext?.contentResolver,
+                    Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 0
+                )
+
+                devModePrefs.isVisible = isDevMode == 1;
+            }
 
             // trigger setDefaultNightMode when the preference is updated
             val themePreference: ListPreference? = findPreference("pref_theme")
@@ -35,7 +48,6 @@ class SettingsActivity : AppCompatActivity() {
                         true
                     }
             }
-
         }
     }
 }

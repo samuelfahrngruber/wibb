@@ -16,7 +16,7 @@
 
     <string name="title_activity_settings">Settings</string>
 
-    <string name="settings_header_global">Global Settings</string>
+    <string name="settings_header_dev_mode">Developer Options</string>
     <string name="settings_global_apiurl">Wibb Server URL</string>
 
     <string name="addoff_price_default">~€0</string>
