@@ -51,7 +51,7 @@ class SplashActivity : AppCompatActivity() {
     private fun setup() {
         GlobalScope.launch {
             val prefs = PreferenceManager.getDefaultSharedPreferences(applicationContext)
-            val apiUrl = prefs.getString("apiurl", "https://wibb.host")
+            val apiUrl = prefs.getString("pref_api_url", "https://wibb.host")
             val nightMode = prefs.getString("pref_theme", "-1")
 
             loadStaticData(apiUrl)
