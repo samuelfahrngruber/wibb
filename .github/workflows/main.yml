@@ -13,6 +13,9 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
+      - name: Make gradlew executable
+        working-directory: ./wibb-ws-j
+        run: chmod +x ./gradlew
       - name: Publish package
         working-directory: ./wibb-ws-j
         run: ./gradlew publish
