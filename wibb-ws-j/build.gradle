@@ -2,10 +2,11 @@ plugins {
 	id 'org.springframework.boot' version '2.4.5'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	id 'fr.brouillard.oss.gradle.jgitver' version '0.9.1'
+	id 'maven-publish'
 }
 
 group = 'at.wibb'
-version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 repositories {
@@ -20,4 +21,24 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+}
+
+publishing {
+
+	publications {
+		bootJava(MavenPublication) {
+			artifact bootJar
+		}
+	}
+
+	repositories {
+		maven {
+			name = "GitHubPackages"
+			url = "https://maven.pkg.github.com/samuelfahrngruber/wibb"
+			credentials {
+				username = System.getenv("GITHUB_ACTOR")
+				password = System.getenv("GITHUB_TOKEN")
+			}
+		}
+	}
 }
