@@ -26,4 +26,4 @@ jobs:
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           files: |
-            *.jar
+            ./wibb-ws-j/build/libs/*.jar
