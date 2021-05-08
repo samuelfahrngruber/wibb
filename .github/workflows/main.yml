@@ -1,21 +1,18 @@
 name: Publish server jar to GitHub Packages
-on:
-  push:
+
+on: [push]
 
 jobs:
-  publish:
-    runs-on: ubuntu-latest 
-    permissions: 
-      contents: read
-      packages: write 
+  build:
+    runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-java@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
         with:
           java-version: '11'
           distribution: 'adopt'
-      - name: Make gradlew executable
-        run: chmod +x ./gradlew
       - name: Publish package
         run: ./gradlew publish
         env:
