@@ -1,6 +1,9 @@
 name: Publish server jar to GitHub Packages
 
-on: [push]
+on:
+  push:
+    tags:
+      - '*'
 
 jobs:
   build:
