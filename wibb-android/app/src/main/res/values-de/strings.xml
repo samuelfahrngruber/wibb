@@ -1,25 +1,24 @@
 <resources>
-    <string name="app_name">Wibb</string>
 
+    <!-- General -->
+    <string name="app_name">Wibb</string>
     <string name="beer">Bier</string>
     <string name="store">Geschäft</string>
 
-    <string name="default_heading_addoffer">TASK</string>
+    <!-- Add offer -->
+    <string name="add_offer_choose_store">Welches Geschäft?</string>
+    <string name="add_offer_choose_beer">Welches Bier?</string>
+    <string name="add_offer_choose_price">Wie teuer?</string>
+    <string name="add_offer_choose_time">Bis wann?</string>
 
-    <string name="addoff_choose_store">Welches Geschäft?</string>
-    <string name="addoff_choose_beer">Welches Bier?</string>
-    <string name="addoff_choose_price">Wie teuer?</string>
-    <string name="addoff_choose_time">Bis wann?</string>
-
-    <string name="addoff_header_offerPreview">Vorschau</string>
+    <string name="add_offer_header_offerPreview">Vorschau</string>
 
 
-    <string name="title_activity_settings">Einstellungen</string>
+    <string name="settings_title">Einstellungen</string>
+    <string name="settings_category_dev_mode">Entwickler Optionen</string>
+    <string name="settings_api_url_title">Wibb Server URL</string>
 
-    <string name="settings_header_dev_mode">Entwickler Optionen</string>
-    <string name="settings_dev_mode_api_url">Wibb Server URL</string>
-
-    <string name="addoff_price_default">~€0</string>
+    <string name="add_offer_price_default">~€0</string>
     <string name="grid_item_default">DEFAULT</string>
 
     <string name="toast_newOffer_success">Angebot erfolgreich hinzugefügt!</string>
@@ -46,18 +45,18 @@
 
     <string name="no_offers">Wir konnten kein Angebot finden. &#128531;</string>
 
-    <string name="cdrp_mon">Mo</string>
-    <string name="cdrp_tue">Di</string>
-    <string name="cdrp_wed">Mi</string>
-    <string name="cdrp_thu">Do</string>
-    <string name="cdrp_fri">Fr</string>
-    <string name="cdrp_sat">Sa</string>
-    <string name="cdrp_sun">So</string>
+    <string name="day_mon">Mo</string>
+    <string name="day_tue">Di</string>
+    <string name="day_wed">Mi</string>
+    <string name="day_thu">Do</string>
+    <string name="day_fri">Fr</string>
+    <string name="day_sat">Sa</string>
+    <string name="day_sun">So</string>
 
     <string name="menuOffer_find_nearby">In Google Maps anzeigen</string>
     <string name="menuOffer_report_offer">Melden</string>
-    <string name="offer_card_date_default">von - bis</string>
-    <string name="offer_card_datestr_format">von %s.\nbis %s.</string>
+    <string name="offer_card_from_to_default">von - bis</string>
+    <string name="offer_card_from_to">von %s.\nbis %s.</string>
 
     <string name="settings_header_favourites">Favoriten</string>
     <string name="settings_item_beerFavourites">Lieblingsbiere ändern</string>
@@ -74,4 +73,9 @@
     <string name="theme_dark">Dunkel</string>
     <string name="theme_system">Gleich wie Android</string>
     <string name="settings_theme_desc">Aussehen ändern</string>
+    <string name="content_desc_brand_icon">Markenlogo</string>
+    <string name="content_desc_gradient">Farbverlauf</string>
+    <string name="placeholder_name">Name</string>
+    <string name="content_desc_add_new_offer">Neues Angebot erstellen</string>
+    <string name="content_desc_submit_offer">Angebot bestätigen</string>
 </resources>

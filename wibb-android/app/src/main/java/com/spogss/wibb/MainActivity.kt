@@ -25,15 +25,15 @@ class MainActivity : AppCompatActivity() {
             setContentView(R.layout.activity_main)
 
             // init fab
-            val fab_addOffer: FloatingActionButton = findViewById(R.id.fab_addOffer)
+            val fabAddOffer: FloatingActionButton = findViewById(R.id.fab_addOffer)
 
-            fab_addOffer.setOnClickListener {
+            fabAddOffer.setOnClickListener {
                 val intent = Intent(this, AddOfferActivity::class.java)
                 startActivity(intent)
             }
 
             // init offers
-            rvo = findViewById<RecyclerView>(R.id.recyclerView_offers)
+            rvo = findViewById(R.id.recyclerView_offers)
             rvoa = OfferCardRecyclerViewAdapter(this, WibbController.offers)
 
             rvo?.layoutManager = LinearLayoutManager(this)

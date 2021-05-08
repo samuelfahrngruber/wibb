@@ -14,7 +14,7 @@ class SettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.settings_activity)
+        setContentView(R.layout.activity_preferences)
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.settings, SettingsFragment())
@@ -34,7 +34,7 @@ class SettingsActivity : AppCompatActivity() {
                     Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 0
                 )
 
-                devModePrefs.isVisible = isDevMode == 1;
+                devModePrefs.isVisible = isDevMode == 1
             }
 
             // trigger setDefaultNightMode when the preference is updated

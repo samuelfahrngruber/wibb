@@ -85,7 +85,7 @@ class AddOfferActivity : AppCompatActivity() {
             rvb.layoutManager = GridAutofitLayoutManager(this, columnWidth)
             rvb.adapter = rvba
 
-            // init seekarc
+            // init seekArc
             val seekArc = findViewById<SeekArc>(R.id.seekArc)
             seekArc.setOnSeekArcChangeListener(object : SeekArc.OnSeekArcChangeListener {
                 override fun onProgressChanged(
@@ -109,7 +109,7 @@ class AddOfferActivity : AppCompatActivity() {
             val fab = findViewById<FloatingActionButton>(R.id.fab_priceDone)
             fab.setOnClickListener { nextstep() }
 
-            // init calendarpicker
+            // init calendar picker
             val v = findViewById<View>(R.id.incl_cardView_currentOffer)
             val txt = v.findViewById<TextView>(R.id.offer_card_date_txt)
             txt.text = ""
@@ -119,7 +119,7 @@ class AddOfferActivity : AppCompatActivity() {
                 override fun onFirstDateSelected(startDate: Calendar) {
                     val startDateLocal = LocalDateTime.ofInstant(
                         startDate.toInstant(),
-                        startDate.getTimeZone().toZoneId()
+                        startDate.timeZone.toZoneId()
                     ).toLocalDate()
                     setOfferStartDate(startDateLocal)
                 }

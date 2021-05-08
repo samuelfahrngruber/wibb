@@ -82,7 +82,7 @@
                         app:rotation="180"
                         app:startAngle="30"
                         app:sweepAngle="300"
-                        app:thumb="@drawable/seekarc_thumb"
+                        app:thumb="@drawable/seek_arc_thumb"
                         app:touchInside="true" />
 
                 <TextView
@@ -90,7 +90,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/addoff_price_default"
+                        android:text="@string/add_offer_price_default"
                         android:textSize="60sp" />
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -102,7 +102,8 @@
                         android:src="@drawable/ic_arrow_forward_24dp"
                         app:backgroundTint="@color/colorAccent"
                         android:tint="@color/textDark"
-                        app:elevation="0dp" />
+                        app:elevation="0dp"
+                        android:contentDescription="@string/content_desc_add_new_offer" />
 
             </FrameLayout>
         </LinearLayout>
@@ -135,7 +136,8 @@
                 android:onClick="submitNewOffer"
                 android:src="@drawable/ic_done_white_24dp"
                 android:translationY="100dp"
-                app:backgroundTint="@color/green" />
+                app:backgroundTint="@color/green"
+                android:contentDescription="@string/content_desc_submit_offer" />
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -144,7 +146,7 @@
 
             <TextView
                     style="?android:attr/listSeparatorTextViewStyle"
-                    android:text="@string/addoff_header_offerPreview" />
+                    android:text="@string/add_offer_header_offerPreview" />
 
             <LinearLayout
                     android:layout_width="match_parent"

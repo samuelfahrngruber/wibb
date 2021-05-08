@@ -71,7 +71,7 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private var dat
 
         if (o.startDate != null && o.endDate != null) {
             holder.dateTextV.text = String.format(
-                context.getString(R.string.offer_card_datestr_format),
+                context.getString(R.string.offer_card_from_to),
                 o.startDate!!.format(formatter),
                 o.endDate!!.format(formatter)
             )

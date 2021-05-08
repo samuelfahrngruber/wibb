@@ -21,11 +21,13 @@ import kotlinx.coroutines.runBlocking
 class SplashActivity : AppCompatActivity() {
 
     private val coroutineExceptionHandler = CoroutineExceptionHandler { _, exception ->
-        Log.e("INITERR", "Error while loading information. " + exception.message)
-        ErrorHandler.of(this).handle(getString(R.string.toast_connectionError))
+        runOnUiThread {
+            Log.e("INITERR", "Error while loading information. " + exception.message)
+            ErrorHandler.of(this).handle(getString(R.string.toast_connectionError))
 
-        startActivity(Intent(applicationContext, SettingsActivity::class.java))
-        finish()
+            startActivity(Intent(applicationContext, SettingsActivity::class.java))
+            finish()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

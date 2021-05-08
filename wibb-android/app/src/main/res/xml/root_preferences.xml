@@ -18,14 +18,14 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
-            app:title="@string/settings_header_dev_mode"
+            app:title="@string/settings_category_dev_mode"
             app:key="dev_mode_prefs"
             app:iconSpaceReserved="false"
             app:isPreferenceVisible="false">
 
         <EditTextPreference
                 app:key="pref_api_url"
-                app:title="@string/settings_dev_mode_api_url"
+                app:title="@string/settings_api_url_title"
                 app:useSimpleSummaryProvider="true"
                 app:iconSpaceReserved="false"
                 app:isPreferenceVisible="true"

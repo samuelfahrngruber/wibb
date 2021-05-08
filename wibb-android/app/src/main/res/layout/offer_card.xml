@@ -103,7 +103,7 @@
                             android:fontFamily="sans-serif-light"
                             android:gravity="center_vertical|start"
                             android:scaleType="fitCenter"
-                            android:text="@string/offer_card_date_default"
+                            android:text="@string/offer_card_from_to_default"
                             android:textSize="15sp" />
 
                     <TextView
@@ -115,7 +115,7 @@
                             android:fontFamily="sans-serif-light"
                             android:gravity="center_vertical"
                             android:scaleType="fitCenter"
-                            android:text="@string/addoff_price_default"
+                            android:text="@string/add_offer_price_default"
                             android:textSize="35sp" />
 
                     <ImageButton
