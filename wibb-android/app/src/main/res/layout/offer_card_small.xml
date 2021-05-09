@@ -24,7 +24,8 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:scaleType="fitCenter"
-                    android:src="@mipmap/drop_plus" />
+                    android:src="@mipmap/drop_plus"
+                    android:contentDescription="@string/content_desc_beer_brand_logo" />
 
             <TextView
                     android:id="@+id/textView_offerCard_beer"
@@ -38,14 +39,16 @@
             <ImageView
                     android:id="@+id/offer_card_gradient"
                     android:layout_width="20dp"
-                    android:layout_height="40dp" />
+                    android:layout_height="40dp"
+                    android:contentDescription="@string/content_desc_gradient" />
 
             <ImageView
                     android:id="@+id/offer_card_store_img"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:scaleType="fitCenter"
-                    android:src="@mipmap/drop_plus" />
+                    android:src="@mipmap/drop_plus"
+                    android:contentDescription="@string/content_desc_store_brand_logo" />
 
             <TextView
                     android:id="@+id/textView_offerCard_store"

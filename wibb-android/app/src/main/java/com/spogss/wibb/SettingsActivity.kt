@@ -28,7 +28,7 @@ class SettingsActivity : AppCompatActivity() {
             setPreferencesFromResource(R.xml.root_preferences, rootKey)
 
             // show developer options in dev mode
-            findPreference<PreferenceCategory>("dev_mode_prefs")?.let { devModePrefs ->
+            findPreference<PreferenceCategory>(getString(R.string.key_category_dev_mode))?.let { devModePrefs ->
                 val isDevMode: Int = Settings.Global.getInt(
                     context?.applicationContext?.contentResolver,
                     Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 0
@@ -38,7 +38,7 @@ class SettingsActivity : AppCompatActivity() {
             }
 
             // trigger setDefaultNightMode when the preference is updated
-            val themePreference: ListPreference? = findPreference("pref_theme")
+            val themePreference: ListPreference? = findPreference(getString(R.string.key_pref_theme))
             themePreference?.let {
                 it.onPreferenceChangeListener =
                     Preference.OnPreferenceChangeListener { _: Preference?,

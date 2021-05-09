@@ -49,6 +49,8 @@ class MainActivity : AppCompatActivity() {
         refreshNoOffersHint()
         card_invalid_hint.visibility =
             if (WibbController.offers.any { it.endDate == null }) View.VISIBLE else View.GONE
+        card_no_favourites.visibility =
+            if (WibbController.favourites.isEmpty()) View.VISIBLE else View.GONE
     }
 
     // init menu
@@ -93,6 +95,21 @@ class MainActivity : AppCompatActivity() {
                     super.onAnimationEnd(animation)
                     linearLayout.translationY = 0.0.toFloat()
                     card_invalid_hint.visibility = View.GONE
+                }
+            })
+    }
+
+    fun hideNoFavouritesHint(view: View) {
+        val animationOffset =
+            card_no_favourites.height + (card_no_favourites.layoutParams as ViewGroup.MarginLayoutParams).topMargin * 2
+        linearLayout.animate()
+            .translationY(-animationOffset.toFloat())
+            .setDuration(300)
+            .setListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator?) {
+                    super.onAnimationEnd(animation)
+                    linearLayout.translationY = 0.0.toFloat()
+                    card_no_favourites.visibility = View.GONE
                 }
             })
     }

@@ -17,10 +17,10 @@ import com.bumptech.glide.Glide
 import com.spogss.wibb.R
 import com.spogss.wibb.connection.WibbConnection
 import com.spogss.wibb.controller.WibbController
+import com.spogss.wibb.data.GridDisplayable
 import com.spogss.wibb.data.Offer
 import com.spogss.wibb.data.Report
 import com.spogss.wibb.data.Store
-import com.spogss.wibb.tools.FavouriteFilter
 import com.spogss.wibb.tools.UIUtils
 import com.spogss.wibb.tools.URLUnifier
 import java.time.format.DateTimeFormatter
@@ -36,12 +36,11 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private var dat
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val o = data[position]
-        var col: Int
 
         Glide.with(context)
             .load(URLUnifier.unifyImgUrl(o.beer!!.icon))
             .into(holder.brandImageV)
-        col = Color.parseColor(o.beer!!.iconBg)
+        var col: Int = Color.parseColor(o.beer!!.iconBg)
         holder.brandImageC.setBackgroundColor(col)
         holder.brandImageV.setBackgroundColor(col)
         holder.brandTextV.text = o.beer!!.name
@@ -65,7 +64,7 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private var dat
 
         holder.offerCardV.setCardBackgroundColor(Color.parseColor(o.store!!.iconBg)) // = gd //
 
-        holder.priceTextV.text = "€${o.price}"
+        holder.priceTextV.text = context.getString(R.string.add_offer_price_exact, o.price)
 
         val formatter = DateTimeFormatter.ofPattern("E, d")
 
@@ -96,7 +95,9 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private var dat
     }
 
     fun notifyWibbDataChanged() {
-        data = WibbController.offers.filter { FavouriteFilter(it) }
+        data = WibbController.offers.filter {
+            WibbController.favourites.containsAll(listOf(it.beer, it.store))
+        }
         notifyDataSetChanged()
     }
 
@@ -119,9 +120,34 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private var dat
         }
 
         override fun onMenuItemClick(menuItem: MenuItem): Boolean {
-            if (menuItem.itemId == R.id.menu_item_offer_report) {
-                callDialog {
-                    val r = Report(Report.RType.values()[it], "NO_MESSAGE", offer)
+            when (menuItem.itemId) {
+                R.id.menu_item_offer_report -> {
+                    callDialog {
+                        val r = Report(Report.RType.values()[it], "NO_MESSAGE", offer)
+                        WibbConnection.addReport(r) { rep: Report? ->
+                            if (rep != null) Toast.makeText(
+                                context,
+                                context.getString(R.string.toast_reportSubmitted, rep.id),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            else Toast.makeText(
+                                context,
+                                R.string.toast_reportFailed,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    }
+                    return true
+                }
+                R.id.menu_item_offer_findNearby -> {
+                    openFindNearbyStoresActivity(offer.store)
+                }
+                R.id.remove_this_offer -> {
+                    val r = Report(
+                        Report.RType.INCORRECT_DATES,
+                        "Shown with warning; Reported as invalid",
+                        offer
+                    )
                     WibbConnection.addReport(r) { rep: Report? ->
                         if (rep != null) Toast.makeText(
                             context,
@@ -132,26 +158,9 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private var dat
                             context,
                             R.string.toast_reportFailed,
                             Toast.LENGTH_SHORT
-                        ).show()
+                        )
+                            .show()
                     }
-                }
-                return true
-            } else if (menuItem.itemId == R.id.menu_item_offer_findNearby) {
-                openFindNearbyStoresActivity(offer.store)
-            } else if (menuItem.itemId == R.id.remove_this_offer) {
-                val r = Report(
-                    Report.RType.INCORRECT_DATES,
-                    "Shown with warning; Reported as invalid",
-                    offer
-                )
-                WibbConnection.addReport(r) { rep: Report? ->
-                    if (rep != null) Toast.makeText(
-                        context,
-                        context.getString(R.string.toast_reportSubmitted, rep.id),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    else Toast.makeText(context, R.string.toast_reportFailed, Toast.LENGTH_SHORT)
-                        .show()
                 }
             }
 

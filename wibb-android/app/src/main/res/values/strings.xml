@@ -1,4 +1,5 @@
 <resources>
+
     <!-- General -->
     <string name="app_name">Wibb</string>
     <string name="beer">Beer</string>
@@ -11,6 +12,8 @@
     <string name="add_offer_choose_time">How Long?</string>
     <string name="add_offer_header_offerPreview">Offer Preview</string>
     <string name="add_offer_price_default">~€0</string>
+    <string name="add_offer_price_approximate">~€%1$d</string>
+    <string name="add_offer_price_exact">€%1$d</string>
 
     <!-- Settings -->
     <string name="settings_title">Settings</string>
@@ -24,12 +27,13 @@
     <string name="settings_description_beerFavourites">The app will only show beers and offers marked as favourite.</string>
     <string name="settings_header_storeFavourites">Edit Store Favourites</string>
     <string name="settings_description_storeFavourites">The app will only show stores and offers marked as favourite.</string>
+    <string name="settings_header_appearance">Appearance</string>
+    <string name="settings_theme_desc">Choose Theme</string>
 
-    <!-- Toasts -->
-    <string name="toast_newOffer_success">Successfully added new offer!</string>
-    <string name="toast_newOffer_fail">Failed to add new offer!</string>
-    <string name="toast_newOffer_invalid">This offer is invalid!</string>
-    <string name="toast_connectionError">Failed to retrieve data from the Server! (Correct API Server URL?)</string>
+    <!-- Themes -->
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_system">System default</string>
 
     <!-- Report offer -->
     <string name="alert_header_report">Report offer</string>
@@ -38,15 +42,11 @@
     <string name="toast_reportSubmitted">Report #%1$s submitted!</string>
     <string name="toast_reportFailed">Could not report offer. Try again Later!</string>
 
-    <string name="grid_item_default">DEFAULT</string>
-    <string name="offerCard_store_prefix">at</string>
-    <string name="contentRequest_buttonSubmit">Send Request</string>
-    <string name="contentRequest_editText_hint">What would you like to be added to Wibb?</string>
-    <string name="toast_contentRequest_success">Successfully submitted Request!</string>
-    <string name="toast_contentRequest_fail">Could not submit Request!</string>
-
-    <!-- Main -->
-    <string name="no_offers">We couldn\'t find any offers! &#128531;</string>
+    <!-- Feedback -->
+    <string name="feedback_submit">Send Request</string>
+    <string name="feedback_hint">What would you like to be added to Wibb?</string>
+    <string name="feedback_success">Successfully submitted Request!</string>
+    <string name="feedback_fail">Could not submit Request!</string>
 
     <!-- Calendar -->
     <string name="day_mon">Mon</string>
@@ -58,26 +58,40 @@
     <string name="day_sun">Sun</string>
 
     <!-- Offer menu -->
-    <string name="menuOffer_find_nearby">Find Nearby</string>
-    <string name="menuOffer_report_offer">Report Offer</string>
+    <string name="menu_remove_offer">Remove this offer, it is invalid</string>
+    <string name="menu_find_nearby">Find Nearby</string>
+    <string name="menu_report_offer">Report Offer</string>
 
     <!-- Offer card -->
     <string name="offer_card_from_to_default">from - to</string>
     <string name="offer_card_from_to">from %s.\nto %s.</string>
     <string name="offer_card_no_date_hint">May be expired!</string>
+    <string name="offer_card_store_prefix">at</string>
 
+    <!-- Warnings -->
+    <string name="warning_offer_without_date">Some offers listed here were reported without an end date, which means they may be expired. We will remove such offers after 7 days.</string>
+    <string name="warning_no_offers">We couldn\'t find any offers! &#128531;</string>
+    <string name="warning_invalid_offer">This offer is invalid!</string>
 
-    <string name="remove_this_offer_it_is_invalid">Remove this offer, it is invalid</string>
-    <string name="some_offers_listed_here">Some offers listed here were reported without an end date, which means they may be expired. We will remove such offers after 7 days.</string>
-    <string name="settings_header_appearance">Appearance</string>
+    <!-- Errors -->
+    <string name="error_connection">Failed to retrieve data from the Server! %1$s</string>
+    <string name="error_new_offer_failed">Failed to add new offer!</string>
 
-    <string name="theme_light">Light</string>
-    <string name="theme_dark">Dark</string>
-    <string name="theme_system">System default</string>
-    <string name="settings_theme_desc">Choose Theme</string>
+    <!-- Accessibility -->
     <string name="content_desc_brand_icon">Brand icon</string>
     <string name="content_desc_gradient">Gradient</string>
-    <string name="placeholder_name">Name</string>
     <string name="content_desc_add_new_offer">Add new offer</string>
     <string name="content_desc_submit_offer">Submit Offer</string>
+    <string name="content_desc_close_this_warning">Close this warning</string>
+    <string name="content_desc_warning">Warning</string>
+    <string name="content_desc_beer_brand_logo">Beer Brand Logo</string>
+    <string name="content_desc_store_brand_logo">Store Brand Logo</string>
+    <string name="content_desc_menu">Menu</string>
+
+    <!-- Misc -->
+    <string name="toast_newOffer_success">Successfully added new offer!</string>
+    <string name="placeholder_grid_item">DEFAULT</string>
+    <string name="placeholder_name">Name</string>
+    <string name="warning_no_favourites">There are no offers displayed because you have no favourites selected. To change this head over to preferences.</string>
+
 </resources>

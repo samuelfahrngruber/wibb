@@ -5,7 +5,7 @@ import java.util.*
 
 class Report(t: RType, i: String, o: Offer) {
     var type: RType = t
-    var info: String = i
+    private var info: String = i
     var offer: Offer = o
 
     var id: String? = null

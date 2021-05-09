@@ -19,12 +19,12 @@
 
     <PreferenceCategory
             app:title="@string/settings_category_dev_mode"
-            app:key="dev_mode_prefs"
+            app:key="@string/key_category_dev_mode"
             app:iconSpaceReserved="false"
             app:isPreferenceVisible="false">
 
         <EditTextPreference
-                app:key="pref_api_url"
+                app:key="@string/key_pref_api_url"
                 app:title="@string/settings_api_url_title"
                 app:useSimpleSummaryProvider="true"
                 app:iconSpaceReserved="false"
@@ -40,7 +40,7 @@
             app:isPreferenceVisible="true">
 
         <Preference
-                app:key="favb"
+                app:key="@string/key_pref_favourites_beers"
                 app:title="@string/settings_item_beerFavourites"
                 app:summary="@string/settings_description_beerFavourites"
                 app:iconSpaceReserved="false">
@@ -52,7 +52,7 @@
         </Preference>
 
         <Preference
-                app:key="favs"
+                app:key="@string/key_pref_favourites_stores"
                 app:title="@string/settings_header_storeFavourites"
                 app:summary="@string/settings_description_storeFavourites"
                 app:iconSpaceReserved="false">
@@ -70,7 +70,7 @@
             app:iconSpaceReserved="false">
 
         <Preference
-                app:key="pref_req_new_beer"
+                app:key="@string/key_pref_feedback"
                 app:title="@string/settings_feedback_label"
                 app:summary="@string/settings_feedback_suggestion"
                 app:iconSpaceReserved="false">
@@ -88,14 +88,16 @@
             app:title="@string/settings_header_appearance"
             app:iconSpaceReserved="false"
             app:isPreferenceVisible="true">
+
         <ListPreference
-                app:defaultValue="@string/theme_system"
+                app:defaultValue="-1"
                 app:iconSpaceReserved="false"
                 app:title="@string/settings_theme_desc"
                 app:entries="@array/theme_labels"
                 app:entryValues="@array/theme_keys"
-                app:key="pref_theme"
+                app:key="@string/key_pref_theme"
                 app:useSimpleSummaryProvider="true" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>

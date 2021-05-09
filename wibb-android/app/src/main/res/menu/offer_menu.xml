@@ -3,14 +3,14 @@
     <item
             android:id="@+id/remove_this_offer"
             android:icon="@drawable/ic_baseline_error_outline_24dp"
-            android:title="@string/remove_this_offer_it_is_invalid"
+            android:title="@string/menu_remove_offer"
             android:visible="false" />
     <item
             android:id="@+id/menu_item_offer_report"
             android:icon="@drawable/ic_flag_24dp"
-            android:title="@string/menuOffer_report_offer" />
+            android:title="@string/menu_report_offer" />
     <item
             android:id="@+id/menu_item_offer_findNearby"
             android:icon="@drawable/ic_location_on_24dp"
-            android:title="@string/menuOffer_find_nearby" />
+            android:title="@string/menu_find_nearby" />
 </menu>

@@ -35,7 +35,7 @@ class WibbError {
          * @param occDesc The description how the error occurred.
          * @return the newly created wibb error.
          */
-        fun fromThrowable(t: Throwable, occDesc: String): WibbError {
+        private fun fromThrowable(t: Throwable, occDesc: String): WibbError {
             val e = WibbError()
             e.occurrenceDescription = occDesc
             e.message = if (t.message == null) "ERROR_MESSAGE_NULL" else t.message!!

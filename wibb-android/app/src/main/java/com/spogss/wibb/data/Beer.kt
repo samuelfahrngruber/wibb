@@ -14,6 +14,13 @@ class Beer(var name: String, var icon: String, var iconBg: String) : GridDisplay
     override val iconBgCol: String
         get() = iconBg
 
+    override fun equals(other: Any?): Boolean {
+        return when (other) {
+            is Beer -> name == other.name
+            else -> super.equals(other)
+        }
+    }
+
     companion object {
         fun fromJSON(jBeer: JSONObject): Beer {
             val meta =
@@ -35,5 +42,12 @@ class Beer(var name: String, var icon: String, var iconBg: String) : GridDisplay
         jo.put("icon", this.icon)
         jo.put("meta", meta)
         return jo
+    }
+
+    override fun hashCode(): Int {
+        var result = name.hashCode()
+        result = 31 * result + icon.hashCode()
+        result = 31 * result + iconBg.hashCode()
+        return result
     }
 }

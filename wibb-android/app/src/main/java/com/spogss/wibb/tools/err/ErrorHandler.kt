@@ -44,7 +44,7 @@ class ErrorHandler private constructor(context: Context) {
      * Handles a wibb error accordingly.
      * @param wibbError A error containing all necessary information.
      */
-    fun handle(wibbError: WibbError) {
+    private fun handle(wibbError: WibbError) {
         if (wibbError.occurrenceDescription.isEmpty())
             wibbError.occurrenceDescription =
                 "[${context.javaClass.name}]: ${wibbError.occurrenceDescription}"
@@ -66,7 +66,7 @@ class ErrorHandler private constructor(context: Context) {
      * @param message The error message.
      * @param occDesc The occurrence description describing what was done that the error occurred.
      */
-    fun handle(message: String, occDesc: String) {
+    private fun handle(message: String, occDesc: String) {
         val e = WibbError()
         e.message = message
         e.occurrenceDescription = occDesc

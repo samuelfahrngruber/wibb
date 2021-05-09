@@ -5,10 +5,9 @@
         android:layout_width="75dp"
         android:layout_height="100dp"
         android:layout_margin="5dp"
-        cardview:cardCornerRadius="?attr/cornerRadius"
-
         android:clickable="true"
-        android:foreground="?android:attr/selectableItemBackground">
+        android:foreground="?android:attr/selectableItemBackground"
+        cardview:cardCornerRadius="?attr/cornerRadius">
 
     <LinearLayout
             android:orientation="vertical"
@@ -22,9 +21,8 @@
                 android:layout_height="65dp"
                 android:layout_margin="5dp"
                 android:scaleType="fitCenter"
-                android:background="@android:color/transparent">
-
-        </ImageView>
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/content_desc_brand_icon" />
 
         <TextView
                 android:id="@+id/grid_item_text_id"
@@ -32,9 +30,7 @@
                 android:textSize="15sp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/grid_item_default">
-
-        </TextView>
+                android:text="@string/placeholder_grid_item" />
 
     </LinearLayout>
 

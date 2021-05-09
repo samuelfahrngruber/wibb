@@ -106,6 +106,7 @@
                         android:contentDescription="@string/content_desc_add_new_offer" />
 
             </FrameLayout>
+
         </LinearLayout>
 
         <com.archit.calendardaterangepicker.customviews.DateRangeCalendarView
@@ -119,6 +120,7 @@
                 app:selected_date_circle_color="?android:attr/colorForeground"
                 app:selected_date_color="?android:attr/colorForegroundInverse"
                 app:title_color="@color/colorAccent" />
+
     </FrameLayout>
 
     <FrameLayout
@@ -157,7 +159,7 @@
 
                 <include
                         android:id="@+id/incl_cardView_currentOffer"
-                        layout="@layout/offer_card_shrinked"
+                        layout="@layout/offer_card_small"
                         android:layout_margin="5dp"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -166,6 +168,7 @@
             </LinearLayout>
 
         </LinearLayout>
+
     </FrameLayout>
 
 </RelativeLayout>
