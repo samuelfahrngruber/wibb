@@ -7,4 +7,5 @@
     <string translatable="false" name="key_pref_favourites_beers">pref_favourites_beers</string>
     <string translatable="false" name="key_pref_favourites_stores">pref_favourites_stores</string>
     <string translatable="false" name="key_pref_feedback">pref_feedback</string>
+    <string translatable="false" name="key_pref_favourites">pref_favourites</string>
 </resources>

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.spogss.wibb.R
 import com.spogss.wibb.controller.WibbController
+import com.spogss.wibb.controller.isFavourite
 import com.spogss.wibb.data.GridDisplayable
 import com.spogss.wibb.tools.URLUnifier
 
@@ -65,15 +66,15 @@ class FavouriteItemAdapter<ItemType : GridDisplayable>(
         gd.cornerRadius = 0f
         holder.itemImageG.background = gd
 
-        holder.favChb.isChecked = WibbController.favourites.contains(item)
+        holder.favChb.isChecked = WibbController.isFavourite(item)
         holder.favChb.setOnCheckedChangeListener { _, state ->
             if (state)
-                WibbController.favourites.add(item)
+                WibbController.favourites.add(item.text)
             else
-                WibbController.favourites.remove(item)
+                WibbController.favourites.remove(item.text)
 
             with(sharedPreferences.edit()) {
-                putBoolean(item.text, state)
+                putStringSet(context.getString(R.string.key_pref_favourites), WibbController.favourites)
                 apply()
             }
         }

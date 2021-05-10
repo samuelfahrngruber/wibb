@@ -49,6 +49,7 @@ class SplashActivity : AppCompatActivity() {
         val prefs = PreferenceManager.getDefaultSharedPreferences(applicationContext)
         val apiUrl = prefs.getString(getString(R.string.key_pref_api_url), "https://www.wibb.at")
         val nightMode = prefs.getString(getString(R.string.key_pref_theme), "-1")
+        val favourites = prefs.getStringSet(getString(R.string.key_pref_favourites), mutableSetOf())
 
         // setup conn
         URLUnifier.initialize(apiUrl!!, "mini")
@@ -57,6 +58,11 @@ class SplashActivity : AppCompatActivity() {
         // set theme
         nightMode?.let {
             AppCompatDelegate.setDefaultNightMode(Integer.parseInt(it))
+        }
+
+        // set favourites
+        favourites?.let {
+            WibbController.setFavourites(favourites)
         }
 
         // load static data
@@ -76,10 +82,6 @@ class SplashActivity : AppCompatActivity() {
 
         GlobalScope.launch(coroutineExceptionHandler) {
             job.join()
-
-            WibbController.setFavourites((WibbController.beers + WibbController.stores).filter {
-                prefs.getBoolean(it.text, true)
-            })
 
             runOnUiThread { progress_icon.setProgress(99, 100, 100) }
 

@@ -14,7 +14,7 @@ object WibbController {
     val beers = mutableListOf<Beer>()
     val stores = mutableListOf<Store>()
     val offers = mutableListOf<Offer>()
-    val favourites = mutableListOf<GridDisplayable>()
+    val favourites = mutableSetOf<String>()
 
     fun setBeers(newBeers: List<Beer>) {
         beers.clear()
@@ -31,7 +31,7 @@ object WibbController {
         offers.addAll(newOffers)
     }
 
-    fun setFavourites(newFavourites: List<GridDisplayable>) {
+    fun setFavourites(newFavourites: Set<String>) {
         favourites.clear()
         favourites.addAll(newFavourites)
     }

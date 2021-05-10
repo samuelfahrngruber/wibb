@@ -17,6 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.shuhart.stepview.StepView
 import com.spogss.wibb.connection.WibbConnection
 import com.spogss.wibb.controller.WibbController
+import com.spogss.wibb.controller.isFavourite
 import com.spogss.wibb.data.Beer
 import com.spogss.wibb.data.Offer
 import com.spogss.wibb.data.Store
@@ -59,7 +60,7 @@ class AddOfferActivity : AppCompatActivity() {
                 this.resources.displayMetrics
             ).toInt()
 
-            val stores = WibbController.stores.filter { WibbController.favourites.contains(it) }
+            val stores = WibbController.stores.filter { WibbController.isFavourite(it) }
 
             val rvs = findViewById<RecyclerView>(R.id.recyclerView_stores)
             val rvsa = GridRecyclerViewAdapter(this, stores)
@@ -72,7 +73,7 @@ class AddOfferActivity : AppCompatActivity() {
             rvs.adapter = rvsa
 
             // init beer chooser
-            val beers = WibbController.beers.filter { WibbController.favourites.contains(it) }
+            val beers = WibbController.beers.filter { WibbController.isFavourite(it) }
 
             val rvb = findViewById<RecyclerView>(R.id.recyclerView_beers)
             val rvba = GridRecyclerViewAdapter(this, beers)

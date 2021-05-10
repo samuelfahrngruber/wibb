@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.spogss.wibb.R
 import com.spogss.wibb.connection.WibbConnection
 import com.spogss.wibb.controller.WibbController
+import com.spogss.wibb.controller.isFavourite
 import com.spogss.wibb.data.GridDisplayable
 import com.spogss.wibb.data.Offer
 import com.spogss.wibb.data.Report
@@ -96,7 +97,7 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private var dat
 
     fun notifyWibbDataChanged() {
         data = WibbController.offers.filter {
-            WibbController.favourites.containsAll(listOf(it.beer, it.store))
+            WibbController.isFavourite(it)
         }
         notifyDataSetChanged()
     }
