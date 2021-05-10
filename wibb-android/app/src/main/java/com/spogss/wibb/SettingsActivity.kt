@@ -38,7 +38,8 @@ class SettingsActivity : AppCompatActivity() {
             }
 
             // trigger setDefaultNightMode when the preference is updated
-            val themePreference: ListPreference? = findPreference(getString(R.string.key_pref_theme))
+            val themePreference: ListPreference? =
+                findPreference(getString(R.string.key_pref_theme))
             themePreference?.let {
                 it.onPreferenceChangeListener =
                     Preference.OnPreferenceChangeListener { _: Preference?,

@@ -135,7 +135,7 @@ object WibbConnection {
      *                  It receives the success status in form of a boolean.
      * @throws WibbConnectionNotInitializedException when the connection is not initialized yet.
      */
-    fun addWibbError(error: WibbError, cbSuccess: (Boolean) -> Unit){
+    fun addWibbError(error: WibbError, cbSuccess: (Boolean) -> Unit) {
         postJSONObject(URLUnifier.unifyApiUrl("/api/errors"), {
             cbSuccess(true)
         }, {

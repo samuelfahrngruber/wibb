@@ -74,7 +74,10 @@ class FavouriteItemAdapter<ItemType : GridDisplayable>(
                 WibbController.favourites.remove(item.text)
 
             with(sharedPreferences.edit()) {
-                putStringSet(context.getString(R.string.key_pref_favourites), WibbController.favourites)
+                putStringSet(
+                    context.getString(R.string.key_pref_favourites),
+                    WibbController.favourites
+                )
                 apply()
             }
         }

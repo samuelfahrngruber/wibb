@@ -18,7 +18,6 @@ import com.spogss.wibb.R
 import com.spogss.wibb.connection.WibbConnection
 import com.spogss.wibb.controller.WibbController
 import com.spogss.wibb.controller.isFavourite
-import com.spogss.wibb.data.GridDisplayable
 import com.spogss.wibb.data.Offer
 import com.spogss.wibb.data.Report
 import com.spogss.wibb.data.Store
