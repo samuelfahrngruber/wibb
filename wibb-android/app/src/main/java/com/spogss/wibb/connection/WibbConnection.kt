@@ -22,7 +22,7 @@ import kotlin.coroutines.suspendCoroutine
 object WibbConnection {
 
     private var initialized: Boolean = false
-    private var requestQueue: RequestQueue? = null
+    private lateinit var requestQueue: RequestQueue
 
     /**
      * Has to be called in order for the connection to be properly established.
@@ -88,7 +88,7 @@ object WibbConnection {
                     continuation.resume(list)
                 },
                 { error -> continuation.resumeWithException(error) })
-            requestQueue?.add(request)
+            requestQueue.add(request)
         }
 
     /**
@@ -135,7 +135,7 @@ object WibbConnection {
      *                  It receives the success status in form of a boolean.
      * @throws WibbConnectionNotInitializedException when the connection is not initialized yet.
      */
-    fun addWibbError(error: WibbError, cbSuccess: (Boolean) -> Unit){
+    fun addWibbError(error: WibbError, cbSuccess: (Boolean) -> Unit) {
         postJSONObject(URLUnifier.unifyApiUrl("/api/errors"), {
             cbSuccess(true)
         }, {
@@ -195,7 +195,7 @@ object WibbConnection {
             }
         )
 
-        requestQueue?.add(jsonObjectRequest)
+        requestQueue.add(jsonObjectRequest)
     }
 
     private fun assertInitialized() {

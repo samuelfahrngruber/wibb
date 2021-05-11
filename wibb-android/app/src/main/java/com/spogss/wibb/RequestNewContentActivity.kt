@@ -18,11 +18,11 @@ class RequestNewContentActivity : AppCompatActivity() {
         if (view.id == R.id.button_submitRequest) {
             WibbConnection.addRequest(editText_requestText.text.toString()) {
                 if (it) {
-                    Toast.makeText(this, R.string.toast_contentRequest_success, Toast.LENGTH_SHORT)
+                    Toast.makeText(this, R.string.feedback_success, Toast.LENGTH_SHORT)
                         .show()
                     finish()
                 } else {
-                    Toast.makeText(this, R.string.toast_contentRequest_fail, Toast.LENGTH_SHORT)
+                    Toast.makeText(this, R.string.feedback_fail, Toast.LENGTH_SHORT)
                         .show()
                 }
             }

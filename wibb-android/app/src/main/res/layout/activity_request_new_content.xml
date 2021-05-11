@@ -14,9 +14,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:hint="@string/contentRequest_editText_hint">
-
-    </EditText>
+            android:hint="@string/feedback_hint"
+            android:inputType="text"
+            android:importantForAutofill="no" />
 
     <Button
             android:id="@+id/button_submitRequest"
@@ -25,9 +25,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editText_requestText"
-            android:text="@string/contentRequest_buttonSubmit"
-            android:onClick="submitRequest">
-
-    </Button>
+            android:text="@string/feedback_submit"
+            android:onClick="submitRequest" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

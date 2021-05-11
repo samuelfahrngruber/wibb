@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Recycler
 
 
-class GridAutofitLayoutManager : GridLayoutManager {
+class GridAutoFitLayoutManager : GridLayoutManager {
     private var columnWidth = 0
     private var isColumnWidthChanged = true
     private var lastWidth = 0
@@ -31,20 +31,19 @@ class GridAutofitLayoutManager : GridLayoutManager {
     }
 
     private fun checkedColumnWidth(context: Context, columnWidth: Int): Int {
-        var columnWidth = columnWidth
-        if (columnWidth <= 0) {
+        return if (columnWidth <= 0) {
             /* Set default columnWidth value (48dp here). It is better to move this constant
             to static constant on top, but we need context to convert it to dp, so can't really
             do so. */
-            columnWidth = TypedValue.applyDimension(
+            TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP, 48f,
                 context.resources.displayMetrics
             ).toInt()
-        }
-        return columnWidth
+        } else
+            columnWidth
     }
 
-    fun setColumnWidth(newColumnWidth: Int) {
+    private fun setColumnWidth(newColumnWidth: Int) {
         if (newColumnWidth > 0 && newColumnWidth != columnWidth) {
             columnWidth = newColumnWidth
             isColumnWidthChanged = true
@@ -58,13 +57,12 @@ class GridAutofitLayoutManager : GridLayoutManager {
         val width = width
         val height = height
         if (columnWidth > 0 && width > 0 && height > 0 && (isColumnWidthChanged || lastWidth != width || lastHeight != height)) {
-            val totalSpace: Int
-            totalSpace = if (orientation == LinearLayoutManager.VERTICAL) {
+            val totalSpace: Int = if (orientation == LinearLayoutManager.VERTICAL) {
                 width - paddingRight - paddingLeft
             } else {
                 height - paddingTop - paddingBottom
             }
-            val spanCount = Math.max(1, totalSpace / columnWidth)
+            val spanCount = 1.coerceAtLeast(totalSpace / columnWidth)
             setSpanCount(spanCount)
             isColumnWidthChanged = false
         }

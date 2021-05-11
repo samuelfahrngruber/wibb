@@ -2,10 +2,10 @@
 <resources>
 
     <string-array name="add_offer_steps">
-        <item>@string/addoff_choose_store</item>
-        <item>@string/addoff_choose_beer</item>
-        <item>@string/addoff_choose_price</item>
-        <item>@string/addoff_choose_time</item>
+        <item>@string/add_offer_choose_store</item>
+        <item>@string/add_offer_choose_beer</item>
+        <item>@string/add_offer_choose_price</item>
+        <item>@string/add_offer_choose_time</item>
     </string-array>
 
     <string-array name="theme_labels">

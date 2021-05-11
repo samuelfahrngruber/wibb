@@ -24,7 +24,8 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:scaleType="fitCenter"
-                    android:src="@mipmap/drop_plus" />
+                    android:src="@mipmap/drop_plus"
+                    android:contentDescription="@string/content_desc_beer_brand_logo" />
 
             <TextView
                     android:id="@+id/textView_offerCard_beer"
@@ -38,14 +39,16 @@
             <ImageView
                     android:id="@+id/offer_card_gradient"
                     android:layout_width="20dp"
-                    android:layout_height="40dp" />
+                    android:layout_height="40dp"
+                    android:contentDescription="@string/content_desc_gradient" />
 
             <ImageView
                     android:id="@+id/offer_card_store_img"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:scaleType="fitCenter"
-                    android:src="@mipmap/drop_plus" />
+                    android:src="@mipmap/drop_plus"
+                    android:contentDescription="@string/content_desc_store_brand_logo" />
 
             <TextView
                     android:id="@+id/textView_offerCard_store"
@@ -62,7 +65,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:scaleType="fitCenter"
-                    android:text="@string/offer_card_date_default"
+                    android:text="@string/offer_card_from_to_default"
                     android:textSize="15sp"
                     android:layout_weight="1" />
 
@@ -73,7 +76,7 @@
                     android:gravity="center_vertical"
                     android:scaleType="fitCenter"
                     android:layout_marginEnd="10dp"
-                    android:text="@string/addoff_price_default"
+                    android:text="@string/add_offer_price_default"
                     android:textSize="25sp"
                     android:fontFamily="sans-serif-light"
                     android:layout_weight="0" />

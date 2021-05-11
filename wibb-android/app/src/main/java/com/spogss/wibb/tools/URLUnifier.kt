@@ -12,7 +12,7 @@ object URLUnifier {
         this.resourceTheme = resourceTheme
     }
 
-    fun setServerUrl(serverURL: String) {
+    private fun setServerUrl(serverURL: String) {
         baseUrl = serverURL
     }
 
@@ -25,17 +25,17 @@ object URLUnifier {
 
         if (url.startsWith(baseUrl)) return url
 
-        var resurlt = url
+        var result = url
 
-        if (!resurlt.startsWith("/"))
-            resurlt = "/$resurlt"
+        if (!result.startsWith("/"))
+            result = "/$result"
 
-        if (!resurlt.startsWith("/api/"))
-            resurlt = "/api$resurlt"
+        if (!result.startsWith("/api/"))
+            result = "/api$result"
 
-        resurlt = baseUrl + resurlt
+        result = baseUrl + result
 
-        return resurlt
+        return result
     }
 
     fun unifyImgUrl(url: String): String {
@@ -44,7 +44,7 @@ object URLUnifier {
         if (url.startsWith(baseUrl)) return url
 
         var irl = url
-        var resurlt = baseUrl
+        var result = baseUrl
 
         if (!irl.startsWith("/"))
             irl = "/$irl"
@@ -52,9 +52,9 @@ object URLUnifier {
         if (resourceTheme != null)
             irl = irl.replace("/res/", "/res/theme/$resourceTheme/")
 
-        resurlt += irl
+        result += irl
 
-        return resurlt
+        return result
     }
 
     private fun assertInitialized() {

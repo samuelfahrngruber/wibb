@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Preferences -->
+    <string translatable="false" name="key_category_dev_mode">category_dev_mode</string>
+    <string translatable="false" name="key_pref_api_url">pref_api_url</string>
+    <string translatable="false" name="key_pref_theme">pref_theme</string>
+    <string translatable="false" name="key_pref_favourites_beers">pref_favourites_beers</string>
+    <string translatable="false" name="key_pref_favourites_stores">pref_favourites_stores</string>
+    <string translatable="false" name="key_pref_feedback">pref_feedback</string>
+    <string translatable="false" name="key_pref_favourites">pref_favourites</string>
+</resources>

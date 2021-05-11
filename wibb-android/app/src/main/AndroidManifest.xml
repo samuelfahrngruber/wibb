@@ -13,21 +13,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:networkSecurityConfig="@xml/network_security_config">
-        <activity
-                android:name=".RequestNewContentActivity"
-                android:parentActivityName=".SettingsActivity">
-            <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value="com.spogss.wibb.SettingsActivity" />
-        </activity>
-        <activity
-                android:name=".SettingsActivity"
-                android:label="@string/title_activity_settings"
-                android:parentActivityName=".MainActivity">
-            <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value="com.spogss.wibb.MainActivity" />
-        </activity>
+
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,22 +21,42 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".MainActivity" />
+
         <activity
                 android:name=".AddOfferActivity"
                 android:parentActivityName=".MainActivity">
-
-            <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="com.spogss.wibb.MainActivity" />
         </activity>
+
+        <activity
+                android:name=".SettingsActivity"
+                android:label="@string/settings_title"
+                android:parentActivityName=".MainActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="com.spogss.wibb.MainActivity" />
+        </activity>
+
         <activity
                 android:name=".FavouriteStorePreferences"
                 android:parentActivityName=".SettingsActivity" />
+
         <activity
                 android:name=".FavouriteBeerPreferences"
                 android:parentActivityName=".SettingsActivity" />
+
+        <activity
+                android:name=".RequestNewContentActivity"
+                android:parentActivityName=".SettingsActivity">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="com.spogss.wibb.SettingsActivity" />
+        </activity>
+
     </application>
 
 </manifest>

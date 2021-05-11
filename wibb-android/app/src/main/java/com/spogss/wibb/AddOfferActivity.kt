@@ -17,19 +17,19 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.shuhart.stepview.StepView
 import com.spogss.wibb.connection.WibbConnection
 import com.spogss.wibb.controller.WibbController
+import com.spogss.wibb.controller.isFavourite
 import com.spogss.wibb.data.Beer
 import com.spogss.wibb.data.Offer
 import com.spogss.wibb.data.Store
-import com.spogss.wibb.tools.FavouriteFilter
 import com.spogss.wibb.tools.UIUtils
 import com.spogss.wibb.tools.URLUnifier
 import com.spogss.wibb.tools.err.ErrorHandler
-import com.spogss.wibb.ui.GridAutofitLayoutManager
+import com.spogss.wibb.ui.GridAutoFitLayoutManager
 import com.spogss.wibb.ui.GridRecyclerViewAdapter
 import com.triggertrap.seekarc.SeekArc
 import kotlinx.android.synthetic.main.activity_add_offer.*
-import kotlinx.android.synthetic.main.offer_card_shrinked.*
-import kotlinx.android.synthetic.main.offer_card_shrinked.view.*
+import kotlinx.android.synthetic.main.offer_card_small.*
+import kotlinx.android.synthetic.main.offer_card_small.view.*
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -60,7 +60,7 @@ class AddOfferActivity : AppCompatActivity() {
                 this.resources.displayMetrics
             ).toInt()
 
-            val stores = WibbController.stores.filter { FavouriteFilter(it) }
+            val stores = WibbController.stores.filter { WibbController.isFavourite(it) }
 
             val rvs = findViewById<RecyclerView>(R.id.recyclerView_stores)
             val rvsa = GridRecyclerViewAdapter(this, stores)
@@ -69,11 +69,11 @@ class AddOfferActivity : AppCompatActivity() {
                 nextstep()
             }
 
-            rvs.layoutManager = GridAutofitLayoutManager(this, columnWidth)
+            rvs.layoutManager = GridAutoFitLayoutManager(this, columnWidth)
             rvs.adapter = rvsa
 
             // init beer chooser
-            val beers = WibbController.beers.filter { FavouriteFilter(it) }
+            val beers = WibbController.beers.filter { WibbController.isFavourite(it) }
 
             val rvb = findViewById<RecyclerView>(R.id.recyclerView_beers)
             val rvba = GridRecyclerViewAdapter(this, beers)
@@ -82,10 +82,10 @@ class AddOfferActivity : AppCompatActivity() {
                 nextstep()
             }
 
-            rvb.layoutManager = GridAutofitLayoutManager(this, columnWidth)
+            rvb.layoutManager = GridAutoFitLayoutManager(this, columnWidth)
             rvb.adapter = rvba
 
-            // init seekarc
+            // init seekArc
             val seekArc = findViewById<SeekArc>(R.id.seekArc)
             seekArc.setOnSeekArcChangeListener(object : SeekArc.OnSeekArcChangeListener {
                 override fun onProgressChanged(
@@ -95,7 +95,7 @@ class AddOfferActivity : AppCompatActivity() {
                 ) {
                     val prog = progress + 5
                     val progressv = findViewById<TextView>(R.id.seekArcProgress)
-                    progressv.text = "~€$prog"
+                    progressv.text = getString(R.string.add_offer_price_approximate, prog)
                     setOfferPrice(prog)
                 }
 
@@ -109,7 +109,7 @@ class AddOfferActivity : AppCompatActivity() {
             val fab = findViewById<FloatingActionButton>(R.id.fab_priceDone)
             fab.setOnClickListener { nextstep() }
 
-            // init calendarpicker
+            // init calendar picker
             val v = findViewById<View>(R.id.incl_cardView_currentOffer)
             val txt = v.findViewById<TextView>(R.id.offer_card_date_txt)
             txt.text = ""
@@ -119,7 +119,7 @@ class AddOfferActivity : AppCompatActivity() {
                 override fun onFirstDateSelected(startDate: Calendar) {
                     val startDateLocal = LocalDateTime.ofInstant(
                         startDate.toInstant(),
-                        startDate.getTimeZone().toZoneId()
+                        startDate.timeZone.toZoneId()
                     ).toLocalDate()
                     setOfferStartDate(startDateLocal)
                 }
@@ -157,7 +157,7 @@ class AddOfferActivity : AppCompatActivity() {
         offer.price = p
         val v = findViewById<View>(R.id.incl_cardView_currentOffer)
         val txt = v.findViewById<TextView>(R.id.offer_card_price_txt)
-        txt.text = "€$p"
+        txt.text = getString(R.string.add_offer_price_exact, p)
         onNewOfferInputChanged()
     }
 
@@ -220,14 +220,18 @@ class AddOfferActivity : AppCompatActivity() {
         val v = findViewById<View>(R.id.incl_cardView_currentOffer)
         val txt = v.findViewById<TextView>(R.id.offer_card_date_txt)
         val formatter = DateTimeFormatter.ofPattern("d.")
-        txt.text = "${offer.startDate?.format(formatter)} - ${offer.endDate?.format(formatter)}"
+        txt.text = getString(
+            R.string.offer_card_from_to,
+            offer.startDate?.format(formatter),
+            offer.endDate?.format(formatter)
+        )
     }
 
     private fun nextstep() {
         setStep(++currentStep)
     }
 
-    fun submitNewOffer(v: View) {
+    fun submitNewOffer(view: View) {
         if (offer.isValid)
             WibbConnection.addOffer(offer) {
                 if (it /*worked*/) {
@@ -240,7 +244,7 @@ class AddOfferActivity : AppCompatActivity() {
                 } else {
                     Toast.makeText(
                         this.applicationContext,
-                        R.string.toast_newOffer_fail,
+                        R.string.error_new_offer_failed,
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -248,7 +252,7 @@ class AddOfferActivity : AppCompatActivity() {
         else
             Toast.makeText(
                 this.applicationContext,
-                R.string.toast_newOffer_invalid,
+                R.string.warning_invalid_offer,
                 Toast.LENGTH_SHORT
             ).show()
     }
@@ -259,25 +263,14 @@ class AddOfferActivity : AppCompatActivity() {
 
         findViewById<StepView>(R.id.step_view).go(step, true)
 
-        if (step != 0)
-            findViewById<RecyclerView>(R.id.recyclerView_stores).visibility = View.GONE
-        else
-            findViewById<RecyclerView>(R.id.recyclerView_stores).visibility = View.VISIBLE
-
-        if (step != 1)
-            findViewById<RecyclerView>(R.id.recyclerView_beers).visibility = View.GONE
-        else
-            findViewById<RecyclerView>(R.id.recyclerView_beers).visibility = View.VISIBLE
-
-        if (step != 2)
-            findViewById<LinearLayout>(R.id.linearLayout_price).visibility = View.GONE
-        else
-            findViewById<LinearLayout>(R.id.linearLayout_price).visibility = View.VISIBLE
-
-        if (step != 3)
-            findViewById<DateRangeCalendarView>(R.id.calendar_range).visibility = View.GONE
-        else
-            findViewById<DateRangeCalendarView>(R.id.calendar_range).visibility = View.VISIBLE
+        findViewById<RecyclerView>(R.id.recyclerView_stores).visibility =
+            if (step == 0) View.VISIBLE else View.GONE
+        findViewById<RecyclerView>(R.id.recyclerView_beers).visibility =
+            if (step == 1) View.VISIBLE else View.GONE
+        findViewById<LinearLayout>(R.id.linearLayout_price).visibility =
+            if (step == 2) View.VISIBLE else View.GONE
+        findViewById<DateRangeCalendarView>(R.id.calendar_range).visibility =
+            if (step == 3) View.VISIBLE else View.GONE
 
         currentStep = step
     }
