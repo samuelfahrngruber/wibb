@@ -68,6 +68,10 @@
     <string name="offer_card_no_date_hint">Kein Datum!</string>
     <string name="offer_card_store_prefix">bei</string>
 
+    <!-- Offer Filter -->
+    <string name="offer_filter_search_placeholder">Such nach irgendwas</string>
+    <string name="content_desc_offer_filter_input">Angebote filtern</string>
+
     <!-- Warnings -->
     <string name="warning_offer_without_date">Einige Angebote wurden ohne Datum eingatragen und könnten veraltet sein. Wir löschen solche Angebote nach 7 Tagen.</string>
     <string name="warning_invalid_offer">Dieses Angebot ist ungültig!</string>

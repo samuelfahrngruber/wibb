@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".OfferFilterFragment"
+        android:orientation="vertical">
+
+    <AutoCompleteTextView
+            android:text="@string/offer_filter_search_placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/offer_filter_search"
+            android:hint="@string/offer_filter_search_hint"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:imeOptions="actionDone"
+            android:inputType="textAutoComplete"
+            android:maxLines="1"
+            />
+
+    <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+        <com.google.android.material.chip.ChipGroup
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/offer_filter_chips"
+                app:singleLine="true"
+                app:chipSpacing="8dp">
+
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+</LinearLayout>

@@ -111,10 +111,16 @@
 
         </androidx.cardview.widget.CardView>
 
+        <androidx.fragment.app.FragmentContainerView
+                android:name="com.spogss.wibb.OfferFilterFragment"
+                android:id="@+id/offer_filter_fragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView_offers"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content" />
 
     </LinearLayout>
 

@@ -68,6 +68,10 @@
     <string name="offer_card_no_date_hint">May be expired!</string>
     <string name="offer_card_store_prefix">at</string>
 
+    <!-- Offer Filter -->
+    <string name="offer_filter_search_placeholder">Search for anything</string>
+    <string name="content_desc_offer_filter_input">Filter Offers</string>
+
     <!-- Warnings -->
     <string name="warning_offer_without_date">Some offers listed here were reported without an end date, which means they may be expired. We will remove such offers after 7 days.</string>
     <string name="warning_no_offers">We couldn\'t find any offers! &#128531;</string>
@@ -93,5 +97,6 @@
     <string name="placeholder_grid_item">DEFAULT</string>
     <string name="placeholder_name">Name</string>
     <string name="warning_no_favourites">There are no offers displayed because you have no favourites selected. To change this head over to preferences.</string>
+    <string name="offer_filter_search_hint">Type to start searching</string>
 
 </resources>
