@@ -21,8 +21,8 @@ public class OfferResource {
     private OfferService offerService;
 
     @GetMapping("/api/offers")
-    public List<OfferDto> getOffers() {
-        return offerService.getOffers()
+    public List<OfferDto> getOffers(@RequestParam(defaultValue = "BOTTLE_CRATE_20") OfferType offerType) {
+        return offerService.getOffers(offerType)
                 .stream()
                 .map(RestDtoMapper::map)
                 .collect(Collectors.toList());
