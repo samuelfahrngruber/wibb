@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build-for-ws-j": "ng build --output-path ../wibb-ws-j/src/main/resources/public/angular --base-href=angular --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

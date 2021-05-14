@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Offer } from 'src/data/types/offer';
-import { DEV_API_HOST } from 'src/data/utils/constants';
+import { PROD_API_HOST } from 'src/data/utils/constants';
 import {
   parseBeers,
   parseOffers,
@@ -19,8 +19,8 @@ export class WibbApiService {
   };
 
   constructor() {
-    this.apiHost = DEV_API_HOST;
-    this.apiUrl = `${DEV_API_HOST}/api`;
+    this.apiHost = PROD_API_HOST;
+    this.apiUrl = `${this.apiHost}/api`;
   }
 
   async getBeers() {
