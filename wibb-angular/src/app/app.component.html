@@ -1,0 +1,36 @@
+<div class="app-grid">
+  <header class="header">
+    <img class="header-image" src="assets/wibb-logo.svg" alt="Wibb" />
+    <h1>Wibb Angular</h1>
+  </header>
+
+  <section class="list">
+    <h2><i class="fas fa-tags"></i> Todays Offers</h2>
+    <app-add-offer (offerAddedEvent)="addOffer($event)"></app-add-offer>
+    <app-offer *ngFor="let offer of offers" [offer]="offer"></app-offer>
+  </section>
+
+  <section class="list">
+    <h2><i class="fas fa-beer"></i> Available Beers</h2>
+    <app-beer *ngFor="let beer of beers" [beer]="beer"></app-beer>
+  </section>
+
+  <section class="list">
+    <h2><i class="fas fa-store"></i> Registered Stores</h2>
+    <app-store *ngFor="let store of stores" [store]="store"></app-store>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-link">
+      <i class="fab fa-github"></i>
+      <a
+        href="https://github.com/samuelfahrngruber/wibb/tree/master/wibb-android"
+        >View on Github</a
+      >
+    </div>
+    <div class="footer-link">
+      <i class="fab fa-github"></i>
+      <a href="https://github.com/samuelfahrngruber/wibb">Parent Repository</a>
+    </div>
+  </footer>
+</div>

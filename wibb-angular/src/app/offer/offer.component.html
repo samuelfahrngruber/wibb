@@ -1,0 +1,15 @@
+<div class="row" tabindex="0">
+  <img
+    [src]="offer.beer.icon | apiResourcePipe"
+    [alt]="offer.beer.name"
+    class="row-image"
+  />
+  <img
+    [src]="offer.store.icon | apiResourcePipe"
+    [alt]="offer.store.name"
+    class="row-image"
+  />
+  <span>{{ offer.price | currency }}</span>
+  <span>{{ offer.startDate | date }}</span>
+  <span>{{ offer.endDate | date }}</span>
+</div>
