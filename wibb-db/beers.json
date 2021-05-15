@@ -2,7 +2,7 @@
   {
     "name": "Stiegl",
     "icon": "/res/img/beer/stiegl.png",
-    "F": { "iconBg": "#ffffff" }
+    "meta": { "iconBg": "#ffffff" }
   },
   {
     "name": "Gösser",
