@@ -1,3 +1,5 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
 plugins {
 	id 'org.springframework.boot' version '2.4.5'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
@@ -42,3 +44,16 @@ publishing {
 		}
 	}
 }
+
+tasks.register('grabAngularApp', Exec) {
+	String npm = 'npm'
+	if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+		npm = 'npm.cmd'
+	}
+
+	it.workingDir("../wibb-angular")
+	it.commandLine(npm, "install")
+	it.commandLine(npm, "run", "build-for-ws-j")
+}
+
+tasks.getByName("processResources").dependsOn("grabAngularApp")

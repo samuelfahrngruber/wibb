@@ -1,29 +1,25 @@
 package at.wibb.server.business;
 
-import static at.wibb.server.business.TransformUtil.transformOffer;
-import static at.wibb.server.shared.Preconditions.checkNotNull;
-
-import at.wibb.server.shared.ReportType;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
-import org.springframework.data.mongodb.core.query.UntypedExampleMatcher;
-import org.springframework.lang.NonNull;
-import org.springframework.stereotype.Component;
-
 import at.wibb.server.persistence.repositories.BeerRepository;
 import at.wibb.server.persistence.repositories.OfferRepository;
 import at.wibb.server.persistence.repositories.StoreRepository;
 import at.wibb.server.persistence.templates.OfferTemplate;
 import at.wibb.server.shared.Offer;
+import at.wibb.server.shared.OfferFilter;
+import at.wibb.server.shared.ReportType;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.mongodb.core.query.UntypedExampleMatcher;
+import org.springframework.lang.NonNull;
+import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
+
+import static at.wibb.server.business.TransformUtil.transformOffer;
+import static at.wibb.server.shared.Preconditions.checkNotNull;
 
 /**
  * Business logic service for managing offers and reporting invalid offers.
@@ -69,10 +65,11 @@ public class OfferService {
      * @return Currently active offers.
      */
     @NonNull
-    public List<Offer> getOffers() {
+    public List<Offer> getOffers(OfferFilter offerFilter) {
         return offerRepository.findAll()
                 .stream()
                 .map(TransformUtil::transformOffer)
+                .filter(offerFilter)
                 .collect(Collectors.toList());
     }
 

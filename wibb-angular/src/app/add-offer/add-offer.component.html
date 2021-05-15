@@ -1,0 +1,16 @@
+<div class="flow">
+  <select [(ngModel)]="selectedBeer">
+    <option *ngFor="let beer of beers" [value]="beer.name">
+      {{ beer.name }}
+    </option>
+  </select>
+  <select [(ngModel)]="selectedStore">
+    <option *ngFor="let store of stores" [value]="store.name">
+      {{ store.name }}
+    </option>
+  </select>
+  <input class="price" type="number" [(ngModel)]="selectedPrice" />
+  <input type="date" [(ngModel)]="selectedStartDate" />
+  <input type="date" [(ngModel)]="selectedEndDate" />
+  <button (click)="onSubmit()" class="primary">Submit</button>
+</div>
