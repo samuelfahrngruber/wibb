@@ -6,133 +6,143 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <LinearLayout
-            android:id="@+id/linearLayout"
+    <ScrollView
+            android:id="@+id/scroll_view_main"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            tools:context=".MainActivity">
+            android:layout_height="match_parent">
 
-        <androidx.cardview.widget.CardView
-                android:id="@+id/card_invalid_hint"
+        <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                app:cardBackgroundColor="@color/red"
-                app:cardCornerRadius="?attr/cornerRadius">
+                android:orientation="vertical"
+                tools:context=".MainActivity">
 
-            <RelativeLayout
+            <androidx.cardview.widget.CardView
+                    android:id="@+id/card_invalid_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    app:cardBackgroundColor="@color/red"
+                    app:cardCornerRadius="?attr/cornerRadius">
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal">
+
+                    <ImageView
+                            android:id="@+id/image_card_invalid_hint"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_centerVertical="true"
+                            app:tint="@color/textLight"
+                            android:src="@drawable/ic_baseline_error_outline_24dp"
+                            android:contentDescription="@string/content_desc_warning" />
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_toStartOf="@id/image_button_x_card_invalid_hint"
+                            android:layout_toEndOf="@+id/image_card_invalid_hint"
+                            android:text="@string/warning_offer_without_date"
+                            android:textColor="@color/textLight"
+                            android:textSize="15sp" />
+
+                    <ImageButton
+                            android:id="@+id/image_button_x_card_invalid_hint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:tint="@color/textLight"
+                            android:background="@android:color/transparent"
+                            android:onClick="hideInvalidHint"
+                            android:src="@drawable/ic_baseline_close_24dp"
+                            android:contentDescription="@string/content_desc_close_this_warning" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                    android:id="@+id/card_no_favourites"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    app:cardBackgroundColor="@color/red"
+                    app:cardCornerRadius="?attr/cornerRadius">
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal">
+
+                    <ImageView
+                            android:id="@+id/image_card_no_favourites"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_centerVertical="true"
+                            app:tint="@color/textLight"
+                            android:src="@drawable/ic_baseline_error_outline_24dp"
+                            android:contentDescription="@string/content_desc_warning" />
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_toStartOf="@id/image_button_x_card_no_favourites"
+                            android:layout_toEndOf="@+id/image_card_no_favourites"
+                            android:text="@string/warning_no_favourites"
+                            android:textColor="@color/textLight"
+                            android:textSize="15sp" />
+
+                    <ImageButton
+                            android:id="@+id/image_button_x_card_no_favourites"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:tint="@color/textLight"
+                            android:background="@android:color/transparent"
+                            android:onClick="hideNoFavouritesHint"
+                            android:src="@drawable/ic_baseline_close_24dp"
+                            android:contentDescription="@string/content_desc_close_this_warning" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.fragment.app.FragmentContainerView
+                    android:name="com.spogss.wibb.OfferFilterFragment"
+                    android:id="@+id/offer_filter_fragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            <TextView
+                    android:id="@+id/textView_noOffers"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal">
+                    android:gravity="center"
+                    android:text="@string/warning_no_offers"
+                    android:visibility="gone">
 
-                <ImageView
-                        android:id="@+id/image_card_invalid_hint"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:layout_centerVertical="true"
-                        app:tint="@color/textLight"
-                        android:src="@drawable/ic_baseline_error_outline_24dp"
-                        android:contentDescription="@string/content_desc_warning" />
+            </TextView>
 
-                <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_toStartOf="@id/image_button_x_card_invalid_hint"
-                        android:layout_toEndOf="@+id/image_card_invalid_hint"
-                        android:text="@string/warning_offer_without_date"
-                        android:textColor="@color/textLight"
-                        android:textSize="15sp" />
-
-                <ImageButton
-                        android:id="@+id/image_button_x_card_invalid_hint"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:tint="@color/textLight"
-                        android:background="@android:color/transparent"
-                        android:onClick="hideInvalidHint"
-                        android:src="@drawable/ic_baseline_close_24dp"
-                        android:contentDescription="@string/content_desc_close_this_warning" />
-
-            </RelativeLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-                android:id="@+id/card_no_favourites"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                app:cardBackgroundColor="@color/red"
-                app:cardCornerRadius="?attr/cornerRadius">
-
-            <RelativeLayout
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView_offers"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal">
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
 
-                <ImageView
-                        android:id="@+id/image_card_no_favourites"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:layout_centerVertical="true"
-                        app:tint="@color/textLight"
-                        android:src="@drawable/ic_baseline_error_outline_24dp"
-                        android:contentDescription="@string/content_desc_warning" />
+            </androidx.recyclerview.widget.RecyclerView>
 
-                <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_toStartOf="@id/image_button_x_card_no_favourites"
-                        android:layout_toEndOf="@+id/image_card_no_favourites"
-                        android:text="@string/warning_no_favourites"
-                        android:textColor="@color/textLight"
-                        android:textSize="15sp" />
+        </LinearLayout>
 
-                <ImageButton
-                        android:id="@+id/image_button_x_card_no_favourites"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:tint="@color/textLight"
-                        android:background="@android:color/transparent"
-                        android:onClick="hideNoFavouritesHint"
-                        android:src="@drawable/ic_baseline_close_24dp"
-                        android:contentDescription="@string/content_desc_close_this_warning" />
-
-            </RelativeLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.fragment.app.FragmentContainerView
-                android:name="com.spogss.wibb.OfferFilterFragment"
-                android:id="@+id/offer_filter_fragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-        <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView_offers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-    </LinearLayout>
-
-    <TextView
-            android:id="@+id/textView_noOffers"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/warning_no_offers"
-            android:visibility="gone">
-
-    </TextView>
+    </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_addOffer"
@@ -143,8 +153,8 @@
             android:src="@drawable/ic_add_24dp"
             android:tint="@color/textDark"
             app:backgroundTint="@color/colorAccent"
-            app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-            app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+            app:layout_constraintBottom_toBottomOf="@+id/scroll_view_main"
+            app:layout_constraintEnd_toEndOf="@+id/scroll_view_main"
             android:contentDescription="@string/content_desc_add_new_offer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

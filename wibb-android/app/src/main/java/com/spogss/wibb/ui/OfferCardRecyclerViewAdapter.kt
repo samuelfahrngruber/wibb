@@ -11,7 +11,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.spogss.wibb.R
@@ -42,7 +41,6 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private var dat
             .into(holder.brandImageV)
         var col: Int = Color.parseColor(o.beer!!.iconBg)
         holder.brandImageC.setBackgroundColor(col)
-        holder.brandImageV.setBackgroundColor(col)
         holder.brandTextV.text = o.beer!!.name
         holder.brandTextV.setTextColor(UIUtils.getForegroundColorFor(col, context))
 
@@ -50,7 +48,7 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private var dat
         Glide.with(context)
             .load(URLUnifier.unifyImgUrl(o.store!!.icon))
             .into(holder.storeImageV)
-        holder.storeImageV.setBackgroundColor(col)
+        holder.storeTextC.setBackgroundColor(col)
         holder.storeTextV.text = o.store!!.name
         holder.storeTextV.setTextColor(UIUtils.getForegroundColorFor(col, context))
 
@@ -61,8 +59,6 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private var dat
         gd.cornerRadius = 0f
 
         holder.gradientImageV.background = gd
-
-        holder.offerCardV.setCardBackgroundColor(Color.parseColor(o.store!!.iconBg)) // = gd //
 
         holder.priceTextV.text = context.getString(R.string.add_offer_price_exact, o.price)
 
@@ -202,13 +198,13 @@ class OfferCardRecyclerViewAdapter(private val context: Context, private var dat
         var storeImageV: ImageView = itemView.findViewById(R.id.offer_card_store_img)
         var priceTextV: TextView = itemView.findViewById(R.id.offer_card_price_txt)
         var gradientImageV: ImageView = itemView.findViewById(R.id.offer_card_gradient)
-        var offerCardV: CardView = itemView.findViewById(R.id.offer_card)
         var dateHintImageV: ImageView = itemView.findViewById(R.id.offer_card_no_date_err_icon)
         var dateTextV: TextView = itemView.findViewById(R.id.offer_card_date_txt)
         var brandImageC: LinearLayout = itemView.findViewById(R.id.offer_card_beer_img_container)
         var menuImageB: ImageButton = itemView.findViewById(R.id.offer_card_menu_btn)
         var brandTextV: TextView = itemView.findViewById(R.id.textView_offerCard_beer)
         var storeTextV: TextView = itemView.findViewById(R.id.textView_offerCard_store)
+        var storeTextC: LinearLayout = itemView.findViewById(R.id.offer_card_store_img_container)
     }
 
 }

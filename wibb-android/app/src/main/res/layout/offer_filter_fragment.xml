@@ -5,20 +5,35 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".OfferFilterFragment"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="5dp">
 
-    <AutoCompleteTextView
-            android:text="@string/offer_filter_search_placeholder"
+    <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/offer_filter_search"
-            android:hint="@string/offer_filter_search_hint"
-            android:layout_weight="1"
-            android:padding="10dp"
-            android:imeOptions="actionDone"
-            android:inputType="textAutoComplete"
-            android:maxLines="1"
-            />
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+        <AutoCompleteTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:minHeight="32dp"
+                android:id="@+id/offer_filter_search"
+                android:hint="@string/offer_filter_search_hint"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:imeOptions="actionDone"
+                android:inputType="textAutoComplete"
+                android:maxLines="1" />
+
+        <ImageButton
+                android:src="@android:drawable/arrow_down_float"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageButton"
+                android:padding="10dp"
+                android:background="@android:color/transparent" />
+    </LinearLayout>
 
     <HorizontalScrollView
             android:layout_width="match_parent"
@@ -30,9 +45,80 @@
                 android:layout_height="match_parent"
                 android:id="@+id/offer_filter_chips"
                 app:singleLine="true"
-                app:chipSpacing="8dp">
+                app:chipSpacing="8dp" />
 
-        </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
+
+    <LinearLayout
+            android:id="@+id/offer_filter_expanded"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Price"
+                android:labelFor="@id/offer_filter_price" />
+
+        <SeekBar
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="10"
+                android:progress="3"
+                android:id="@+id/offer_filter_price"
+                android:indeterminate="false" />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Distance"
+                android:labelFor="@id/offer_filter_distance" />
+
+        <SeekBar
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="10"
+                android:progress="3"
+                android:id="@+id/offer_filter_distance" />
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Beers"
+                android:labelFor="@id/offer_filter_beers" />
+
+        <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <com.google.android.material.chip.ChipGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/offer_filter_beers" />
+
+        </HorizontalScrollView>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Stores"
+                android:labelFor="@id/offer_filter_stores" />
+
+        <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <com.google.android.material.chip.ChipGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/offer_filter_stores" />
+
+        </HorizontalScrollView>
+
+    </LinearLayout>
 
 </LinearLayout>

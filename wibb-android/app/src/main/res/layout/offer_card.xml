@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -21,13 +22,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingVertical="5dp">
+                    android:paddingVertical="5dp"
+                    android:paddingStart="10dp"
+                    tools:ignore="RtlSymmetry">
 
                 <ImageView
                         android:id="@+id/offer_card_beer_img"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
                         android:src="@drawable/ic_beer_24dp"
                         android:contentDescription="@string/content_desc_beer_brand_logo" />
@@ -50,16 +52,18 @@
                     android:contentDescription="@string/content_desc_gradient" />
 
             <LinearLayout
+                    android:id="@+id/offer_card_store_img_container"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:paddingVertical="5dp">
+                    android:paddingVertical="5dp"
+                    android:paddingEnd="10dp"
+                    tools:ignore="RtlSymmetry">
 
                 <ImageView
                         android:id="@+id/offer_card_store_img"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
                         android:src="@drawable/ic_shopping_cart_24dp"
                         android:contentDescription="@string/content_desc_store_brand_logo" />
@@ -75,65 +79,59 @@
 
             </LinearLayout>
 
-            <androidx.cardview.widget.CardView
+
+            <LinearLayout
                     android:id="@+id/offer_card_inner_card"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:gravity="end"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
 
-                <LinearLayout
-                        android:layout_width="match_parent"
+                <ImageView
+                        android:id="@+id/offer_card_no_date_err_icon"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:gravity="end"
-                        android:orientation="horizontal"
-                        android:paddingStart="5dp"
-                        android:paddingEnd="5dp">
+                        android:src="@drawable/ic_baseline_error_outline_24dp"
+                        app:tint="@color/red"
+                        android:visibility="gone"
+                        android:contentDescription="@string/content_desc_warning" />
 
-                    <ImageView
-                            android:id="@+id/offer_card_no_date_err_icon"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/ic_baseline_error_outline_24dp"
-                            app:tint="@color/red"
-                            android:visibility="gone"
-                            android:contentDescription="@string/content_desc_warning" />
+                <TextView
+                        android:id="@+id/offer_card_date_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-light"
+                        android:gravity="center_vertical|start"
+                        android:scaleType="fitCenter"
+                        android:text="@string/offer_card_from_to_default"
+                        android:textSize="15sp" />
 
-                    <TextView
-                            android:id="@+id/offer_card_date_txt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="10dp"
-                            android:layout_weight="1"
-                            android:fontFamily="sans-serif-light"
-                            android:gravity="center_vertical|start"
-                            android:scaleType="fitCenter"
-                            android:text="@string/offer_card_from_to_default"
-                            android:textSize="15sp" />
+                <TextView
+                        android:id="@+id/offer_card_price_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="0"
+                        android:fontFamily="sans-serif-light"
+                        android:gravity="center_vertical"
+                        android:scaleType="fitCenter"
+                        android:text="@string/add_offer_price_default"
+                        android:textSize="35sp" />
 
-                    <TextView
-                            android:id="@+id/offer_card_price_txt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="10dp"
-                            android:layout_weight="0"
-                            android:fontFamily="sans-serif-light"
-                            android:gravity="center_vertical"
-                            android:scaleType="fitCenter"
-                            android:text="@string/add_offer_price_default"
-                            android:textSize="35sp" />
+                <ImageButton
+                        android:id="@+id/offer_card_menu_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="0"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="@string/content_desc_menu" />
 
-                    <ImageButton
-                            android:id="@+id/offer_card_menu_btn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_weight="0"
-                            android:background="@android:color/transparent"
-                            android:contentDescription="@string/content_desc_menu" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
         </LinearLayout>
 

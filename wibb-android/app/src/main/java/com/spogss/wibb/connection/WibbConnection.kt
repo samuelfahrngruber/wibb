@@ -8,10 +8,8 @@ import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.spogss.wibb.controller.WibbController
-import com.spogss.wibb.data.Beer
-import com.spogss.wibb.data.Offer
-import com.spogss.wibb.data.Report
-import com.spogss.wibb.data.Store
+import com.spogss.wibb.data.*
+import com.spogss.wibb.tools.QueryStringSerializer
 import com.spogss.wibb.tools.URLUnifier
 import com.spogss.wibb.tools.err.WibbError
 import org.json.JSONObject
@@ -65,8 +63,9 @@ object WibbConnection {
      * Gets all available offers from the server
      * @throws WibbConnectionNotInitializedException when the connection is not initialized yet.
      */
-    suspend fun getOffers(): List<Offer> {
-        return getList(URLUnifier.unifyApiUrl("/api/offers")) { jsonObject ->
+    suspend fun getOffers(filter: Map<FilterKey, String> = mapOf()): List<Offer> {
+        val url = URLUnifier.unifyApiUrl("/api/offers") + QueryStringSerializer.serialize(filter)
+        return getList(url) { jsonObject ->
             Offer.fromJSON(
                 jsonObject
             )

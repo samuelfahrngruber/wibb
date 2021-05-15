@@ -1,6 +1,7 @@
 package com.spogss.wibb.controller
 
 import com.spogss.wibb.data.Beer
+import com.spogss.wibb.data.FilterKey
 import com.spogss.wibb.data.Offer
 import com.spogss.wibb.data.Store
 
@@ -14,6 +15,7 @@ object WibbController {
     val stores = mutableListOf<Store>()
     val offers = mutableListOf<Offer>()
     val favourites = mutableSetOf<String>()
+    val filter = mutableMapOf<FilterKey, String>()
 
     fun setBeers(newBeers: List<Beer>) {
         beers.clear()
@@ -33,5 +35,10 @@ object WibbController {
     fun setFavourites(newFavourites: Set<String>) {
         favourites.clear()
         favourites.addAll(newFavourites)
+    }
+
+    fun setFilter(newFilter: Map<FilterKey, String>) {
+        filter.clear()
+        filter.putAll(newFilter)
     }
 }
