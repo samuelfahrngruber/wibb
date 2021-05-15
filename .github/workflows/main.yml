@@ -21,7 +21,7 @@ jobs:
         run: chmod +x ./gradlew
       - name: Publish package
         working-directory: ./wibb-ws-j
-        run: ./gradlew publish
+        run: ./gradlew publish --stacktrace
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create release

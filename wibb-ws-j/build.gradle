@@ -45,7 +45,7 @@ publishing {
 	}
 }
 
-tasks.register('grabAngularApp', Exec) {
+tasks.register('installAngularDependencies', Exec) {
 	String npm = 'npm'
 	if (Os.isFamily(Os.FAMILY_WINDOWS)) {
 		npm = 'npm.cmd'
@@ -53,7 +53,17 @@ tasks.register('grabAngularApp', Exec) {
 
 	it.workingDir("../wibb-angular")
 	it.commandLine(npm, "install")
+}
+
+tasks.register('grabAngularApp', Exec) {
+	String npm = 'npm'
+	if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+		npm = 'npm.cmd'
+	}
+
+	it.workingDir("../wibb-angular")
 	it.commandLine(npm, "run", "build-for-ws-j")
 }
 
+tasks.getByName("grabAngularApp").dependsOn("installAngularDependencies")
 tasks.getByName("processResources").dependsOn("grabAngularApp")
