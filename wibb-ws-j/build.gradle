@@ -52,6 +52,7 @@ tasks.register('grabAngularApp', Exec) {
 	}
 
 	it.workingDir("../wibb-angular")
+	it.commandLine(npm, "install")
 	it.commandLine(npm, "run", "build-for-ws-j")
 }
 
