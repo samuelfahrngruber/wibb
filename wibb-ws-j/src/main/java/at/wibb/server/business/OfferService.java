@@ -5,7 +5,7 @@ import at.wibb.server.persistence.repositories.OfferRepository;
 import at.wibb.server.persistence.repositories.StoreRepository;
 import at.wibb.server.persistence.templates.OfferTemplate;
 import at.wibb.server.shared.Offer;
-import at.wibb.server.shared.OfferType;
+import at.wibb.server.shared.OfferFilter;
 import at.wibb.server.shared.ReportType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -14,7 +14,6 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -66,10 +65,11 @@ public class OfferService {
      * @return Currently active offers.
      */
     @NonNull
-    public List<Offer> getOffers(OfferType offerType) {
-        return offerRepository.findRelevantOffers(offerType, new Date())
+    public List<Offer> getOffers(OfferFilter offerFilter) {
+        return offerRepository.findAll()
                 .stream()
                 .map(TransformUtil::transformOffer)
+                .filter(offerFilter)
                 .collect(Collectors.toList());
     }
 
