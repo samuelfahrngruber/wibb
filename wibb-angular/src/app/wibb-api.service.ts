@@ -14,9 +14,7 @@ export class WibbApiService {
   readonly apiUrl: string;
   readonly apiHost: string;
 
-  private options: RequestInit = {
-    mode: 'no-cors',
-  };
+  private options: RequestInit = {};
 
   constructor() {
     this.apiHost = PROD_API_HOST;
