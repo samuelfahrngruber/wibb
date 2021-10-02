@@ -19,6 +19,9 @@ jobs:
       - name: Make gradlew executable
         working-directory: ./wibb-ws-j
         run: chmod +x ./gradlew
+      - name: Running checks
+        working-directory: ./wibb-ws-j
+        run: ./gradlew check --stacktrace
       - name: Publish package
         working-directory: ./wibb-ws-j
         run: ./gradlew publish --stacktrace

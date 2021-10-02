@@ -93,3 +93,6 @@ tasks.register('slowTest', Test) {
 	classpath = sourceSets.slowTest.runtimeClasspath
 	shouldRunAfter test
 }
+
+tasks.getByName("check").dependsOn("test")
+tasks.getByName("check").dependsOn("slowTest")
