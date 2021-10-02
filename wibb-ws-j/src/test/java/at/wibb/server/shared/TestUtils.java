@@ -1,6 +1,5 @@
 package at.wibb.server.shared;
 
-
 import java.util.Date;
 
 import static org.mockito.Mockito.mock;

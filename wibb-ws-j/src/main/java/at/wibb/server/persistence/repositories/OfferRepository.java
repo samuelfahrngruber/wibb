@@ -2,7 +2,6 @@ package at.wibb.server.persistence.repositories;
 
 import at.wibb.server.persistence.templates.OfferTemplate;
 import at.wibb.server.shared.OfferType;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 

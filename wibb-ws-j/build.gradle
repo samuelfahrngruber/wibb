@@ -15,10 +15,25 @@ repositories {
 	mavenCentral()
 }
 
+sourceSets {
+	slowTest {
+		compileClasspath += sourceSets.main.output
+		runtimeClasspath += sourceSets.main.output
+	}
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	slowTestImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
+	slowTestImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+configurations {
+	slowTestImplementation.extendsFrom implementation
 }
 
 test {
@@ -67,3 +82,14 @@ tasks.register('grabAngularApp', Exec) {
 
 tasks.getByName("grabAngularApp").dependsOn("installAngularDependencies")
 tasks.getByName("processResources").dependsOn("grabAngularApp")
+
+tasks.register('slowTest', Test) {
+	description = 'Runs slow (integration, e2e, ...) tests.'
+	group = 'verification'
+
+	useJUnitPlatform()
+
+	testClassesDirs = sourceSets.slowTest.output.classesDirs
+	classpath = sourceSets.slowTest.runtimeClasspath
+	shouldRunAfter test
+}
