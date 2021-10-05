@@ -28,7 +28,7 @@ jobs:
         run: echo "::set-output name=WIBB_VERSION_TAG::$(./gradlew printVersion | grep wibb-v\d*\.\d*\.\d*-\d*)"
       - name: print version
         working-directory: ./wibb-ws-j
-        run: echo ${{ WIBB_VERSION_TAG }}
+        run: echo ${{ steps.new_version_string.output.WIBB_VERSION_TAG }}
       - name: Tag snapshot
         uses: tvdias/github-tagger@v0.0.1
         with:
