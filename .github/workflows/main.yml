@@ -25,12 +25,12 @@ jobs:
       - name: Calculating new version
         id: new_version_string
         working-directory: ./wibb-ws-j
-        run: WIBB_VERSION=`./gradlew printVersion | grep wibb-v\d*\.\d*\.\d*-\d*`
+        run: echo "::set-output name=WIBB_VERSION_TAG::$(./gradlew printVersion | grep wibb-v\d*\.\d*\.\d*-\d*)"
       - name: Tag snapshot
         uses: tvdias/github-tagger@v0.0.1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ WIBB_VERSION }}
+          tag: ${{ WIBB_VERSION_TAG }}
       - name: Publish package
         working-directory: ./wibb-ws-j
         run: ./gradlew publish --stacktrace
