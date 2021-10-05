@@ -4,6 +4,8 @@ import at.wibb.server.shared.OfferFilter;
 import at.wibb.server.shared.OfferType;
 import org.junit.jupiter.api.Test;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -44,7 +46,7 @@ class OfferFilterSerializerTest {
     }
 
     @Test
-    void shouldMapValidAt() {
+    void shouldMapValidAt() throws ParseException {
         // given
         Map<String, String> queryParams = Map.of(
                 "validAtDate", "2020-01-01"
@@ -54,8 +56,8 @@ class OfferFilterSerializerTest {
         OfferFilter filter = OfferFilterSerializer.fromQueryString(queryParams);
 
         // then
-        assertThat(filter.getValidAt().getTime())
-                .isEqualTo(1577833200000L);
+        assertThat(filter.getValidAt())
+                .isEqualTo(new SimpleDateFormat("yyyy-MM-dd").parse("2020-01-01"));
     }
 
     @Test

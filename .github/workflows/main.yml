@@ -22,6 +22,12 @@ jobs:
       - name: Running checks
         working-directory: ./wibb-ws-j
         run: ./gradlew check --stacktrace
+      - name: Creating git version tag
+        working-directory: ./wibb-ws-j
+        run: ./gradlew printVersion | grep wibb-v\d*\.\d*\.\d*-\d* | xargs git tag
+      - name: Pushing tags
+        working-directory: ./wibb-ws-jar
+        run: git push --tags
       - name: Publish package
         working-directory: ./wibb-ws-j
         run: ./gradlew publish --stacktrace

@@ -4,7 +4,6 @@ plugins {
 	id 'org.springframework.boot' version '2.4.5'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
-	id 'fr.brouillard.oss.gradle.jgitver' version '0.9.1'
 	id 'maven-publish'
 }
 
@@ -96,3 +95,13 @@ tasks.register('slowTest', Test) {
 
 tasks.getByName("check").dependsOn("test")
 tasks.getByName("check").dependsOn("slowTest")
+
+static def getDate() {
+	return new Date().format('yyyyMMddHHmmss')
+}
+
+task printVersion {
+	doLast {
+		println "wibb-v${project.version}-${getDate()}"
+	}
+}
