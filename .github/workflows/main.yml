@@ -8,6 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    env:
+        org.gradle.console: verbose
 
     steps:
       - uses: actions/checkout@v2
