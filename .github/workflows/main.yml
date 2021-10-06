@@ -31,12 +31,12 @@ jobs:
         run: echo "::set-output name=WIBB_VERSION_TAG::$(./gradlew printVersion | grep wibb-v*)"
       - name: print version
         working-directory: ./wibb-ws-j
-        run: echo ${{ steps.new_version_string.output.WIBB_VERSION_TAG }}
+        run: echo ${{ steps.new_version_string.outputs.WIBB_VERSION_TAG }}
       - name: Tag snapshot
         uses: tvdias/github-tagger@v0.0.1
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
-          tag: "${{ steps.new_version_string.output.WIBB_VERSION_TAG }}"
+          tag: "${{ steps.new_version_string.outputs.WIBB_VERSION_TAG }}"
       - name: Publish package
         working-directory: ./wibb-ws-j
         run: ./gradlew publish --stacktrace
