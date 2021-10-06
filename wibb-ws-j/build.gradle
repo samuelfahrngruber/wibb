@@ -102,6 +102,6 @@ static def getDate() {
 
 task printVersion {
 	doLast {
-		println "wibb-v${project.version}-${getDate()}"
+		println "${project.version}-${getDate()}"
 	}
 }

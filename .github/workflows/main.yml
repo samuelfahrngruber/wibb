@@ -28,7 +28,7 @@ jobs:
       - name: Calculating new version
         id: new_version_string
         working-directory: ./wibb-ws-j
-        run: echo "::set-output name=WIBB_VERSION_TAG::$(./gradlew printVersion | grep wibb-v*)"
+        run: echo "::set-output name=WIBB_VERSION_TAG::$(./gradlew printVersion | grep *.*.*-*)"
       - name: print version
         working-directory: ./wibb-ws-j
         run: echo ${{ steps.new_version_string.outputs.WIBB_VERSION_TAG }}
