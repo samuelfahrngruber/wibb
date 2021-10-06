@@ -37,11 +37,11 @@ jobs:
         with:
           repo-token: "${{ secrets.GITHUB_TOKEN }}"
           tag: "${{ steps.new_version_string.outputs.WIBB_VERSION_TAG }}"
-#      - name: Publish package
-#        working-directory: ./wibb-ws-j
-#        run: ./gradlew publish --stacktrace
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish package
+        working-directory: ./wibb-ws-j
+        run: ./gradlew publish --stacktrace
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create release
         uses: "marvinpinto/action-automatic-releases@latest"
         with:
